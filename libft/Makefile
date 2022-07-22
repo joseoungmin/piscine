@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
+#    Updated: 2022/07/22 20:12:27 by seojo            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	=	libft.a
 
 SRCS	= 	ft_memset.c		\
@@ -30,6 +42,7 @@ SRCS	= 	ft_memset.c		\
 			ft_split.c		\
 			ft_itoa.c		\
 			ft_strmapi.c	\
+			ft_striteri.c	\
 			ft_putchar_fd.c	\
 			ft_putstr_fd.c	\
 			ft_putendl_fd.c	\
@@ -49,32 +62,27 @@ OBJS	= 	$(SRCS:.c=.o)
 
 BNS_OBJS=	$(BNS_SRCS:.c=.o)
 
-CC		= 	gcc
-
 CFLAGS	= 	-Wall -Wextra -Werror
-
-RM		= 	rm -f
 
 AR		= 	ar rcs
 
 all		:	$(NAME)
 
-bonus	:	$(NAME) $(BNS_OBJS)
-			@$(AR) $(NAME) $(BNS_OBJS)
+bonus	:	$(NAME)
 
-$(NAME)	: 	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
+$(NAME)	: 	$(OBJS) $(if $(filter bonus, $(MAKECMDGOALS)), $(BNS_OBJS))
+			$(AR) $@ $^
 
 .c.o	:
-			@$(CC) $(CFLAGS) -I. -o $@ -c $^
+			$(CC) $(CFLAGS) -I. -c -o $@ $<
 
 clean	:
-			@$(RM) $(OBJS) $(BNS_OBJS)
+			$(RM) $(OBJS) $(BNS_OBJS)
 
 fclean	:	clean
-			@$(RM) $(NAME) a.out
+			$(RM) $(NAME)
 
 re		:	fclean
-			@make all
+			make all
 
 .PHONY	:	all clean fclean re bonus

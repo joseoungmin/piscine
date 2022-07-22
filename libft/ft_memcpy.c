@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:44:44 by seojo             #+#    #+#             */
-/*   Updated: 2022/06/30 19:46:12 by seojo            ###   ########.fr       */
+/*   Updated: 2022/07/22 19:27:59 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	void	*add;
 
+	if (!n || dest == src)
+		return (dest);
 	add = dest;
 	while (n-- != 0)
-		*(unsigned char *)dest++ = *(unsigned char *)src++;
-	return (add);
+		*(unsigned char *)add++ = *(unsigned char *)src++;
+	return (dest);
 }
