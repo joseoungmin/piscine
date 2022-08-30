@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:30:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/08/26 23:21:56 by seojo            ###   ########.fr       */
+/*   Updated: 2022/08/27 06:06:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(str, s + start, i + 1);
 	return (str);
 }
-/*
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	i;
 
-	i = 0;
-	if (s == 0)
-		return (NULL);
-	if (start >= ft_strlen(s))
-	{
-		str = (char *)malloc(sizeof(char));
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
-	if (ft_strlen(s) - start > len)
-		str = (char *)malloc(sizeof(char) * (len + 1));
-	else
-		str = (char *)malloc(sizeof(char) * (ft_strlen(s) - start + 1));
-	if (!str)
-		return (NULL);
-	while (s[start] && i < len)
-		str[i++] = s[start++];
-	str[i] = 0;
-	return (str);
-}
-*/
 char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char			*buf;

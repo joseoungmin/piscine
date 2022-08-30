@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:30:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/08/26 23:09:17 by seojo            ###   ########.fr       */
+/*   Updated: 2022/08/30 14:23:34 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s && *s != (unsigned char)c)
-		s++;
-	if (*s == (unsigned char)c)
-		return ((char *)s);
-	return (NULL);
 }
 
 static size_t	ft_strlcpy(char *dest, const char *src, size_t size)
@@ -49,10 +40,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
-	i = 0;
-	if (s == 0)
-		return (NULL);
-	if (start >= ft_strlen(s))
+	i = ft_strlen(s);
+	if ((size_t)start >= i)
 	{
 		str = (char *)malloc(sizeof(char));
 		if (!str)
@@ -60,15 +49,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		str[0] = '\0';
 		return (str);
 	}
-	if (ft_strlen(s) - start > len)
-		str = (char *)malloc(sizeof(char) * (len + 1));
-	else
-		str = (char *)malloc(sizeof(char) * (ft_strlen(s) - start + 1));
+	i -= start;
+	if (i > len)
+		i = len;
+	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
-	while (s[start] && i < len)
-		str[i++] = s[start++];
-	str[i] = 0;
+	ft_strlcpy(str, s + start, i + 1);
 	return (str);
 }
 
@@ -90,4 +77,24 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 		ft_strlcpy(buf, s1, s1_size + 1);
 	ft_strlcpy(buf + s1_size, s2, s2_size + 1);
 	return (buf);
+}
+
+char	*allclear(t_lst **head, char *str)
+{
+	t_lst	*tmp;
+
+	if (!str)
+		return (NULL);
+	while (*head)
+	{
+		tmp = (*head)->next;
+		if ((*head)->str)
+		{
+			free((*head)->str);
+			(*head)->str = NULL;
+		}
+		free(*head);
+		*head = tmp;
+	}
+	return (NULL);
 }
