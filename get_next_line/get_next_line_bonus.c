@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 02:30:10 by seojo             #+#    #+#             */
-/*   Updated: 2022/08/26 23:04:16 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/01 13:28:16 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static t_lst	*check_fd(t_lst **back, int fd)
 {
@@ -39,17 +39,18 @@ static t_lst	*check_fd(t_lst **back, int fd)
 	return (tmp);
 }
 
-static char	*read_line(char *buf, char *back, int fd)
+static char	*read_line(t_lst **head, char *buf, char *back, int fd)
 {
 	char	*tmp;
 	int		size;
+	int		i;
 
 	size = 1;
 	while (size)
 	{
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size == -1)
-			return (NULL);
+			return (allclear(head, back));
 		else if (!size)
 			break ;
 		tmp = back;
@@ -59,21 +60,25 @@ static char	*read_line(char *buf, char *back, int fd)
 		tmp = NULL;
 		if (!back)
 			return (NULL);
-		if (ft_strchr(buf, '\n'))
-			break ;
+		i = 0;
+		while (buf[i])
+			if (buf[i++] == '\n')
+				return (back);
 	}
 	return (back);
 }
 
-static void	dellst(t_lst **back, t_lst **lst_buf)
+static void	delnode(t_lst **back, t_lst **lst_buf)
 {
 	t_lst	*point;
 
-	point = *back;
-	if (point->fd == (*lst_buf)->fd)
+	if (!*back)
+		return ;
+	if ((*back)->fd == (*lst_buf)->fd)
 		*back = (*lst_buf)->next;
 	else
 	{
+		point = *back;
 		while (point->next)
 		{
 			if (point->next->fd == (*lst_buf)->fd)
@@ -83,7 +88,7 @@ static void	dellst(t_lst **back, t_lst **lst_buf)
 		point->next = (*lst_buf)->next;
 	}
 	free(*lst_buf);
-	lst_buf = NULL;
+	*lst_buf = NULL;
 }
 
 static char	*insert_newline(char **rt_line)
@@ -126,14 +131,14 @@ char	*get_next_line(int fd)
 	lst_buf = check_fd(&back, fd);
 	if (!lst_buf)
 		return (NULL);
-	rt_line = read_line(buf, lst_buf->str, fd);
+	rt_line = read_line(&back, buf, lst_buf->str, fd);
 	if (!rt_line)
 	{
-		dellst(&back, &lst_buf);
+		delnode(&back, &lst_buf);
 		return (NULL);
 	}
 	lst_buf->str = insert_newline(&rt_line);
 	if (lst_buf->str == NULL)
-		dellst(&back, &lst_buf);
+		delnode(&back, &lst_buf);
 	return (rt_line);
 }

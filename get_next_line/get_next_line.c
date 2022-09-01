@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 02:30:10 by seojo             #+#    #+#             */
-/*   Updated: 2022/08/30 14:24:40 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/02 06:22:32 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static t_lst	*check_fd(t_lst **back, int fd)
 {
@@ -74,11 +74,11 @@ static void	delnode(t_lst **back, t_lst **lst_buf)
 
 	if (!*back)
 		return ;
-	point = *back;
-	if (point->fd == (*lst_buf)->fd)
+	if ((*back)->fd == (*lst_buf)->fd)
 		*back = (*lst_buf)->next;
 	else
 	{
+		point = *back;
 		while (point->next)
 		{
 			if (point->next->fd == (*lst_buf)->fd)

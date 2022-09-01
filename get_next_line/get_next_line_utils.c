@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:30:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/08/27 06:06:14 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/01 17:13:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s && *s != (unsigned char)c)
-		s++;
-	if (*s == (unsigned char)c)
-		return ((char *)s);
-	return (NULL);
 }
 
 static size_t	ft_strlcpy(char *dest, const char *src, size_t size)
@@ -86,4 +77,24 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 		ft_strlcpy(buf, s1, s1_size + 1);
 	ft_strlcpy(buf + s1_size, s2, s2_size + 1);
 	return (buf);
+}
+
+char	*allclear(t_lst **head, char *str)
+{
+	t_lst	*tmp;
+
+	if (!str)
+		return (NULL);
+	while (*head)
+	{
+		tmp = (*head)->next;
+		if ((*head)->str)
+		{
+			free((*head)->str);
+			(*head)->str = NULL;
+		}
+		free(*head);
+		*head = tmp;
+	}
+	return (NULL);
 }
