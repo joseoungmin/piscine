@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 03:31:23 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:04:25 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 00:19:24 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ void	ft_close(int fd)
 {
 	if (close(fd) == -1)
 		ft_perror("close_error");
+}
+
+void	ft_dup2(int fd1, int fd2)
+{
+	if (dup2(fd1, fd2) == -1)
+		ft_perror("dup2_error");
 }

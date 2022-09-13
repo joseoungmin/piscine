@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:03:40 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:01:17 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 00:26:00 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_exec(t_node *node, int idx)
 	if (path == NULL)
 		ft_msg_error(node->av[idx + 2], "command not found", 127);
 	cmd = msplit(node->av[idx + 2], ' ');
-		if (execve(path, cmd, node->envp) == -1)
-			ft_perror("execve-2");
+	if (execve(path, cmd, node->envp) == -1)
+		ft_perror("execve-2");
 }
 
 int	last_exec(t_node *node, int out_fd, int idx)
@@ -32,9 +32,8 @@ int	last_exec(t_node *node, int out_fd, int idx)
 	int		pid;
 	int		stat;
 
-	if (dup2(out_fd, 1) == -1)
-		ft_perror("last_exec");
-	close(out_fd);
+	ft_dup2(out_fd, 1);
+	ft_close(out_fd);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -67,10 +66,8 @@ int	ft_fork(t_node *node, int i)
 	if (out_fd == -1)
 		ft_perror(node->av[node->ac - 1]);
 	//에러 종료
-	if (dup2(in_fd, 0) == -1)
-		ft_perror("ft_fork_dup2");
-	close(in_fd);
-	i = -1;
+	ft_dup2(in_fd, 0);
+	ft_close(in_fd);
 	while (++i < node->ac - 4)
 	{
 		if (pipe(fd) == -1)
@@ -78,16 +75,14 @@ int	ft_fork(t_node *node, int i)
 		pid = fork();
 		if (pid == 0)
 		{
-			close(fd[0]);
-			if (dup2(fd[1], 1) == -1)
-				ft_perror("ft_fork_in_dup2-1");
-			close(fd[1]);
+			ft_close(fd[0]);
+			ft_dup2(fd[1], 1);
+			ft_close(fd[1]);
 			ft_exec(node, i);
 		}
-		close(fd[1]);
-		if (dup2(fd[0], 0) == -1)
-			ft_perror("ft_fork_in_dup2-1");
-		close(fd[0]);
+		ft_close(fd[1]);
+		ft_dup2(fd[0], 0);
+		ft_close(fd[0]);
 	}
 	stat = last_exec(node, out_fd, i);
 	while (wait(NULL) != -1)
@@ -97,13 +92,10 @@ int	ft_fork(t_node *node, int i)
 
 int	main(int ac, char **av, char **envp)
 {
-	t_node	*node;
+	t_node	node;
 
 	if (ac < 5)
 		ft_msg_error("Arg", "wrong count of arguments", 1);
-	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
-		ft_msg_error("malloc", "malloc fail", 1);
-	node_init(ac, av, envp, node);
-	return (ft_fork(node, -1));
+	node_init(ac, av, envp, &node);
+	return (ft_fork(&node, -1));
 }
