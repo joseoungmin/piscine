@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:03:40 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:26:00 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 02:20:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	ft_exec(t_node *node, int idx)
 		ft_perror("execve-2");
 }
 
-int	last_exec(t_node *node, int out_fd, int idx)
+int	last_exec(t_node *node, int idx)
 {
 	char	**cmd;
 	char	*path;
 	int		pid;
 	int		stat;
 
-	ft_dup2(out_fd, 1);
-	ft_close(out_fd);
+	ft_dup2(node->out_fd, 1);
+	ft_close(node->out_fd);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -53,38 +53,28 @@ int	last_exec(t_node *node, int out_fd, int idx)
 int	ft_fork(t_node *node, int i)
 {
 	int		stat;
-	int		in_fd;
-	int		out_fd;
-	int		fd[2];
 	pid_t	pid;
 
-	in_fd = open(node->av[1], O_RDONLY);
-	if (in_fd == -1)
-		ft_perror(node->av[1]);
-	//에러 진행
-	out_fd = open(node->av[node->ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (out_fd == -1)
-		ft_perror(node->av[node->ac - 1]);
-	//에러 종료
-	ft_dup2(in_fd, 0);
-	ft_close(in_fd);
 	while (++i < node->ac - 4)
 	{
-		if (pipe(fd) == -1)
+		if (pipe(node->fd) == -1)
 			ft_perror("ERROR of pipe");
 		pid = fork();
 		if (pid == 0)
 		{
-			ft_close(fd[0]);
-			ft_dup2(fd[1], 1);
-			ft_close(fd[1]);
+			if (i == 0 && node->in_fd == -1)
+				ft_msg_error(node->av[1 + node->hd], \
+						"no such file or directory", 1);
+			ft_close(node->fd[0]);
+			ft_dup2(node->fd[1], 1);
+			ft_close(node->fd[1]);
 			ft_exec(node, i);
 		}
-		ft_close(fd[1]);
-		ft_dup2(fd[0], 0);
-		ft_close(fd[0]);
+		ft_close(node->fd[1]);
+		ft_dup2(node->fd[0], 0);
+		ft_close(node->fd[0]);
 	}
-	stat = last_exec(node, out_fd, i);
+	stat = last_exec(node, i);
 	while (wait(NULL) != -1)
 		continue ;
 	return (stat);

@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:37:46 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:06:29 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 02:20:57 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,21 @@ char	*find_path(char **envp, char *cmd, int i)
 
 void	node_init(int ac, char **av, char **envp, t_node *node)
 {
+	node->hd = 0;
+	if (ft_strncmp("heredoc", av[1], 7) == 0)
+		node->hd = 1;
 	node->ac = ac;
 	node->av = av;
 	node->envp = envp;
+	node->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (node->out_fd == -1)
+		ft_perror(av[ac - 1]);
+	node->in_fd = open(av[1 + node->hd], O_RDONLY);
+	if (node->in_fd != -1)
+	{
+		ft_dup2(node->in_fd, 0);
+		ft_close(node->in_fd);
+	}
 }
 
 void	ft_perror(char *str)

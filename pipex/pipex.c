@@ -6,14 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:03:40 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/12 13:26:26 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 01:48:51 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-///모든 인자를 받는 명령어는 ' " 처리를 해야한다..
-///makefile arch 처리구문 
 
 void	first_exec(t_node *node, int fd[2])
 {
@@ -70,17 +67,16 @@ int	ft_fork(t_node *node)
 	while (++i < node->ac - 3)
 	{
 		pid = fork();
-		if (pid == 0)
-		{
-			if (i == 0)
-				first_exec(node, fd);
-			else
-				last_exec(node, fd);
-		}
+		if (pid == 0 && i == 0)
+			first_exec(node, fd);
+		else if (pid == 0 && i == 1)
+			last_exec(node, fd);
 	}
 	fd_close(fd[0], fd[1]);
 	waitpid(pid, &stat, 0);
 	free_node(node);
+	while (wait(NULL) != -1)
+		continue ;
 	if (0 == (stat & 0xff))
 		return (stat >> 8);
 	return (stat);

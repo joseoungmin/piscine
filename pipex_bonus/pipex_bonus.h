@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:09:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:22:18 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 00:54:52 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_node
 	int		fd[2];
 	int		in_fd;
 	int		out_fd;
-	int		heredoc;
+	int		hd;
 }	t_node;
 
 typedef struct s_fd
