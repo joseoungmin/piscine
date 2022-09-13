@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_ptr_bonus.c                                   :+:      :+:    :+:   */
+/*   free_ptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 03:31:23 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:04:25 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/12 13:26:05 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-void	free_sptr(char *str)
+void	free_single_ptr(char *str)
 {
 	free(str);
 	str = NULL;
 }
 
-void	free_dptr(char **str)
+void	free_double_ptr(char **str)
 {
 	int	i;
 
@@ -32,8 +32,15 @@ void	free_dptr(char **str)
 	str = NULL;
 }
 
-void	ft_close(int fd)
+void	free_node(t_node *node)
 {
-	if (close(fd) == -1)
-		ft_perror("close_error");
+	free(node->path);
+	free(node->path2);
+	free(node);
+}
+
+void	fd_close(int fd1, int fd2)
+{
+	close(fd1);
+	close(fd2);
 }

@@ -6,29 +6,29 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:03:40 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/13 22:00:04 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 00:01:17 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-///makefile arch 처리구문 
-
 void	ft_exec(t_node *node, int idx)
 {
 	char	**cmd;
+	char	*path;
 
-	node->path = find_path(node->envp, node->av[idx + 2], -1);
-	if (node->path == NULL)
+	path = find_path(node->envp, node->av[idx + 2], -1);
+	if (path == NULL)
 		ft_msg_error(node->av[idx + 2], "command not found", 127);
 	cmd = msplit(node->av[idx + 2], ' ');
-	if (execve(node->path, cmd, node->envp) == -1)
-		ft_perror("execve-2");
+		if (execve(path, cmd, node->envp) == -1)
+			ft_perror("execve-2");
 }
 
 int	last_exec(t_node *node, int out_fd, int idx)
 {
 	char	**cmd;
+	char	*path;
 	int		pid;
 	int		stat;
 
@@ -38,11 +38,11 @@ int	last_exec(t_node *node, int out_fd, int idx)
 	pid = fork();
 	if (pid == 0)
 	{
-		node->path = find_path(node->envp, node->av[idx + 2], -1);
-		if (node->path == NULL)
+		path = find_path(node->envp, node->av[idx + 2], -1);
+		if (path == NULL)
 			ft_msg_error(node->av[idx + 2], "command not found", 127);
 		cmd = msplit(node->av[idx + 2], ' ');
-		if (execve(node->path, cmd, node->envp) == -1)
+		if (execve(path, cmd, node->envp) == -1)
 			ft_perror("execve-3");
 	}
 	waitpid(pid, &stat, 0);
@@ -56,23 +56,20 @@ int	ft_fork(t_node *node, int i)
 	int		stat;
 	int		in_fd;
 	int		out_fd;
-	int 	fd[2];
+	int		fd[2];
 	pid_t	pid;
 
 	in_fd = open(node->av[1], O_RDONLY);
 	if (in_fd == -1)
 		ft_perror(node->av[1]);
 	//에러 진행
-
 	out_fd = open(node->av[node->ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_fd == -1)
 		ft_perror(node->av[node->ac - 1]);
 	//에러 종료
-
 	if (dup2(in_fd, 0) == -1)
 		ft_perror("ft_fork_dup2");
 	close(in_fd);
-
 	i = -1;
 	while (++i < node->ac - 4)
 	{
@@ -93,7 +90,6 @@ int	ft_fork(t_node *node, int i)
 		close(fd[0]);
 	}
 	stat = last_exec(node, out_fd, i);
-	free_node(node);
 	while (wait(NULL) != -1)
 		continue ;
 	return (stat);
