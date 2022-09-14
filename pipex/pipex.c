@@ -6,17 +6,18 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:03:40 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 01:48:51 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 06:29:27 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	first_exec(t_node *node, int fd[2])
+void	first_exec(t_node *node, int fd[2], int idx)
 {
 	char	**cmd;
-	int		in_fd;
+	char	*path;
 
+	path = find_path(envp, node->av[idx + 2], -1);
 	in_fd = open(node->av[1], O_RDONLY);
 	if (in_fd == -1)
 		ft_perror(node->av[1]);
@@ -54,16 +55,14 @@ void	last_exec(t_node *node, int fd[2])
 		ft_perror(NULL);
 }
 
-int	ft_fork(t_node *node)
+int	make_child(t_node *node, int i)
 {
 	int		fd[2];
 	pid_t	pid;
 	int		stat;
-	int		i;
 
 	if (pipe(fd) == -1)
 		ft_perror("ERROR of pipe");
-	i = -1;
 	while (++i < node->ac - 3)
 	{
 		pid = fork();
@@ -84,13 +83,10 @@ int	ft_fork(t_node *node)
 
 int	main(int ac, char **av, char **envp)
 {
-	t_node	*node;
+	t_node	node;
 
 	if (ac != 5)
 		ft_msg_error("Arg", "wrong count of arguments", 1);
-	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
-		ft_msg_error("malloc", "malloc fail", 1);
-	node_init(ac, av, envp, node);
-	return (ft_fork(node));
+	node_init(ac, av, envp, &node);
+	return (make_child(&node, -1));
 }
