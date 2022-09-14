@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:09:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 13:15:06 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 03:20:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <sys/errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 
 typedef struct s_node
 {
-	int		ac;
 	char	**av;
 	char	**envp;
 	int		fd[2];
@@ -30,20 +30,14 @@ typedef struct s_node
 	int		hd;
 }	t_node;
 
-typedef struct s_fd
-{
-	int	fd[2];
-}	t_fd;
-
 void	ft_perror(char *str);
 void	ft_msg_error(char *str, char *msg, int exit_code);
 char	**msplit(char const *s, char c);
-void	node_init(int ac, char **av, char **envp, t_node *node);
-void	free_sptr(char *str);
-void	free_dptr(char **str);
 void	ft_close(int fd);
 void	ft_dup2(int fd1, int fd2);
 void	ft_pipe(int *fd);
+void	ft_heredoc(t_node *node);
 char	*find_path(char **envp, char *cmd, int i);
+void	init_and_open(int ac, char **av, char **envp, t_node *node);
 
 #endif

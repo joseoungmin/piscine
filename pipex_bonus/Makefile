@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 04:06:31 by seojo             #+#    #+#              #
-#    Updated: 2022/09/14 13:29:25 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/15 02:47:28 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	pipex
 LIBFTDIR	=	./libft
 LIB_A		=	$(LIBFTDIR)/libft.a
 
-SRCS	= 	pipex_bonus.c pipex_utils_bonus.c msplit_bonus.c free_ptr_bonus.c
+SRCS	= 	pipex_bonus.c pipex_utils_bonus.c msplit_bonus.c pipex_ft_func.c
 
 OBJS	= 	$(SRCS:.c=.o)
 

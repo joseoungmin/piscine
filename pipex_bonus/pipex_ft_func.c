@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_ptr_bonus.c                                   :+:      :+:    :+:   */
+/*   pipex_ft_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 03:31:23 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 13:14:41 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 02:56:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	free_sptr(char *str)
+void	ft_msg_error(char *str, char *msg, int exit_code)
 {
-	free(str);
-	str = NULL;
+	write(2, "pipex: ", 7);
+	write(2, str, ft_strlen(str));
+	write(2, ": ", 2);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(exit_code);
 }
 
-void	free_dptr(char **str)
+void	ft_perror(char *str)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-	}
-	free(str);
-	str = NULL;
+	write(2, "pipex: ", 7);
+	perror(str);
+	exit(1);
 }
 
 void	ft_close(int fd)
