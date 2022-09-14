@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 04:06:31 by seojo             #+#    #+#              #
-#    Updated: 2022/09/13 23:42:17 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/14 13:29:25 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ AR		= 	ar rcs
 			arch -x86_64 $(CC) $(CFLAGS) -I. -c -o $@ $<
 
 all		:	$(NAME)
+
+bonus	:	$(NAME)
 
 $(NAME)	: 	$(OBJS) $(LIB_A)
 			arch -x86_64 $(CC) $(CFLAGS) libft/libft.a -I pipex.h $^ -o $(NAME)

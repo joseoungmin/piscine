@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 04:09:34 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 00:54:52 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/14 13:15:06 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_sptr(char *str);
 void	free_dptr(char **str);
 void	ft_close(int fd);
 void	ft_dup2(int fd1, int fd2);
+void	ft_pipe(int *fd);
 char	*find_path(char **envp, char *cmd, int i);
 
 #endif
