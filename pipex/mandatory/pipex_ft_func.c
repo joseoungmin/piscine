@@ -6,11 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 03:31:23 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/15 02:56:22 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:39:56 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../include/pipex.h"
 
 void	ft_msg_error(char *str, char *msg, int exit_code)
 {

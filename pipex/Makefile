@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 04:06:31 by seojo             #+#    #+#              #
-#    Updated: 2022/09/14 01:59:23 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/15 09:15:05 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,34 +14,55 @@ NAME		=	pipex
 LIBFTDIR	=	./libft
 LIB_A		=	$(LIBFTDIR)/libft.a
 
-SRCS	= 	pipex.c pipex_utils.c msplit.c free_ptr.c
+SRCS	= 	$(addprefix mandatory/, \
+			pipex.c \
+			pipex_utils.c \
+			msplit.c \
+			pipex_ft_func.c)
+
+B_SRCS	=	$(addprefix pipex_bonus/, \
+			pipex_bonus.c	\
+			pipex_utils_bonus	\
+			msplit_bonus.c	\
+			pipex_ft_func.c)
 
 OBJS	= 	$(SRCS:.c=.o)
+
+B_OBJS	=	$(B_SRCS:.c=.o)
 
 CFLAGS	= 	-Wall -Wextra -Werror
 
 AR		= 	ar rcs
 
-.c.o	:
-			arch -x86_64 $(CC) $(CFLAGS) -I. -c -o $@ $<
+
+ifdef BONUS
+		OBJECTS = $(B_OBJS)
+else
+		OBJECTS = $(OBJS)
+endif
 
 all		:	$(NAME)
 
-$(NAME)	: 	$(OBJS) $(LIB_A)
-			arch -x86_64 $(CC) $(CFLAGS) libft/libft.a -I pipex.h $^ -o $(NAME)
+.c.o	:
+			$(CC) $(CFLAGS) -I ./include -c -o $@ $<
+
+$(NAME)	: 	$(OBJECTS) $(LIB_A)
+			$(CC) $(CFLAGS) libft/libft.a $^ -o $(NAME)
 
 $(LIB_A) :
-			@make -C $(LIBFTDIR)
+			make -C $(LIBFTDIR)
 
 clean	:
-			@make -C $(LIBFTDIR) clean
-			@$(RM) $(OBJS) $(BNS_OBJS)
+			make -C $(LIBFTDIR) clean
+			$(RM) $(OBJS) $(B_OBJS)
 
 fclean	:	clean
-			@make -C $(LIBFTDIR) fclean
-			@$(RM) $(NAME)
+			make -C $(LIBFTDIR) fclean
+			$(RM) $(NAME)
 
 re		:	fclean
-			@make all
+			make all
+bonus :
+			make BONUS=1
 
 .PHONY	:	all clean fclean re

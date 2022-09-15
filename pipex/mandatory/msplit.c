@@ -6,11 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:26:38 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/12 23:36:47 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:40:41 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../include/pipex.h"
 
 static size_t	cnt_word(const char *s, char c)
 {

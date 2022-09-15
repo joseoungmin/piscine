@@ -1,49 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_ptr.c                                         :+:      :+:    :+:   */
+/*   pipex_ft_func_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 03:31:23 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/12 16:44:04 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:50:20 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex_bonus.h"
 
-void	free_single_ptr(char *str)
+void	ft_msg_error(char *str, char *msg, int exit_code)
 {
-	free(str);
-	str = NULL;
+	write(2, "pipex: ", 7);
+	write(2, str, ft_strlen(str));
+	write(2, ": ", 2);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(exit_code);
 }
 
-void	free_double_ptr(char **str)
+void	ft_perror(char *str)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-	}
-	free(str);
-	str = NULL;
+	write(2, "pipex: ", 7);
+	perror(str);
+	exit(1);
 }
 
-void	free_node(t_node *node)
+void	ft_close(int fd)
 {
-	free(node->path);
-	node->path = NULL;
-	free(node->path2);
-	node->path = NULL;
-	free(node);
-	node = NULL;
+	if (close(fd) == -1)
+		ft_perror("close_error");
 }
 
-void	fd_close(int fd1, int fd2)
+void	ft_dup2(int fd1, int fd2)
 {
-	close(fd1);
-	close(fd2);
+	if (dup2(fd1, fd2) == -1)
+		ft_perror("dup2_error");
+}
+
+void	ft_pipe(int *fd)
+{
+	if (pipe(fd) == -1)
+		ft_perror("pipe_error");
 }

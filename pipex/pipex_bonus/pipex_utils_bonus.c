@@ -6,13 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:37:46 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/15 03:16:54 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:51:01 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../include/pipex_bonus.h"
 
-void	free_dptr(char **str)
+static void	free_dptr(char **str)
 {
 	int	i;
 
