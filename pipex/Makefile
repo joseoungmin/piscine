@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 04:06:31 by seojo             #+#    #+#              #
-#    Updated: 2022/09/15 09:15:05 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/15 09:37:56 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ SRCS	= 	$(addprefix mandatory/, \
 
 B_SRCS	=	$(addprefix pipex_bonus/, \
 			pipex_bonus.c	\
-			pipex_utils_bonus	\
+			pipex_utils_bonus.c	\
 			msplit_bonus.c	\
-			pipex_ft_func.c)
+			pipex_ft_func_bonus.c)
 
 OBJS	= 	$(SRCS:.c=.o)
 
