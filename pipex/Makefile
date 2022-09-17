@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 04:06:31 by seojo             #+#    #+#              #
-#    Updated: 2022/09/15 09:37:56 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/15 09:49:00 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,6 @@ fclean	:	clean
 re		:	fclean
 			make all
 bonus :
-			make BONUS=1
+			@make BONUS=1
 
 .PHONY	:	all clean fclean re
