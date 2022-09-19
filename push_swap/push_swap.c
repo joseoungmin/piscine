@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/19 20:34:55 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/19 20:50:58 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,26 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+typedef struct s_lst
+{
+    int     num;
+    struct s_lst *perv;
+    struct s_lst *next;
+}   t_lst;
+
+typedef	struct s_deque
+{
+	int		size;
+	t_lst 	*top;
+	t_lst 	*bottom;
+}					t_deque;
+
+top 에 넣고빼고
+bottom 에 넣고빼고
+
+돌리고 
+노드의 넥스트는 노드
 
 size_t	ft_strlen(const char *s)
 {
@@ -148,12 +168,6 @@ char	**ft_split(char const *s, char c)
 	return (buf);
 }
 
-typedef struct s_lst
-{
-    int     num;
-    struct s_lst *perv;
-    struct s_lst *next;
-}   t_lst;
 
 t_lst	*ft_lstlast(t_lst *lst)
 {
