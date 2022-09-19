@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 17:43:42 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/19 20:12:13 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 13:28:47 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/22 19:53:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*str;
-	size_t	i;
+	t_list	*new;
+	t_list	*tmp;
+	void	*fun;
 
-	i = ft_strlen(s);
-	if ((size_t)start >= i)
-		return (ft_strdup(""));
-	i -= start;
-	if (i > len)
-		i = len;
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	if (!lst || !f)
 		return (NULL);
-	ft_strlcpy(str, s + start, i + 1);
-	return (str);
+	new = NULL;
+	while (lst)
+	{
+		fun = f(lst->content);
+		tmp = ft_lstnew(fun);
+		if (!tmp)
+		{
+			if (fun)
+				free(fun);
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, tmp);
+		lst = lst->next;
+	}
+	return (new);
 }

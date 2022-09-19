@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 17:43:42 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/19 20:12:13 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 08:30:52 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 08:32:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	char	*str;
-	size_t	i;
+	const size_t	find_len = ft_strlen(to_find);
 
-	i = ft_strlen(s);
-	if ((size_t)start >= i)
-		return (ft_strdup(""));
-	i -= start;
-	if (i > len)
-		i = len;
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s + start, i + 1);
-	return (str);
+	if (!find_len)
+		return ((char *)str);
+	while (*str && n-- >= find_len)
+	{
+		if (*str == *to_find && !ft_memcmp(str, to_find, find_len))
+			return ((char *)str);
+		str++;
+	}
+	return (NULL);
 }
