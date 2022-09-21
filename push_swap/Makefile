@@ -6,34 +6,40 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/09/19 20:16:17 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/22 00:10:33 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
+NAME		=	push_swap
+LIBFTDIR	= ./libft
+LIB_A		=	$(LIBFTDIR)/libft.a
 
-SRCS	= 	push_swap.c		\
+SRCS	= 	push_swap.c			\
+			init_parse.c		\
+			push_swap_utils.c
+
 
 OBJS	= 	$(SRCS:.c=.o)
 
-BNS_OBJS=	$(BNS_SRCS:.c=.o)
-
 CFLAGS	= 	-Wall -Wextra -Werror
-
-AR		= 	ar rcs
 
 all		:	$(NAME)
 
-$(NAME)	: 	$(OBJS)
-			$(CC) $(CFLAGS) $@ $^
-
 .c.o	:
-			$(CC) $(CFLAGS) -c -o $@ $<
+			$(CC) $(CFLAGS) -I ./include -c -o $@ $<
+
+$(NAME)	: 	$(OBJS) $(LIB_A)
+			$(CC) $(CFLAGS) libft/libft.a $^ -o $(NAME)
+
+$(LIB_A) :
+			make -C $(LIBFTDIR)
 
 clean	:
+			make -C $(LIBFTDIR) clean
 			$(RM) $(OBJS)
 
 fclean	:	clean
+			make -C $(LIBFTDIR) fclean
 			$(RM) $(NAME)
 
 re		:	fclean
