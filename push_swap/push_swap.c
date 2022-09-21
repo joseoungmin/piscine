@@ -6,60 +6,15 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/19 20:50:58 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/21 15:33:59 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+//top 에 넣고빼고
+//bottom 에 넣고빼고
 
-typedef struct s_lst
-{
-    int     num;
-    struct s_lst *perv;
-    struct s_lst *next;
-}   t_lst;
-
-typedef	struct s_deque
-{
-	int		size;
-	t_lst 	*top;
-	t_lst 	*bottom;
-}					t_deque;
-
-top 에 넣고빼고
-bottom 에 넣고빼고
-
-돌리고 
-노드의 넥스트는 노드
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	s;
-
-	s = 0;
-	while (src[s])
-		s++;
-	if (size)
-	{
-		while (*src && --size)
-			*dest++ = *src++;
-		*dest = '\0';
-	}
-	return (s);
-}
+//노드 하나씩 돌리고 
+//노드의 넥스트는 노드
 
 int	ft_atoi(const char *str)
 {
@@ -85,102 +40,19 @@ int	ft_atoi(const char *str)
 	return ((int)num * sign);
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*buf;
-	size_t	i;
-
-	buf = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!buf)
-		return (NULL);
-	i = -1;
-	while (s[++i])
-		buf[i] = s[i];
-	buf[i] = '\0';
-	return (buf);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	i;
-
-	i = ft_strlen(s);
-	if ((size_t)start >= i)
-		return (ft_strdup(""));
-	i -= start;
-	if (i > len)
-		i = len;
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s + start, i + 1);
-	return (str);
-}
-
-static size_t	ft_count_words(char const *s, char c)
-{
-	size_t	cnt;
-
-	cnt = 0;
-	while (s && *s)
-	{
-		if (*s != c && (*(s + 1) == '\0' || *(s + 1) == c))
-			cnt++;
-		s++;
-	}
-	return (cnt);
-}
-
-static char	**ft_free_dptr(char	**s, int i)
-{
-	while (--i >= 0)
-		free(s[i]);
-	free(s);
-	return (NULL);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		words_idx;
-	char	*word_tmp;
-	char	**buf;
-
-	buf = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
-	if (!s || !buf)
-		return (NULL);
-	words_idx = 0;
-	while (*s)
-	{
-		if (*s == c)
-			s++;
-		else
-		{
-			word_tmp = (char *)s;
-			while (*s && *s != c)
-				s++;
-			buf[words_idx] = ft_substr(word_tmp, 0, s - word_tmp);
-			if (!buf[words_idx++])
-				return (ft_free_dptr(buf, words_idx - 1));
-		}
-	}
-	buf[words_idx] = NULL;
-	return (buf);
-}
-
-
-t_lst	*ft_lstlast(t_lst *lst)
+//t_deque->bottom 으로 변경
+t_dlst	*ft_lstlast(t_dlst *lst)
 {
 	while (lst && lst->next)
 		lst = lst->next;
 	return (lst);
 }
 
-t_lst	*ft_lstnew(int content)
+t_dlst	*ft_lstnew(int content)
 {
-	t_lst	*new;
+	t_dlst	*new;
 
-	new = (t_lst *)malloc(sizeof(t_lst));
+	new = (t_dlst *)malloc(sizeof(t_dlst));
 	if (!new)
 		return (NULL);
 	new->num = content;
@@ -189,19 +61,17 @@ t_lst	*ft_lstnew(int content)
 	return (new);
 }
 
-void	ft_lstadd_next(t_lst **lst, t_lst *new)
+void	ft_lstadd_next(t_dlst **deque, t_dlst *new)
 {
-	t_lst	*last;
-
-	if (!lst || !new)
+	if (!deque || !new)
 		return ;
-	if (!*lst)
-		*lst = new;
+	if (!*deque)
+		*deque = new;
 	else
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
-        new->perv = last;
+		(*deque)->a->bottom->next = new;
+        new->perv = (*deque)->a->bottom;
+		(*deque)->a->bottom = new;
 	}
 }
 
@@ -220,9 +90,9 @@ int	ft_check_num(char *str)
 	return (0);
 }
 
-int	ft_check_dup(t_lst *head, int num)
+int	ft_check_dup(t_dlst *head, int num)
 {
-	t_lst *point;
+	t_dlst *point;
 
 	point = head;
 	while (point)
@@ -255,11 +125,23 @@ int main(int ac, char **av)
     int     k;
 	int		atoint;
     char    **buf;
-    t_lst   *deque;
-	int		a_count;
+    t_dlst   a_deque;
+/*큰거 만들고 함수에 보내줄때 작은거 보내주기 파싱용 함수 분리하기
+	t_total	deque;
 
-	deque = NULL;
-	a_count = 0;
+	deque.a = (t_deque *)malloc(sizeof(t_deque));
+	parsing(deque.a, av);	
+
+t_total->t_deque->t_dlst
+(*t_total).(*t_deque).t_dlst
+	void	ft_error(void)
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+*/
+	a_deque = NULL;
+	a_deque.size = 0;
     if (ac == 1)
         return (0);
     i = 0;
@@ -267,22 +149,27 @@ int main(int ac, char **av)
     {
         j = -1;
         buf = ft_split(av[i], ' ');
+		if (!buf)
+			ft_error(1);//	디버깅을 위한 exit number
+		if (buf && !*buf)
+			ft_error(2);
         while (buf[++j])
         {
             k = -1;
 			atoint = ft_atoi(buf[j]);
 			if (!ft_check_num(buf[j]) || ft_check_dup(deque, atoint))
-				return (write(1, "Error\n", 6));
+				return (rt_error());
         	ft_lstadd_next(&deque, ft_lstnew(atoint));
         }
-		a_count += j;
+		a_deque.size += j;
 		free_dptr(buf);
     }
+
 	printf("a_stack\n");
     while (deque)
     {
         printf("%d\n", deque->num);
         deque = deque->next;
     }
-	printf("a_count = %d\n", a_count);
+	printf("a_deque.size = %d\n", a_deque.size);
 }
