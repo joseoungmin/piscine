@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/21 15:33:59 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/21 16:39:24 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,34 @@
 
 int	ft_atoi(const char *str)
 {
-	long long	num;
-	int			sign;
-	int			i;
+	int	num;
+	int	minus;
+	int	i;
+
+	num = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	minus = 0;
+	if (str[i] == '-' || str[i] == '+')
+		minus = str[i++] == '-';
+	if (str[i])
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		if ((num > 214748364 || (num == 214748364 && (str[i] > '7' + minus)))
+			ft_error(0);
+		num = num * 10 + str[i++] - '0';
+	}
+	if (minus)
+		return (num * -1);
+	return (num);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	num;
+	int	sign;
+	int	i;
 
 	num = 0;
 	sign = 1;
@@ -28,16 +53,19 @@ int	ft_atoi(const char *str)
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
+	{
 		if (str[i++] == '-')
 			sign = -1;
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-		num = num * 10 + str[i++] - '0';
-	if (num * sign > 2147483647 || -2147483648 > num * sign)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
+		if (!ft_isdigit(str[i]))
+			ft_error(0);
 	}
-	return ((int)num * sign);
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		if ((num > 214748364 || (num == 214748364 && (str[i] > '7' + (sign == -1))))
+			ft_error(0);
+		num = num * 10 + str[i++] - '0';
+	}
+	return (num * sign);
 }
 
 //t_deque->bottom 으로 변경
@@ -118,6 +146,19 @@ void	free_dptr(char **str)
 	str = NULL;
 }
 
+void	total_init(t_total *total)
+{
+	total->a = ft_calloc(1, sizeof(t_deque));
+	if (!total->a)
+		ft_error(0);
+	total->b = ft_calloc(1, sizeof(t_deque));
+	if (!total->b)
+		ft_error(0);
+
+}
+
+void	av_parse()
+
 int main(int ac, char **av)
 {
     int     i;
@@ -125,7 +166,9 @@ int main(int ac, char **av)
     int     k;
 	int		atoint;
     char    **buf;
-    t_dlst   a_deque;
+    t_total	total;
+
+	total_init(&total);
 /*큰거 만들고 함수에 보내줄때 작은거 보내주기 파싱용 함수 분리하기
 	t_total	deque;
 

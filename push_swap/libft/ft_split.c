@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 08:40:35 by seojo             #+#    #+#             */
-/*   Updated: 2022/07/19 08:42:01 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/21 16:11:15 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_split(char const *s, char c)
 	char	*word_tmp;
 	char	**buf;
 
-	buf = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	buf = ft_calloc((ft_count_words(s, c) + 1), sizeof(char *));
 	if (!s || !buf)
 		return (NULL);
 	words_idx = 0;
@@ -58,6 +58,5 @@ char	**ft_split(char const *s, char c)
 				return (ft_free_dptr(buf, words_idx - 1));
 		}
 	}
-	buf[words_idx] = NULL;
 	return (buf);
 }
