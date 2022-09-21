@@ -6,42 +6,22 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/21 16:39:24 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/21 21:09:24 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+
+
+#include <stdio.h>
 //top 에 넣고빼고
 //bottom 에 넣고빼고
 
 //노드 하나씩 돌리고 
 //노드의 넥스트는 노드
 
-int	ft_atoi(const char *str)
-{
-	int	num;
-	int	minus;
-	int	i;
-
-	num = 0;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	minus = 0;
-	if (str[i] == '-' || str[i] == '+')
-		minus = str[i++] == '-';
-	if (str[i])
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		if ((num > 214748364 || (num == 214748364 && (str[i] > '7' + minus)))
-			ft_error(0);
-		num = num * 10 + str[i++] - '0';
-	}
-	if (minus)
-		return (num * -1);
-	return (num);
-}
-
-int	ft_atoi(const char *str)
+int	ft_pu_atoi(const char *str)
 {
 	int	num;
 	int	sign;
@@ -61,26 +41,18 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		if ((num > 214748364 || (num == 214748364 && (str[i] > '7' + (sign == -1))))
+		if ((num > 214748364 || (num == 214748364 && (str[i] > '7' + (sign == -1)))))
 			ft_error(0);
 		num = num * 10 + str[i++] - '0';
 	}
 	return (num * sign);
 }
 
-//t_deque->bottom 으로 변경
-t_dlst	*ft_lstlast(t_dlst *lst)
+t_node	*ft_nodenew(int content)
 {
-	while (lst && lst->next)
-		lst = lst->next;
-	return (lst);
-}
+	t_node	*new;
 
-t_dlst	*ft_lstnew(int content)
-{
-	t_dlst	*new;
-
-	new = (t_dlst *)malloc(sizeof(t_dlst));
+	new = (t_node *)malloc(sizeof(t_node));
 	if (!new)
 		return (NULL);
 	new->num = content;
@@ -89,130 +61,96 @@ t_dlst	*ft_lstnew(int content)
 	return (new);
 }
 
-void	ft_lstadd_next(t_dlst **deque, t_dlst *new)
+void	ft_lstadd_next(t_deque **a, t_node *new)
 {
-	if (!deque || !new)
+	if (!(*a) || !new)
 		return ;
-	if (!*deque)
-		*deque = new;
+	if (!((*a)->top))
+	{
+		(*a)->bottom = new;
+		(*a)->top = new;
+		(*a)->size = 1;
+	}
 	else
 	{
-		(*deque)->a->bottom->next = new;
-        new->perv = (*deque)->a->bottom;
-		(*deque)->a->bottom = new;
+		(*a)->bottom->next = new;
+        new->perv = (*a)->bottom;
+		(*a)->bottom = new;
+		(*a)->size += 1;
 	}
 }
 
-int	ft_check_num(char *str)
+void	ft_check_sort(t_node *head)
 {
-	while(*str == '-' || *str == '+')
-	{
-		if (*(str + 1) == '-' || *(str + 1) == '+')
-			return (0);
-		str++;
-	}
-	while('0' <= *str && *str <= '9')
-		str++;
-	if (!*str)
-		return (1);
-	return (0);
-}
-
-int	ft_check_dup(t_dlst *head, int num)
-{
-	t_dlst *point;
+	t_node	*point;
 
 	point = head;
-	while (point)
+	while (point && point->next)
 	{
-		if (point->num == num)
-			return (1);
+		printf("point_num = %d\n", point->num);
+		if (point->num > point->next->num)
+			return ;
 		point = point->next;
 	}
-	return (0);
+	if (!point)
+		exit(0);
 }
 
-void	free_dptr(char **str)
+void	av_parse(char **av, t_deque *a, int i, int atoint)
 {
-	int	i;
+	char	**buf;
+	int		j;
+	int		k;
 
-	i = -1;
-	while (str[++i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-	}
-	free(str);
-	str = NULL;
+	if (!a || !av)
+		ft_error(0);
+    while(av[++i])
+    {
+        j = -1;
+        buf = ft_split(av[i], ' ');
+		if (!buf)
+			ft_error(1);
+		if (buf && !*buf)
+			ft_error(2);
+        while (buf[++j])
+        {
+            k = -1;
+			atoint = ft_pu_atoi(buf[j]);
+			if (!ft_check_num(buf[j]) || ft_check_dup(a->top, atoint))
+				ft_error(0);
+			//ft_check_sort(a->top);
+        	ft_lstadd_next(&a, ft_nodenew(atoint));
+        }
+		free_dptr(buf);
+    }
 }
 
 void	total_init(t_total *total)
 {
+
 	total->a = ft_calloc(1, sizeof(t_deque));
 	if (!total->a)
 		ft_error(0);
 	total->b = ft_calloc(1, sizeof(t_deque));
 	if (!total->b)
 		ft_error(0);
-
 }
-
-void	av_parse()
 
 int main(int ac, char **av)
 {
-    int     i;
-    int     j;
-    int     k;
-	int		atoint;
-    char    **buf;
     t_total	total;
+	t_node *tmp;
 
-	total_init(&total);
-/*큰거 만들고 함수에 보내줄때 작은거 보내주기 파싱용 함수 분리하기
-	t_total	deque;
-
-	deque.a = (t_deque *)malloc(sizeof(t_deque));
-	parsing(deque.a, av);	
-
-t_total->t_deque->t_dlst
-(*t_total).(*t_deque).t_dlst
-	void	ft_error(void)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
-*/
-	a_deque = NULL;
-	a_deque.size = 0;
     if (ac == 1)
         return (0);
-    i = 0;
-    while(av[++i])
+	total_init(&total);
+	av_parse(av, total.a, 0, 0);
+	
+	tmp = total.a->top;
+    while (tmp)
     {
-        j = -1;
-        buf = ft_split(av[i], ' ');
-		if (!buf)
-			ft_error(1);//	디버깅을 위한 exit number
-		if (buf && !*buf)
-			ft_error(2);
-        while (buf[++j])
-        {
-            k = -1;
-			atoint = ft_atoi(buf[j]);
-			if (!ft_check_num(buf[j]) || ft_check_dup(deque, atoint))
-				return (rt_error());
-        	ft_lstadd_next(&deque, ft_lstnew(atoint));
-        }
-		a_deque.size += j;
-		free_dptr(buf);
+        printf("%d\n", tmp->num);
+        tmp = tmp->next;
     }
-
-	printf("a_stack\n");
-    while (deque)
-    {
-        printf("%d\n", deque->num);
-        deque = deque->next;
-    }
-	printf("a_deque.size = %d\n", a_deque.size);
+	printf("a_deque.size = %d\n", total.a->size);
 }
