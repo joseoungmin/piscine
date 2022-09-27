@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/09/22 00:10:33 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/26 21:31:29 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ LIB_A		=	$(LIBFTDIR)/libft.a
 
 SRCS	= 	push_swap.c			\
 			init_parse.c		\
-			push_swap_utils.c
+			push_swap_utils.c	\
+			ft_ss.c				\
+			ft_pp.c				\
+			ft_rr.c				\
+			ft_rrr.c			\
 
 
 OBJS	= 	$(SRCS:.c=.o)
@@ -29,7 +33,7 @@ all		:	$(NAME)
 			$(CC) $(CFLAGS) -I ./include -c -o $@ $<
 
 $(NAME)	: 	$(OBJS) $(LIB_A)
-			$(CC) $(CFLAGS) libft/libft.a $^ -o $(NAME)
+			$(CC) $(CFLAGS) $^ -o $(NAME)
 
 $(LIB_A) :
 			make -C $(LIBFTDIR)

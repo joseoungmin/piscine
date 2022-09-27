@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/22 00:00:28 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/26 21:45:42 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,36 @@ void	test_deque_print(t_total *deque, char *msg)
 	{
 		if (i <= deque->a->size && i <= deque->b->size)
 		{
-			printf("data[%2d] = %12d  data[%2d] = %12d\n", ++j, cur_a->data, ++k, cur_b->data);
+			printf("num[%2d] = %12d  num[%2d] = %12d\n", ++j, cur_a->num, ++k, cur_b->num);
 			cur_a = cur_a->next;
 			cur_b = cur_b->next;
 		}
 		else if (i <= deque->a->size && i > deque->b->size)
 		{
-			printf("data[%2d] = %12d\n", ++j, cur_a->data);
+			printf("num[%2d] = %12d\n", ++j, cur_a->num);
 			cur_a = cur_a->next;
 		}
 		else if (i > deque->a->size && i <= deque->b->size)
 		{
-			printf("                         data[%2d] = %12d\n", ++k, cur_b->data);
+			printf("                         num[%2d] = %12d\n", ++k, cur_b->num);
 			cur_b = cur_b->next;
 		}
 		i--;
 	}
 	if (deque->a->top && deque->a->bottom && deque->b->top && deque->b->bottom)
 	{
-		printf("\n     top = %12d       top = %12d\n", deque->a->top->data, deque->b->top->data);
-		printf("  bottom = %12d    bottom = %12d\n", deque->a->bottom->data, deque->b->bottom->data);
+		printf("\n     top = %12d       top = %12d\n", deque->a->top->num, deque->b->top->num);
+		printf("  bottom = %12d    bottom = %12d\n", deque->a->bottom->num, deque->b->bottom->num);
 	}
 	else if (deque->a->top && deque->a->bottom && !deque->b->top && !deque->b->bottom)
 	{
-		printf("\n     top = %12d  empty\n", deque->a->top->data);
-		printf("  bottom = %12d\n", deque->a->bottom->data);
+		printf("\n     top = %12d  empty\n", deque->a->top->num);
+		printf("  bottom = %12d\n", deque->a->bottom->num);
 	}
 	else if (!deque->a->top && !deque->a->bottom && deque->b->top && deque->b->bottom)
 	{
-		printf("\nempty                         top = %12d\n", deque->b->top->data);
-		printf("                           bottom = %12d\n", deque->b->bottom->data);
+		printf("\nempty                         top = %12d\n", deque->b->top->num);
+		printf("                           bottom = %12d\n", deque->b->bottom->num);
 	}
 	else
 		printf("\nempty                    empty\n");
@@ -75,18 +75,16 @@ void	test_deque_print(t_total *deque, char *msg)
 void	test_deque(t_total *deque)
 {
 //	simple_sort(deque);
-//	test_deque_print(deque, "simple");
-	pb(deque);
-	pb(deque);
-	pb(deque);
-	pb(deque);
-	pb(deque);
-	pb(deque);
-	pb(deque);
-	test_deque_print(deque, "7 pb");
-	rr(deque);
-	rr(deque);
-	test_deque_print(deque, "2 rr");
-	sa(deque);
-	test_deque_print(deque, " sa ");
+	printf("\n\n\n");
+	ft_pb(deque);
+	ft_pb(deque);
+	ft_pb(deque);
+	ft_pb(deque);
+	ft_rr(deque);
+	ft_rr(deque);
+	ft_sa(deque);
+	ft_rrb(deque);
+	ft_rrr(deque);
+	printf("4 pb\n");
+	printf("\n\n\n");
 }

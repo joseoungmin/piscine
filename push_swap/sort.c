@@ -1,31 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 22:12:26 by seojo            ###   ########.fr       */
+/*   Created: 2022/09/26 22:31:26 by seojo             #+#    #+#             */
+/*   Updated: 2022/09/27 10:35:36 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-#include <stdio.h>
-
-
-int main(int ac, char **av)
-{
-    t_total	total;
-
-    if (ac == 1)
-        return (0);
-	total_init(&total);
-	av_parse(av, total.a, 0, 0);
-
-	//test
-	test_deque(&total);
-	test_deque_print(&total, "test");
-}
+void sort(

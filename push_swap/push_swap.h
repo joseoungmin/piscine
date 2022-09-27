@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/21 23:58:38 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/26 22:12:08 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct s_total
 }			t_total;
 
 void	test_deque_print(t_total *deque, char *msg);
-void	test_deque(t_total deque);
+void	test_deque(t_total *deque);
+
+
 void	free_dptr(char **str);
 int		ft_check_num(char *str);
 int		ft_check_dup(t_node *head, int num);
@@ -46,5 +48,17 @@ void	ft_lstadd_next(t_deque **a, t_node *new);
 void	ft_check_sort(t_node *head);
 void	av_parse(char **av, t_deque *a, int i, int atoint);
 void	total_init(t_total *total);
+int		ft_swap(t_deque *stack);
+int		ft_sa(t_total *total);
+int		ft_sb(t_total *total);
+int		ft_ss(t_total *total);
+int		ft_pb(t_total *total);
+int		ft_pa(t_total *total);
+int		ft_ra(t_total *total);
+int		ft_rb(t_total *total);
+int		ft_rr(t_total *total);
+int		ft_rra(t_total *total);
+int		ft_rrb(t_total *total);
+int		ft_rrr(t_total *total);
 
 #endif

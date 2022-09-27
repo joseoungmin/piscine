@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_ss.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 22:12:26 by seojo            ###   ########.fr       */
+/*   Created: 2022/09/26 18:45:29 by seojo             #+#    #+#             */
+/*   Updated: 2022/09/26 20:29:20 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-#include <stdio.h>
-
-
-int main(int ac, char **av)
+int	ft_swap(t_deque *stack)
 {
-    t_total	total;
+	if (stack->size < 2)
+		return (1);
+	stack->top->num ^= stack->top->next->num;
+	stack->top->next->num ^= stack->top->num;
+	stack->top->num ^= stack->top->next->num;
+	return (0);
+}
 
-    if (ac == 1)
-        return (0);
-	total_init(&total);
-	av_parse(av, total.a, 0, 0);
+int	ft_sa(t_total *total)
+{
+	return (ft_swap(total->a));
+}
 
-	//test
-	test_deque(&total);
-	test_deque_print(&total, "test");
+int	ft_sb(t_total *total)
+{
+	return (ft_swap(total->b));
+}
+
+int	ft_ss(t_total *total)
+{
+	return (ft_swap(total->a) || ft_swap(total->b));
 }
