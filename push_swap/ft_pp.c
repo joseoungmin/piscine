@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_pop.c                                      :+:      :+:    :+:   */
+/*   ft_pp.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:21:37 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 20:47:56 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/27 18:46:27 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,19 @@ static int	ft_pop(t_deque *stack)
 {
 	const int	rt_num = stack->top->num;
 
-	stack->top = stack->top->next;
-	stack->top->perv->next = NULL;
-	free(stack->top->perv);
-	stack->top->perv = NULL;
+	if (stack->size < 2)
+	{
+		free(stack->top);
+		stack->top = NULL;
+		stack->bottom = NULL;
+	}
+	else
+	{
+		stack->top = stack->top->next;
+		stack->top->perv->next = NULL;
+		free(stack->top->perv);
+		stack->top->perv = NULL;
+	}
 	stack->size--;
 	return (rt_num);
 }

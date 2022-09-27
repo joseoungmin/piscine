@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:32:21 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 20:59:13 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/27 18:43:15 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_rotate(t_deque *stack)
 {
 	t_node	*tmp;
 
+	if (stack->size < 2)
+		return (1);
 	tmp = stack->top;
 	stack->top = stack->top->next;
 	stack->top->perv = NULL;

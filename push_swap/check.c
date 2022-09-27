@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 21:45:42 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/27 18:45:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	test_deque_print(t_total *deque, char *msg)
 
 	printf("*****************   < %s >   *****************\n", msg);
 	printf("======= deque A =======  ======= deque B =======\n");
-	printf("        size: %-10zu         size: %-10zu\n", deque->a->size, deque->b->size);
+	printf("        size: %-10d         size: %-10d\n", deque->a->size, deque->b->size);
 	if (deque->a->size > deque->b->size)
 		i = deque->a->size;
 	else
