@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/09/26 21:31:29 by seojo            ###   ########.fr        #
+#    Updated: 2022/09/27 19:54:03 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	= 	push_swap.c			\
 			ft_pp.c				\
 			ft_rr.c				\
 			ft_rrr.c			\
+			ft_sort.c
 
 
 OBJS	= 	$(SRCS:.c=.o)

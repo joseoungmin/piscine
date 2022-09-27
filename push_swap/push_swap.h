@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/26 22:12:08 by seojo            ###   ########.fr       */
+/*   Updated: 2022/09/27 19:54:23 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int		ft_rr(t_total *total);
 int		ft_rra(t_total *total);
 int		ft_rrb(t_total *total);
 int		ft_rrr(t_total *total);
+void	ft_sort_three(t_total *total);
 
 #endif
