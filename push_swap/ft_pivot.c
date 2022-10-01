@@ -6,12 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:18:01 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 20:27:41 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:01:58 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
 void	merge_sort(int *arr, int start, int end)
 {
 	int	mid;
@@ -56,10 +57,7 @@ int	ft_pivot_point(t_total *total, int *pivot_one, int *pivot_two)
 	sort_num = (int *)malloc(sizeof(int) * total->a->size);
 	if (!sort_num)
 		ft_error(1);
-	tmp//첫노드 담고, 반복문으로 배열에 담아주고, 정렬된거 2/3  1/3 번째 찾아서 피벗으로 잡는다;
-	   //pivot one pivot two
-	   //size * 2/3 size * 1/3
-	
 	merge_sort(sort_num, 0, n-1);
 	free(sort_num);
 }
+*/

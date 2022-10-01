@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:32:21 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 18:43:15 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:26:37 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_rotate(t_deque *stack)
 	t_node	*tmp;
 
 	if (stack->size < 2)
-		return (1);
+		return (0);
 	tmp = stack->top;
 	stack->top = stack->top->next;
 	stack->top->perv = NULL;
@@ -30,15 +30,18 @@ static int	ft_rotate(t_deque *stack)
 
 int	ft_ra(t_total *total)
 {
+	write(1, "ra\n", 3);
 	return (ft_rotate(total->a));
 }
 
 int	ft_rb(t_total *total)
 {
+	write(1, "rb\n", 3);
 	return (ft_rotate(total->b));
 }
 
 int	ft_rr(t_total *total)
 {
+	write(1, "rr\n", 3);
 	return (ft_rotate(total->a) || ft_rotate(total->b));
 }

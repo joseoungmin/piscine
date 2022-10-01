@@ -6,13 +6,16 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 19:54:23 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 18:33:19 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+
+
+#include <stdio.h>
 
 typedef struct s_node
 {
@@ -61,5 +64,8 @@ int		ft_rra(t_total *total);
 int		ft_rrb(t_total *total);
 int		ft_rrr(t_total *total);
 void	ft_sort_three(t_total *total);
+
+void	ft_sort(t_total *total);
+void	move_to_b(t_total *total, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 19:43:38 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 19:37:00 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	test_deque_print(t_total *deque, char *msg)
 	{
 		if (i <= deque->a->size && i <= deque->b->size)
 		{
-			printf("num[%2d] = %12d  num[%2d] = %12d\n", ++j, cur_a->num, ++k, cur_b->num);
+			printf(" num[%2d] = %12d  num[%2d] = %12d\n", ++j, cur_a->num, ++k, cur_b->num);
 			cur_a = cur_a->next;
 			cur_b = cur_b->next;
 		}
@@ -54,8 +54,8 @@ void	test_deque_print(t_total *deque, char *msg)
 	}
 	if (deque->a->top && deque->a->bottom && deque->b->top && deque->b->bottom)
 	{
-		printf("\n     top = %12d       top = %12d\n", deque->a->top->num, deque->b->top->num);
-		printf("  bottom = %12d    bottom = %12d\n", deque->a->bottom->num, deque->b->bottom->num);
+		printf("\n     top = %12d      top = %12d\n", deque->a->top->num, deque->b->top->num);
+		printf("  bottom = %12d   bottom = %12d\n", deque->a->bottom->num, deque->b->bottom->num);
 	}
 	else if (deque->a->top && deque->a->bottom && !deque->b->top && !deque->b->bottom)
 	{
@@ -64,8 +64,8 @@ void	test_deque_print(t_total *deque, char *msg)
 	}
 	else if (!deque->a->top && !deque->a->bottom && deque->b->top && deque->b->bottom)
 	{
-		printf("\nempty                         top = %12d\n", deque->b->top->num);
-		printf("                           bottom = %12d\n", deque->b->bottom->num);
+		printf("\nempty                        top = %12d\n", deque->b->top->num);
+		printf("                          bottom = %12d\n", deque->b->bottom->num);
 	}
 	else
 		printf("\nempty                    empty\n");
@@ -79,7 +79,10 @@ void	test_deque(t_total *deque)
 	if (deque->a->size == 2)
 		ft_sa(deque);
 	if (deque->a->size == 3)
-		ft_three_sort(deque);
+		ft_sort_three(deque);
+	else
+		ft_sort(deque);
+	ft_pb(deque);
 /*	printf("\n\n\n");
 	ft_pb(deque);
 	ft_pb(deque);

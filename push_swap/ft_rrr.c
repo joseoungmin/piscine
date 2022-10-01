@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 20:49:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 18:43:40 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:11:10 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ static int	ft_rotate(t_deque *stack)
 
 int	ft_rra(t_total *total)
 {
+	write(1, "rra\n", 4);
 	return (ft_rotate(total->a));
 }
 
 int	ft_rrb(t_total *total)
 {
+	write(1, "rrb\n", 4);
 	return (ft_rotate(total->b));
 }
 
 int	ft_rrr(t_total *total)
 {
+	write(1, "rrr\n", 4);
 	return (ft_rotate(total->a) || ft_rotate(total->b));
 }

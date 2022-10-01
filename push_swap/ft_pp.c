@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:21:37 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/27 18:46:27 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:10:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ static int	ft_move_to_top(t_deque *from, t_deque *to)
 
 int	ft_pb(t_total *total)
 {
+	write(1, "pb\n", 3);
 	return (ft_move_to_top(total->a, total->b));
 }
 
 int	ft_pa(t_total *total)
 {
+	write(1, "pa\n", 3);
 	return (ft_move_to_top(total->b, total->a));
 }
