@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:31:26 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/01 20:37:06 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/01 21:00:12 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void	ft_b_top_sort(t_total *total)
 	const int	mid = total->b->top->next->num;
 	const int	bot = total->b->top->next->next->num;
 
-	if (top < mid && mid < bot)
+	if (top < mid && mid < bot)// 1 2 3
 		return ;
-	else if (mid > bot && bot > top)
+	else if (mid > bot && bot > top)//
 	{
 		ft_sb(total);
 		ft_rb(total);
@@ -184,9 +184,9 @@ void	top_three_sort(t_total *total, t_deque *stack, int len, int a)
 {
 	if (len == 2)
 	{
-		if (a && stack->top->num < stack->top->next->num)
+		if (a && stack->top->num > stack->top->next->num)
 			ft_sa(total);
-		else
+		else if (!a && stack->top->num < stack->top->next->num)
 			ft_sb(total);
 	}
 	else if (len == 3)
@@ -219,6 +219,9 @@ void	move_to_a(t_total *total, int len)
 	count_pa = 0;
 	count_ra = 0;
 	count_rb = 0;
+
+	printf("len %d\n", len);
+
 	while (len--)
 	{
 		if (total->b->top->num < pv_one)
@@ -230,12 +233,15 @@ void	move_to_a(t_total *total, int len)
 				count_ra += (ft_ra(total) == 0);
 		}
 	}
+
+	test_deque_print(total, "to_aaaaaaaaaaaa");
+
 	printf("count ra %d count pa %d count rb %d\n", count_ra, count_pa, count_rb);
-	move_to_b(total, count_ra);
+	move_to_b(total, count_pa - count_ra);
 	recover_ra_rb(total, count_ra, count_rb);
-	move_to_b(total, count_ra);
+	/*move_to_b(total, count_ra);
 	move_to_a(total, count_rb);
-	move_to_a(total, count_pa - count_ra);
+	*/
 }
 
 int a=0;
@@ -244,6 +250,7 @@ void	move_to_b(t_total *total, int len)
 {
 	if (len <= 3)
 	{
+		printf("len %d\n", len);
 		printf("==%d==\n", ++a);
 		top_three_sort(total, total->a, len, 1);
 		return ;
@@ -271,11 +278,15 @@ void	move_to_b(t_total *total, int len)
 				count_rb += (ft_rb(total) == 0);
 		}
 	}
+
+	test_deque_print(total, "to_b");
+
+
 	printf("count ra %d count pb %d count rb %d\n", count_ra, count_pb, count_rb);
 	recover_ra_rb(total, count_ra, count_rb);
 	move_to_b(total, count_ra);
 	move_to_a(total, count_rb);
-	move_to_a(total, count_pb - count_rb);
+	//move_to_a(total, count_pb - count_rb);
 }
 
 
