@@ -6,16 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/01 18:33:19 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:06:56 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-
-
-#include <stdio.h>
 
 typedef struct s_node
 {
@@ -37,10 +34,16 @@ typedef struct s_total
 	t_deque	*b;
 }			t_total;
 
+enum e_cmd
+{
+	RA,
+	RB,
+	PA,
+	PB
+};
+
 void	test_deque_print(t_total *deque, char *msg);
 void	test_deque(t_total *deque);
-
-
 void	free_dptr(char **str);
 int		ft_check_num(char *str);
 int		ft_check_dup(t_node *head, int num);
@@ -64,7 +67,7 @@ int		ft_rra(t_total *total);
 int		ft_rrb(t_total *total);
 int		ft_rrr(t_total *total);
 void	ft_sort_three(t_total *total);
-
+void	ft_pivot_point(t_deque *stack, int *pivot_one, int *pivot_two, int len);
 void	ft_sort(t_total *total);
 void	move_to_b(t_total *total, int len);
 

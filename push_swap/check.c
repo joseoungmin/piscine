@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/01 19:37:00 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/02 22:26:25 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	test_deque_print(t_total *deque, char *msg)
 {
 	t_node	*cur_a;
 	t_node	*cur_b;
-	size_t	i;
+	int		i;
 	int		j;
 	int		k;
 
@@ -82,7 +82,6 @@ void	test_deque(t_total *deque)
 		ft_sort_three(deque);
 	else
 		ft_sort(deque);
-	ft_pb(deque);
 /*	printf("\n\n\n");
 	ft_pb(deque);
 	ft_pb(deque);

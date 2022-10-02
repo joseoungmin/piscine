@@ -6,15 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/01 16:06:18 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:02:11 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-#include <stdio.h>
-
 
 int main(int ac, char **av)
 {
@@ -28,6 +24,4 @@ int main(int ac, char **av)
 	//test
 	test_deque(&total);
 	test_deque_print(&total, "test");
-
-	//pivot and quick sort
 }

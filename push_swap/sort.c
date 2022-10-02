@@ -6,30 +6,16 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:31:26 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/01 21:00:12 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/02 23:43:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-////////////////////////////////////아래
-int	ft_cmp(const void *a, const void *b)
-{
-	int	num1 = *(long *)a;
-	int	num2 = *(long *)b;
-
-	if (num1 > num2)
-		return (1);
-	else if (num1 < num2)
-		return (-1);
-	return (0);
-}
-////////////////////////////위
-
 void	ft_sort_three(t_total *total)
 {
 	const int	top = total->a->top->num;
-	const int	mid  = total->a->top->next->num;
+	const int	mid = total->a->top->next->num;
 	const int	bot = total->a->bottom->num;
 
 	if (top > mid && mid > bot)
@@ -50,36 +36,9 @@ void	ft_sort_three(t_total *total)
 	}
 }
 
-void	ft_pivot(t_deque *stack, int *pv_one, int *pv_two, int len)
-{
-	t_node	*tmp;
-	int 	*arr;
-	int		i;
-	const int	sort_len = len;
-
-	arr = (int *)malloc(sizeof(int) * len);
-	if (!arr)
-		ft_error(1);
-	tmp = stack->top;
-	i = 0;
-	while (len--)
-	{
-		arr[i++] = tmp->num;
-		tmp = tmp->next;
-	}
-	/////////////////////아래
-	qsort(arr, sort_len, sizeof(int), ft_cmp);
-	/////////////////////위
-	*pv_one = arr[sort_len / 3];
-	*pv_two = arr[sort_len * 2 / 3];
-	printf("one  %d two  %d\n", *pv_one, *pv_two);
-
-	free(arr);
-}
-
 void	recover_ra_rb(t_total *total, int count_ra, int count_rb)
 {
-	while (count_rb > 0|| count_ra > 0)
+	while (count_rb > 0 || count_ra > 0)
 	{
 		if (count_rb > 0 && count_ra > 0)
 		{
@@ -101,42 +60,78 @@ void	recover_ra_rb(t_total *total, int count_ra, int count_rb)
 	}
 }
 
+void	ft_b_top_sort_part_two(t_total *total, int top, int mid, int bot)
+{
+	if (bot > top && top > mid)
+	{
+		ft_rb(total);
+		ft_sb(total);
+		ft_pa(total);
+		ft_rrb(total);
+		ft_pa(total);
+		ft_pa(total);
+	}
+	else if (mid > top && top > bot)
+	{
+		ft_sb(total);
+		ft_pa(total);
+		ft_pa(total);
+		ft_pa(total);
+	}
+	else
+	{
+		ft_rb(total);
+		ft_sb(total);
+		ft_pa(total);
+		ft_pa(total);
+		ft_rrb(total);
+		ft_pa(total);
+	}
+}
+
 void	ft_b_top_sort(t_total *total)
 {
 	const int	top = total->b->top->num;
 	const int	mid = total->b->top->next->num;
 	const int	bot = total->b->top->next->next->num;
 
-	if (top < mid && mid < bot)// 1 2 3
-		return ;
-	else if (mid > bot && bot > top)//
+	if (top > mid && mid > bot)
+		;
+	else if (mid > bot && bot > top)
 	{
-		ft_sb(total);
-		ft_rb(total);
-		ft_sb(total);
-		ft_rrb(total);
+		ft_sa(total);
+		ft_pa(total);
+		ft_sa(total);
+		ft_pa(total);
+		ft_pa(total);
 	}
 	else if (top > bot && bot > mid)
 	{
-		ft_rb(total);
+		ft_pa(total);
 		ft_sb(total);
-		ft_rrb(total);
+		ft_pa(total);
+		ft_pa(total);
 	}
-	else if (bot > top && top > mid)
+	else
+		ft_b_top_sort_part_two(total, top, mid, bot);
+}
+
+void	ft_a_top_sort_part_two(t_total *total, int top, int mid, int bot)
+{
+	if (mid > top && top > bot)
 	{
-		ft_rb(total);
-		ft_sb(total);
-		ft_rrb(total);
-		ft_sb(total);
+		ft_ra(total);
+		ft_sa(total);
+		ft_rra(total);
+		ft_sa(total);
 	}
-	else if (mid > top && top > bot)
-		ft_sb(total);
 	else
 	{
-		ft_sb(total);
-		ft_rb(total);
-		ft_sb(total);
-		ft_rrb(total);
+		ft_sa(total);
+		ft_ra(total);
+		ft_sa(total);
+		ft_rra(total);
+		ft_sa(total);
 	}
 }
 
@@ -147,7 +142,7 @@ void	ft_a_top_sort(t_total *total)
 	const int	bot = total->a->top->next->next->num;
 
 	if (top < mid && mid < bot)
-		return ;
+		;
 	else if (mid > bot && bot > top)
 	{
 		ft_ra(total);
@@ -163,31 +158,28 @@ void	ft_a_top_sort(t_total *total)
 	}
 	else if (bot > top && top > mid)
 		ft_sa(total);
-	else if (mid > top && top > bot)
-	{
-		ft_ra(total);
-		ft_sa(total);
-		ft_rra(total);
-		ft_sa(total);
-	}
 	else
-	{
-		ft_sa(total);
-		ft_ra(total);
-		ft_sa(total);
-		ft_rra(total);
-		ft_sa(total);
-	}
+		ft_a_top_sort_part_two(total, top, mid, bot);
 }
 
 void	top_three_sort(t_total *total, t_deque *stack, int len, int a)
 {
-	if (len == 2)
+	if (!a && len == 1)
+		ft_pa(total);
+	else if (len == 2)
 	{
-		if (a && stack->top->num > stack->top->next->num)
-			ft_sa(total);
-		else if (!a && stack->top->num < stack->top->next->num)
-			ft_sb(total);
+		if (a)
+		{
+			if (a && stack->top->num > stack->top->next->num)
+				ft_sa(total);
+		}
+		else
+		{
+			if (stack->top->num < stack->top->next->num)
+				ft_sb(total);
+			ft_pa(total);
+			ft_pa(total);
+		}
 	}
 	else if (len == 3)
 	{
@@ -199,100 +191,106 @@ void	top_three_sort(t_total *total, t_deque *stack, int len, int a)
 	return ;
 }
 
+void	init_cnt(int *count)
+{
+	count[0] = 0;
+	count[1] = 0;
+	count[2] = 0;
+	count[3] = 0;
+}
+
+
+
+#include <stdio.h>
+
+/*
 void	move_to_a(t_total *total, int len)
 {
-	if (len <= 3)
-	{
-		top_three_sort(total, total->b, len, 0);
-		return ;
-	}
-
-	int	count_rb;
-	int	count_ra;
-	int	count_pa;
-
+	int	count[4];
 	int	pv_one;
-	int pv_two;
+	int	pv_two;
 
-	ft_pivot(total->b, &pv_one, &pv_two, len);
-
-	count_pa = 0;
-	count_ra = 0;
-	count_rb = 0;
-
-	printf("len %d\n", len);
-
+	init_cnt(count);
+	if (len <= 3)
+		return (top_three_sort(total, total->b, len, 0));
+	ft_pivot_point(total->b, &pv_one, &pv_two, len);
 	while (len--)
 	{
 		if (total->b->top->num < pv_one)
-			count_rb += (ft_rb(total) == 0);
+			count[RB] += (ft_rb(total) == 0);
 		else
 		{
-			count_pa += (ft_pa(total) == 0);
-			if (total->a->top->num >= pv_two)
-				count_ra += (ft_ra(total) == 0);
+			count[PA] += (ft_pa(total) == 0);
+			if (total->a->top->num <= pv_two)
+				count[RA] += (ft_ra(total) == 0);
 		}
 	}
-
-	test_deque_print(total, "to_aaaaaaaaaaaa");
-
-	printf("count ra %d count pa %d count rb %d\n", count_ra, count_pa, count_rb);
-	move_to_b(total, count_pa - count_ra);
-	recover_ra_rb(total, count_ra, count_rb);
-	/*move_to_b(total, count_ra);
-	move_to_a(total, count_rb);
-	*/
+	printf("PA %d RA %d RB %d\n", count[PA], count[RA], count[RB]);
+	return ;
+	move_to_b(total, count[PA] - count[RA]);
+	recover_ra_rb(total, count[RA], count[RB]);
+	move_to_b(total, count[RA]);
+	move_to_a(total, count[RB]);
 }
+*/
+void	move_to_a(t_total *total, int len)
+{
+	unsigned long long	count;
+	int	pv_one;
+	int	pv_two;
 
-int a=0;
+	count = 0;
+	if (len <= 3)
+		return (top_three_sort(total, total->b, len, 0));
+	ft_pivot_point(total->b, &pv_one, &pv_two, len);
+	while (len--)
+	{
+		if (total->b->top->num < pv_one)
+			count += (unsigned long long)(ft_rb(total) == 0) << 32;
+		else
+		{
+			count += (ft_pa(total) == 0) << 16;
+			if (total->a->top->num <= pv_two)
+				count += (ft_ra(total) == 0);
+		}
+	}
+	printf("PA %lld RA %lld RB %lld\n", count << 32 >> 48, count << 48 >> 48, count >> 32);
+	return ;
+	/*
+	move_to_b(total, count[PA] - count[RA]);
+	recover_ra_rb(total, count[RA], count[RB]);
+	move_to_b(total, count[RA]);
+	move_to_a(total, count[RB]);*/
+}
 
 void	move_to_b(t_total *total, int len)
 {
-	if (len <= 3)
-	{
-		printf("len %d\n", len);
-		printf("==%d==\n", ++a);
-		top_three_sort(total, total->a, len, 1);
-		return ;
-	}
-	int	count_rb;
-	int	count_ra;
-	int	count_pb;
-
+	int	count[4];
 	int	pv_one;
-	int pv_two;
+	int	pv_two;
 
-	ft_pivot(total->a, &pv_one, &pv_two, len);
-
-	count_pb = 0;
-	count_ra = 0;
-	count_rb = 0;
+	init_cnt(count);
+	if (len <= 3)
+		return (top_three_sort(total, total->a, len, 1));
+	ft_pivot_point(total->a, &pv_one, &pv_two, len);
 	while (len--)
 	{
 		if (total->a->top->num >= pv_two)
-			count_ra += (ft_ra(total) == 0);
+			count[RA] += (ft_ra(total) == 0);
 		else
 		{
-			count_pb += (ft_pb(total) == 0);
+			count[PB] += (ft_pb(total) == 0);
 			if (total->b->top->num >= pv_one)
-				count_rb += (ft_rb(total) == 0);
+				count[RB] += (ft_rb(total) == 0);
 		}
 	}
-
-	test_deque_print(total, "to_b");
-
-
-	printf("count ra %d count pb %d count rb %d\n", count_ra, count_pb, count_rb);
-	recover_ra_rb(total, count_ra, count_rb);
-	move_to_b(total, count_ra);
-	move_to_a(total, count_rb);
-	//move_to_a(total, count_pb - count_rb);
+	recover_ra_rb(total, count[RA], count[RB]);
+	move_to_b(total, count[RA]);
+	move_to_a(total, count[RB]);
+	move_to_a(total, count[PB] - count[RB]);
 }
-
-
 
 void	ft_sort(t_total *total)
 {
 	move_to_b(total, total->a->size);
-	//-------------------------------------------
 }
