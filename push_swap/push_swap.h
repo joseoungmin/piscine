@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/02 23:06:56 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/03 10:21:51 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ enum e_cmd
 	PB
 };
 
-void	test_deque_print(t_total *deque, char *msg);
-void	test_deque(t_total *deque);
 void	free_dptr(char **str);
 int		ft_check_num(char *str);
 int		ft_check_dup(t_node *head, int num);
@@ -54,7 +52,6 @@ void	ft_lstadd_next(t_deque **a, t_node *new);
 void	ft_check_sort(t_node *head);
 void	av_parse(char **av, t_deque *a, int i, int atoint);
 void	total_init(t_total *total);
-int		ft_swap(t_deque *stack);
 int		ft_sa(t_total *total);
 int		ft_sb(t_total *total);
 int		ft_ss(t_total *total);
@@ -70,5 +67,9 @@ void	ft_sort_three(t_total *total);
 void	ft_pivot_point(t_deque *stack, int *pivot_one, int *pivot_two, int len);
 void	ft_sort(t_total *total);
 void	move_to_b(t_total *total, int len);
+void	top_three_sort(t_total *total, t_deque *stack, int len, int a);
+void	move_to_b(t_total *total, int len);
 
+void	test_deque_print(t_total *deque, char *msg);
+void	test_deque(t_total *deque);
 #endif

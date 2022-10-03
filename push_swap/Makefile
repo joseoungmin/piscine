@@ -6,12 +6,12 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/09/27 19:54:03 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/03 10:16:44 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	push_swap
-LIBFTDIR	= ./libft
+LIBFTDIR	=	./libft
 LIB_A		=	$(LIBFTDIR)/libft.a
 
 SRCS	= 	push_swap.c			\
@@ -21,8 +21,10 @@ SRCS	= 	push_swap.c			\
 			ft_pp.c				\
 			ft_rr.c				\
 			ft_rrr.c			\
-			ft_sort.c
-
+			ft_pivot.c			\
+			ft_sort.c			\
+			ft_sort_a_b.c		\
+			ft_move_to.c
 
 OBJS	= 	$(SRCS:.c=.o)
 

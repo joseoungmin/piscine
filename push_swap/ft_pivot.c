@@ -6,18 +6,18 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:18:01 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/02 18:32:29 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/03 10:03:16 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static void	ft_arr_to_arr(int *arr, int *n_arr, int *idx, int end)
 {
 	while (idx[0] <= end)
 		n_arr[idx[3]++] = arr[idx[0]++];
 }
+
 static int	*ft_int_malloc(int end)
 {
 	int	*arr;
@@ -52,7 +52,6 @@ static void	merge(int *arr, int start, int mid, int end)
 		idx[0] = idx[1];
 		ft_arr_to_arr(arr, n_arr, idx, mid);
 	}
-
 	while (++start <= end)
 		arr[start] = n_arr[start];
 }
@@ -82,6 +81,8 @@ void	ft_pivot_point(t_deque *stack, int *pivot_one, int *pivot_two, int len)
 		ft_error(1);
 	i = 0;
 	tmp = stack->top;
+	if (!tmp)
+		ft_error(1);
 	while (len--)
 	{
 		sort_num[i++] = tmp->num;
