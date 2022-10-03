@@ -26,6 +26,8 @@ void	ft_cmd_cmp(t_total *total, char *tmp)
 		ft_pb(total);
 	else if (!ft_strncmp(tmp, "ra\n", 3))
 		ft_ra(total);
+	else if (!ft_strncmp(tmp, "rb\n", 3))
+		ft_rb(total);
 	else if (!ft_strncmp(tmp, "rr\n", 3))
 		ft_rr(total);
 	else if (!ft_strncmp(tmp, "rra\n", 4))
