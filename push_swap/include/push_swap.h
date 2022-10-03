@@ -6,13 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:10:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/03 10:21:51 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/03 13:07:55 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
