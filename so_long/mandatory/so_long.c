@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:25:30 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 02:02:50 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 03:59:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		ft_error(0);
+		ft_error("ac error");
 	init_game(&game);
 	map_init(av[1], &game);
-
+/*
 	void	*mlx;
 	void	*win;
 	t_gps	gps;
@@ -77,6 +77,7 @@ int	main(int ac, char **av)
 
 	mlx_hook (win, X_EVENT_KEY_PRESS, 0, &gps_check, &gps);
 	mlx_loop(mlx);
+	*/
 }
 
 

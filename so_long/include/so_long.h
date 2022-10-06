@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:23:43 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 01:19:57 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 02:51:55 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 # define X_EVENT_KEY_PRESS		2
 
@@ -35,6 +37,7 @@
 # define KEY_LEFT			123
 # define KEY_DOWN			125
 # define KEY_RIGHT			124
+
 
 typedef struct s_game
 {
@@ -57,5 +60,8 @@ enum
 	EXIT,
 	COIN
 };
+
+void	ft_error(char *msg);
+void	map_init(char *map, t_game *game);
 
 #endif

@@ -6,15 +6,17 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/06 14:57:08 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/07 03:49:34 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	so_long
 LIB_DIR 	=	./libft/
+LIB_A = ./libft/libft.a
 MLX_DIR		=	./mlx/
 
-SRCS	=	so_long
+SRCS	=	so_long	\
+			draw_map
 
 M_SRCS	=	$(addsuffix .c, $(addprefix mandatory/, $(SRCS)))
 
@@ -24,10 +26,7 @@ OBJS	= 	$(M_SRCS:.c=.o)
 
 
 
-
-
 CC		=	arch -x86_64 gcc
-
 
 
 
@@ -41,9 +40,15 @@ all		:	$(NAME)
 			$(CC) $(CFLAGS) -I ./include -c -o $@ $<
 
 $(NAME)	: 	$(OBJS)
-			arch -x86_64 make -C $(LIB_DIR)
 			arch -x86_64 make -C $(MLX_DIR)
-			$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -I ./include/ -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+			$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -I ./include/ -L $(MLX_DIR) -lft -lmlx -framework OpenGL -framework AppKit
+
+$(OBJS) : $(LIB_A)
+
+$(LIB_A) : $(LIB_DIR)
+
+$(LIB_DIR):
+			arch -x86_64 make -C $(LIB_DIR)
 
 clean	:
 			make -C $(LIB_DIR) clean
@@ -57,4 +62,4 @@ fclean	:	clean
 re		:	fclean
 			make all
 
-.PHONY	:	all clean fclean
+.PHONY	:	all clean fclean $(LIB_DIR)

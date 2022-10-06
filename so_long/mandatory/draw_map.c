@@ -6,11 +6,18 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:21:15 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 02:33:42 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 04:58:41 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	ft_error(char *msg)
+{
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(1);
+}
 
 int	open_map(char *map)
 {
@@ -24,8 +31,8 @@ int	open_map(char *map)
 
 int	map_obj_check(char c, int *objs)
 {
-	if (c == '1' || c == '0')
-		continue ;
+	if (c == '1' || c == '0' || c == '\n')
+		;
 	else if (c == 'C')
 		objs[COIN]++;
 	else if (c == 'E')
@@ -82,21 +89,25 @@ void	map_malloc(t_game *game, int fd)
 	}
 }
 
-void	map_load(char *map, t_game *game, int fd)
+void	map_load(char *map, t_game *game)
 {
 	char	*line;
 	int		fd;
 	int		i;
 	int		j;
 
+	write(2,"1here\n", 6);
 	fd = open_map(map);
+	write(2,"2here\n", 6);
 	line = get_next_line(fd);
+	write(2,"3here\n", 6);
 	game->map_wid = ft_strlen(line);        // -1;
+	write(2,"4here\n", 6);
 	i = 0;
 	while (line)
 	{
 		game->map_hei++;
-		if (game_wid != ft_strlen(line))    // -1;
+		if (game->map_wid != (int)ft_strlen(line))    // -1;
 			ft_error("map width error");
 		j = 0;
 		while (j < game->map_cols)
@@ -104,8 +115,10 @@ void	map_load(char *map, t_game *game, int fd)
 			game->map_arr[i][j] = line[j];
 			j++;
 		}
+		game->map_arr[i][j] = '\0';
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 }
@@ -116,20 +129,20 @@ void	map_wall_ck(t_game *game)
 	
 	i = 0;
 	while (game->map_arr[0][i])
-		if (game->map->arr[0][i++] != '1')
-			ft_error("wall error");
+		if (game->map_arr[0][i++] != '1')
+			ft_error("wall error1");
 	i = 0;
 	while (game->map_arr[i][0])
-		if (game->map->arr[i++][0] != '1')
-			ft_error("wall error");
+		if (game->map_arr[i++][0] != '1')
+			ft_error("wall error2");
 	i = 0;
 	while (game->map_arr[i][game->map_cols - 1])
-		if (game->map->arr[i++][game->map_cols - 1] != '1')
-			ft_error("wall error");
+		if (game->map_arr[i++][game->map_cols - 1] != '1')
+			ft_error("wall error3");
 	i = 0;
 	while (game->map_arr[game->map_rows - 1][i])
-		if (game->map->arr[game->map_rows - 1][i++] != '1')
-			ft_error("wall error");
+		if (game->map_arr[game->map_rows - 1][i++] != '1')
+			ft_error("wall error4");
 }
 
 void	map_init(char *map, t_game *game)
@@ -137,11 +150,23 @@ void	map_init(char *map, t_game *game)
 	const int	map_name_len = ft_strlen(map);
 	int			fd;
 
-	if (map_name_len < 5 || ft_strncmp(map[map_name_len - 4], ".ber" ,4))
-		ft_error(0);
+	printf("len %d\n", map_name_len);
+	if (map_name_len < 5 || ft_strncmp(map + map_name_len - 4, ".ber", 4))
+		ft_error("map error");
 	fd = open_map(map);
+	write(2, "here1\n", 6);
 	map_malloc(game, fd);
 	close(fd);
+	write(2, "here2\n", 6);
 	map_load(map, game);
+	write(2, "here3\n", 6);
 	map_wall_ck(game);
+	write(2, "here4\n", 6);
+	
+	for(int i=0; i < game->map_rows; i++)
+	{
+		for (int j=0; j < game->map_cols; j++)
+			printf("%c", game->map_arr[i][j]);
+		printf("\n");
+	}
 }
