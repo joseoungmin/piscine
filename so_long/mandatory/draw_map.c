@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:21:15 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 04:58:41 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 06:03:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_error(char *msg)
 
 int	open_map(char *map)
 {
-	int fd;
+	int	fd;
 
 	fd = open(map, O_RDONLY);
 	if (fd <= 0)
@@ -52,7 +52,7 @@ void	map_size_objs_ck(t_game *game, int fd)
 
 	objs[P] = 0;
 	objs[COIN] = 0;
-	objs[EXIT] = 0; 
+	objs[EXIT] = 0;
 	i = 0;
 	while (read(fd, &c, 1) > 0)
 	{
@@ -77,13 +77,13 @@ void	map_malloc(t_game *game, int fd)
 	int	i;
 
 	map_size_objs_ck(game, fd);
-	game->map_arr = (char **)malloc(sizeof(char *) * game->map_rows);
+	game->map_arr = ft_calloc(game->map_rows + 1, sizeof(char *));
 	if (!game->map_arr)
 		ft_error("malloc error");
 	i = -1;
-	while (++i != game->map_cols)
+	while (++i < game->map_rows + 1)
 	{
-		game->map_arr[i] = (char *)malloc(sizeof(char *) * game->map_cols);
+		game->map_arr[i] = ft_calloc(game->map_cols + 1, sizeof(char *));
 		if (!game->map_arr[i])
 			ft_error("malloc error");
 	}
@@ -96,13 +96,9 @@ void	map_load(char *map, t_game *game)
 	int		i;
 	int		j;
 
-	write(2,"1here\n", 6);
 	fd = open_map(map);
-	write(2,"2here\n", 6);
 	line = get_next_line(fd);
-	write(2,"3here\n", 6);
 	game->map_wid = ft_strlen(line);        // -1;
-	write(2,"4here\n", 6);
 	i = 0;
 	while (line)
 	{
@@ -150,18 +146,13 @@ void	map_init(char *map, t_game *game)
 	const int	map_name_len = ft_strlen(map);
 	int			fd;
 
-	printf("len %d\n", map_name_len);
 	if (map_name_len < 5 || ft_strncmp(map + map_name_len - 4, ".ber", 4))
 		ft_error("map error");
 	fd = open_map(map);
-	write(2, "here1\n", 6);
 	map_malloc(game, fd);
 	close(fd);
-	write(2, "here2\n", 6);
 	map_load(map, game);
-	write(2, "here3\n", 6);
 	map_wall_ck(game);
-	write(2, "here4\n", 6);
 	
 	for(int i=0; i < game->map_rows; i++)
 	{

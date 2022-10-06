@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/07 03:49:34 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/07 05:50:13 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,22 +33,28 @@ CC		=	arch -x86_64 gcc
 
 
 CFLAGS	= 	-Wall -Wextra -Werror
+CFLAGS +=	-g -fsanitize=address
+
+CPPFLAGS = -I ./include
+LDFLAGS =  -L $(LIB_DIR) -L $(MLX_DIR)
+LDFLAGS += -fsanitize=address
+LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit
 
 all		:	$(NAME)
 
 .c.o	:
-			$(CC) $(CFLAGS) -I ./include -c -o $@ $<
+			$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 $(NAME)	: 	$(OBJS)
-			arch -x86_64 make -C $(MLX_DIR)
-			$(CC) -o $(NAME) $(OBJS) -L $(LIB_DIR) -I ./include/ -L $(MLX_DIR) -lft -lmlx -framework OpenGL -framework AppKit
+			make -C $(MLX_DIR)
+			$(CC) -o $(NAME) $(OBJS) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) 
 
 $(OBJS) : $(LIB_A)
 
 $(LIB_A) : $(LIB_DIR)
 
 $(LIB_DIR):
-			arch -x86_64 make -C $(LIB_DIR)
+			make -C $(LIB_DIR)
 
 clean	:
 			make -C $(LIB_DIR) clean

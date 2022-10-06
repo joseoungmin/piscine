@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 02:30:10 by seojo             #+#    #+#             */
-/*   Updated: 2022/09/14 22:55:31 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 05:41:19 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char	*get_next_line(int fd)
 	static t_lst	*back;
 	t_lst			*lst_buf;
 
-	if (fd < 0 | BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	lst_buf = check_fd(&back, fd);
 	if (!lst_buf)
