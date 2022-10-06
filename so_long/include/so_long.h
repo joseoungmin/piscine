@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:23:43 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/06 15:16:00 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/06 15:44:37 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,26 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
-enum
-{
-	key_w = 1,
-	key_a,
-	key_s,
-	key_d,
-	key_esc,
-	key_press,
-	key_release,
-};
+# define X_EVENT_KEY_PRESS		2
 
-typedef s_gps
+/* Clicking on the RED cross on the window frame */
+# define X_EVENT_KEY_EXIT		17
+
+# define KEY_ESC			53
+# define KEY_R				15
+# define KEY_RETURN			36
+
+# define KEY_W				13
+# define KEY_A				0
+# define KEY_S				1
+# define KEY_D				2
+# define KEY_UP				126
+# define KEY_LEFT			123
+# define KEY_DOWN			125
+# define KEY_RIGHT			124
+
+typedef struct s_gps
 {
 	int	x;
 	int	y;
