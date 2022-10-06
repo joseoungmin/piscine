@@ -6,11 +6,17 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:25:30 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/06 14:37:36 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/06 15:16:02 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	gps_init(t_gps *gps)
+{
+	gps->x = 3;
+	gpx->y = 4;
+}
 
 int	main(void)
 {

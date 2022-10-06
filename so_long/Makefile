@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/06 14:51:50 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/06 14:57:08 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,19 @@ M_SRCS	=	$(addsuffix .c, $(addprefix mandatory/, $(SRCS)))
 
 OBJS	= 	$(M_SRCS:.c=.o)
 
+
+
+
+
+
+
 CC		=	arch -x86_64 gcc
+
+
+
+
+
+
 CFLAGS	= 	-Wall -Wextra -Werror
 
 all		:	$(NAME)
