@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:13:49 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/03 14:14:43 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/03 15:34:11 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,6 @@ void	ft_lstadd_next(t_deque **a, t_node *new)
 	}
 }
 
-void	ft_check_sort(t_node *head)
-{
-	t_node	*point;
-
-	point = head;
-	while (point && point->next)
-	{
-		if (point->num > point->next->num)
-			return ;
-		point = point->next;
-	}
-	exit(0);
-}
-
 void	av_parse(char **av, t_deque *a, int i, int atoint)
 {
 	char	**buf;
@@ -82,7 +68,6 @@ void	av_parse(char **av, t_deque *a, int i, int atoint)
 		}
 		free_dptr(buf);
 	}
-	ft_check_sort(a->top);
 }
 
 void	total_init(t_total *total)
