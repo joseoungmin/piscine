@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/09/19 18:29:03 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/07 17:11:04 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,9 @@ bonus	:	$(NAME)
 
 $(NAME)	: 	$(OBJS) $(if $(filter bonus, $(MAKECMDGOALS)), $(BNS_OBJS))
 			@$(AR) $@ $^
+			@echo "  libft OK!"
 
-.c.o	:
+%.o		:	%.c libft.h
 			@$(CC) $(CFLAGS) -I. -c -o $@ $<
 
 clean	:

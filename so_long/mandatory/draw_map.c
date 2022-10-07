@@ -6,19 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:21:15 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 13:01:31 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 16:02:50 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	ft_error(char *msg)
-{
-	write(2, "Error\n", 6);
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	exit(1);
-}
 
 int	open_map(char *map)
 {
@@ -28,66 +20,6 @@ int	open_map(char *map)
 	if (fd <= 0)
 		ft_error("open error");
 	return (fd);
-}
-
-int	map_obj_check(char c, int *objs)
-{
-	if (c == '1' || c == '0' || c == '\n')
-		;
-	else if (c == 'C')
-		objs[COIN]++;
-	else if (c == 'E')
-		objs[EXIT]++;
-	else if (c == 'P')
-		objs[P]++;
-	else
-		return (1);
-	return (0);
-}
-
-void	map_size_objs_ck(t_game *game, int fd)
-{
-	int		i;
-	char	c;
-	int		objs[3];
-
-	objs[P] = 0;
-	objs[COIN] = 0;
-	objs[EXIT] = 0;
-	i = 0;
-	while (read(fd, &c, 1) > 0)
-	{
-		if (map_obj_check(c, objs))
-			ft_error("objs error");
-		if (game->map_cols < i)
-			game->map_cols = i;
-		if (c == '\n')
-		{
-			game->map_rows++;
-			i = 0;
-		}
-		else
-			i++;
-	}
-	if (objs[P] != 1 || objs[COIN] < 1 || objs[EXIT] < 1)
-		ft_error("object count error");
-}
-
-void	map_malloc(t_game *game, int fd)
-{
-	int	i;
-
-	map_size_objs_ck(game, fd);
-	game->map_arr = ft_calloc(game->map_rows + 1, sizeof(char *));
-	if (!game->map_arr)
-		ft_error("malloc error");
-	i = -1;
-	while (++i < game->map_rows + 1)
-	{
-		game->map_arr[i] = ft_calloc(game->map_cols + 1, sizeof(char *));
-		if (!game->map_arr[i])
-			ft_error("malloc error");
-	}
 }
 
 void	map_load(char *map, t_game *game)
@@ -118,28 +50,6 @@ void	map_load(char *map, t_game *game)
 	close(fd);
 }
 
-void	map_wall_ck(t_game *game)
-{
-	int	i;
-	
-	i = 0;
-	while (game->map_arr[0][i])
-		if (game->map_arr[0][i++] != '1')
-			ft_error("wall error1");
-	i = 0;
-	while (game->map_arr[i][0])
-		if (game->map_arr[i++][0] != '1')
-			ft_error("wall error2");
-	i = 0;
-	while (game->map_arr[i][game->map_cols - 1])
-		if (game->map_arr[i++][game->map_cols - 1] != '1')
-			ft_error("wall error3");
-	i = 0;
-	while (game->map_arr[game->map_rows - 1][i])
-		if (game->map_arr[game->map_rows - 1][i++] != '1')
-			ft_error("wall error4");
-}
-
 void	map_init(char *map, t_game *game)
 {
 	const int	map_name_len = ft_strlen(map);
@@ -151,16 +61,31 @@ void	map_init(char *map, t_game *game)
 	map_malloc(game, fd);
 	close(fd);
 	map_load(map, game);
-	map_wall_ck(game);
-	
-	for(int i=0; i < game->map_rows; i++)
-	{
-		for (int j=0; j < game->map_cols; j++)
-			printf("%c", game->map_arr[i][j]);
-		printf("\n");
-	}
+	map_wall_check(game);
 }
 
+void	draw_pix(t_game *game, int i, int j)
+{
+	if (game->map_arr[i][j] == '1')
+		mlx_put_image_to_window(game->mlx, game->win, game->wall, \
+				j * 64, i * 64);
+	else if (game->map_arr[i][j] == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->exit, \
+				j * 64, i * 64);
+	else if (game->map_arr[i][j] == 'C')
+		mlx_put_image_to_window(game->mlx, game->win, game->coin, \
+				j * 64, i * 64);
+	else if (game->map_arr[i][j] == 'P')
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->pl, \
+				j * 64, i * 64);
+		game->gps.x = j;
+		game->gps.y = i;
+	}
+	else
+		mlx_put_image_to_window(game->mlx, game->win, game->ground, \
+				j * 64, i * 64);
+}
 
 void	map_draw(t_game *game)
 {
@@ -172,19 +97,6 @@ void	map_draw(t_game *game)
 	{
 		j = -1;
 		while (++j < game->map_cols)
-		{
-			if (game->map_arr[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wall, j * 64, i * 64);
-			else if (game->map_arr[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->exit, j * 64, i * 64);
-			else if (game->map_arr[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->coin, j * 64, i * 64);
-			else if (game->map_arr[i][j] == 'P')
-			{
-				mlx_put_image_to_window(game->mlx, game->win, game->pl, j * 64, i * 64);
-				game->gps.x = j;
-				game->gps.y = i;
-			}
-		}
+			draw_pix(game, i, j);
 	}
 }
