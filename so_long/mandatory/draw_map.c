@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:21:15 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 12:03:07 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 13:01:31 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,12 @@ void	map_load(char *map, t_game *game)
 		game->map_hei++;
 		if (game->map_wid != (int)ft_strlen(line) - 1)
 			ft_error("map width error");
-		j = 0;
-		while (j < game->map_wid)
-		{
+		j = -1;
+		while (++j < game->map_wid)
 			game->map_arr[i][j] = line[j];
-			j++;
-		}
-		game->map_arr[i][j] = '\0';
+		game->map_arr[i++][j] = '\0';
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
 	close(fd);
 }
@@ -162,5 +158,33 @@ void	map_init(char *map, t_game *game)
 		for (int j=0; j < game->map_cols; j++)
 			printf("%c", game->map_arr[i][j]);
 		printf("\n");
+	}
+}
+
+
+void	map_draw(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < game->map_rows)
+	{
+		j = -1;
+		while (++j < game->map_cols)
+		{
+			if (game->map_arr[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, game->wall, j * 64, i * 64);
+			else if (game->map_arr[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->exit, j * 64, i * 64);
+			else if (game->map_arr[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->coin, j * 64, i * 64);
+			else if (game->map_arr[i][j] == 'P')
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->pl, j * 64, i * 64);
+				game->gps.x = j;
+				game->gps.y = i;
+			}
+		}
 	}
 }

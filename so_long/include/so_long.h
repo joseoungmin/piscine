@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:23:43 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 02:51:55 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 12:53:48 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,27 @@
 # define KEY_RIGHT			124
 
 
-typedef struct s_game
-{
-	int		map_hei;
-	int		map_wid;
-	int		map_cols;
-	int		map_rows;
-	char	**map_arr;
-}				t_game;
-
 typedef struct s_gps
 {
 	int	x;
 	int	y;
 }				t_gps;
+
+typedef struct s_game
+{
+	void	*wall;
+	void	*coin;
+	void	*exit;
+	void	*pl;
+	void	*win;
+	void	*mlx;
+	int		map_hei;
+	int		map_wid;
+	int		map_cols;
+	int		map_rows;
+	char	**map_arr;
+	t_gps	gps;
+}				t_game;
 
 enum
 {
@@ -63,5 +70,6 @@ enum
 
 void	ft_error(char *msg);
 void	map_init(char *map, t_game *game);
+void	map_draw(t_game *game);
 
 #endif
