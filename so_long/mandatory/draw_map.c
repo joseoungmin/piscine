@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 23:21:15 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/07 06:03:22 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/07 12:03:07 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_error(char *msg)
 {
+	write(2, "Error\n", 6);
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 	exit(1);
@@ -98,15 +99,17 @@ void	map_load(char *map, t_game *game)
 
 	fd = open_map(map);
 	line = get_next_line(fd);
-	game->map_wid = ft_strlen(line);        // -1;
+	if (!line)
+		ft_error("gnl error");
+	game->map_wid = ft_strlen(line) - 1;
 	i = 0;
 	while (line)
 	{
 		game->map_hei++;
-		if (game->map_wid != (int)ft_strlen(line))    // -1;
+		if (game->map_wid != (int)ft_strlen(line) - 1)
 			ft_error("map width error");
 		j = 0;
-		while (j < game->map_cols)
+		while (j < game->map_wid)
 		{
 			game->map_arr[i][j] = line[j];
 			j++;
