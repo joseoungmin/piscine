@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 13:28:47 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/22 19:53:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	t_list	*new;
+	t_list	*tmp;
+	void	*fun;
 
-}				t_philo;
-
-#endif
+	if (!lst || !f)
+		return (NULL);
+	new = NULL;
+	while (lst)
+	{
+		fun = f(lst->content);
+		tmp = ft_lstnew(fun);
+		if (!tmp)
+		{
+			if (fun)
+				free(fun);
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, tmp);
+		lst = lst->next;
+	}
+	return (new);
+}

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/18 17:43:42 by seojo             #+#    #+#             */
+/*   Updated: 2022/09/19 20:12:13 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	char	*str;
+	size_t	i;
 
-}				t_philo;
-
-#endif
+	i = ft_strlen(s);
+	if ((size_t)start >= i)
+		return (ft_strdup(""));
+	i -= start;
+	if (i > len)
+		i = len;
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s + start, i + 1);
+	return (str);
+}

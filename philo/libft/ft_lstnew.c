@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 09:16:19 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 13:21:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+t_list	*ft_lstnew(void *content)
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	t_list	*new;
 
-}				t_philo;
-
-#endif
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}

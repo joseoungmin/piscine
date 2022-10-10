@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 09:15:10 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 09:15:21 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	eat_cnt;
-	int	time_to_eat;
-
-}				t_philo;
-
-#endif
+	if (s)
+	{
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
+	}
+}

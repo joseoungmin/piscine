@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 09:13:07 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 09:14:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	char	*buf;
+	size_t	i;
 
-}				t_philo;
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	buf = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!buf)
+		return (NULL);
+	i = -1;
+	while (s[++i])
+		buf[i] = f(i, (char)s[i]);
+	buf[i] = '\0';
+	return (buf);
+}

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 08:30:52 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 08:32:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	const size_t	find_len = ft_strlen(to_find);
 
-}				t_philo;
-
-#endif
+	if (!find_len)
+		return ((char *)str);
+	while (*str && n-- >= find_len)
+	{
+		if (*str == *to_find && !ft_memcmp(str, to_find, find_len))
+			return ((char *)str);
+		str++;
+	}
+	return (NULL);
+}

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/07/19 08:16:21 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/19 08:24:02 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	size_t	d_len;
+	size_t	s_len;
+	size_t	i;
 
-}				t_philo;
-
-#endif
+	d_len = ft_strlen(dest);
+	s_len = ft_strlen(src);
+	i = 0;
+	while (i < s_len && d_len + i + 1 < size)
+	{
+		dest[d_len + i] = src[i];
+		i++;
+	}
+	dest[d_len + i] = '\0';
+	if (size > d_len)
+		return (s_len + d_len);
+	return (s_len + size);
+}

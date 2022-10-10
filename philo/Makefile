@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/07 23:23:45 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/10 12:35:44 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all			:	$(NAME)
 
 $(NAME)		: 	$(OBJS) $(LIB_A)
 				@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) 
-				@echo "so_long OK!"
+				@echo "  philo OK!"
 
 %.o			:	%.c $(INC_DIR)
 				@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<

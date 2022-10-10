@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:08:58 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 12:47:09 by seojo            ###   ########.fr       */
+/*   Created: 2022/06/30 20:11:48 by seojo             #+#    #+#             */
+/*   Updated: 2022/07/22 19:30:21 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
+#include "libft.h"
 
-
-typedef struct s_philo
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	eat_cnt;
-	int	time_to_eat;
+	size_t	i;
 
-}				t_philo;
-
-#endif
+	i = -1;
+	if (dest == src || !n)
+		return (dest);
+	if (dest > src)
+		while ((int)--n >= 0)
+			*(unsigned char *)(dest + n) = *(unsigned char *)(src + n);
+	else
+		while (++i < n)
+			*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
+	return (dest);
+}
