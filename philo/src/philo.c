@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:24:13 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/10 13:48:48 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/11 17:10:47 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void bye(void)
 
 int main(int ac, char **av)
 {
-	atexit(bye);
+	//atexit(bye);
 
 	int	num_of_philo;
 	int	argv_num[6];
