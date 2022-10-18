@@ -6,16 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 23:36:33 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/15 12:15:45 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/18 19:41:47 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-static int	ft_isdigit(char c)
-{
-	return ('0' <= c && c <= '9');
-}
 
 int	philo_atoi(const char *str)
 {
