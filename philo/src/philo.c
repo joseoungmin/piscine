@@ -6,74 +6,98 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:24:13 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/11 17:10:47 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:18:48 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-/*
-int	philo_atoi(const char *str)
-{
-	int	num;
-	int	sign;
-	int	i;
 
-	num = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i++] == '-')
-			sign = -1;
-		if (!ft_isdigit(str[i]))
-			ft_error(0);
-	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		if ((num > 214748364 || (num == 214748364 && \
-						(str[i] > '7' + (sign == -1)))))
-			ft_error(0);
-		num = num * 10 + str[i++] - '0';
-	}
-	return (num * sign);
-}
-*/
-int	print_usage(int exit_code)
+static void	ft_put_down_fork(t_philo *a_philo)
 {
-	printf("Wrong argument! Please check usage.\n"\
-			"Usage: ./philo [num_philos] [time_die] [time_eat]"\
-		" [time_sleep] [num_each_philos_eat(optional)]\n");
-	return (exit_code);
+	pthread_mutex_lock(a_philo->r_fork);
+	*a_philo->stat_r_fork = OFF;
+	a_philo->has_r_fork = OFF;
+	pthread_mutex_unlock(a_philo->r_fork);
+	pthread_mutex_lock(a_philo->l_fork);
+	*a_philo->stat_l_fork = OFF;
+	a_philo->has_l_fork = OFF;
+	pthread_mutex_unlock(a_philo->l_fork);
+	pthread_mutex_lock(&a_philo->info->m_over);
 }
 
-void bye(void)
+static int	ft_is_valid_to_eat(t_philo *a_philo)
 {
-	system("leaks a.out");
+	int	ret;
+
+	ret = 1;
+	pthread_mutex_lock(a_philo->r_fork);
+	ret *= a_philo->has_r_fork;
+	pthread_mutex_unlock(a_philo->r_fork);
+	pthread_mutex_lock(a_philo->l_fork);
+	ret *= a_philo->has_l_fork;
+	pthread_mutex_unlock(a_philo->l_fork);
+	return (ret);
 }
 
-int main(int ac, char **av)
+static int	ft_eat(t_philo *a_philo)
 {
-	//atexit(bye);
-
-	int	num_of_philo;
-	int	argv_num[6];
-	int	i;
-
-	if (ac < 5 || ac > 6)
-		return (print_usage(1));
-/*
-	i = 1;
-	while (i < ac)
+	if (ft_is_valid_to_eat(a_philo))
 	{
-		argv_num[i] = philo_atoi(argv[i]);
-		if (argv_num[i] == 0)
-			return (printf_usage(1));
+		pthread_mutex_lock(&a_philo->m_eat);
+		ft_print_state(a_philo, EAT);
+		a_philo->last_meal = ft_get_time_in_ms();
+		a_philo->meal_cnt++;
+		pthread_mutex_unlock(&a_philo->m_eat);
+		ft_usleep(a_philo->info->time_eat);
+		ft_put_down_fork(a_philo);
+		return (TRUE);
 	}
-*/
+	return (FALSE);
+}
 
-//	atoi
+static void	ft_sleep_and_think(t_philo *a_philo)
+{
+	if (a_philo->info->is_over)
+	{
+		pthread_mutex_unlock(&a_philo->info->m_over);
+		return ;
+	}
+	pthread_mutex_unlock(&a_philo->info->m_over);
+	ft_print_state(a_philo, SLEEP);
+	ft_usleep(a_philo->info->time_sleep);
+	pthread_mutex_lock(&a_philo->info->m_over);
+	if (a_philo->info->is_over)
+	{
+		pthread_mutex_unlock(&a_philo->info->m_over);
+		return ;
+	}
+	pthread_mutex_unlock(&a_philo->info->m_over);
+	ft_print_state(a_philo, THINK);
+	if (a_philo->info->num_philo & 0x1)
+		usleep(100);
+}
 
-	return (0);
+void	*ft_philo_routine(void *arg)
+{
+	t_philo	*a_philo;
+
+	a_philo = (t_philo *)arg;
+	pthread_mutex_lock(&a_philo->info->m_ready);
+	pthread_mutex_unlock(&a_philo->info->m_ready);
+	if (a_philo->info->is_ready == ERROR)
+		return (NULL);
+	if (!(a_philo->id & 0x1))
+		ft_usleep(a_philo->info->time_eat);
+	while (TRUE)
+	{
+		ft_take_forks(a_philo);
+		if (ft_eat(a_philo))
+			ft_sleep_and_think(a_philo);
+		pthread_mutex_lock(&a_philo->info->m_over);
+		if (a_philo->info->is_over)
+			break ;
+		pthread_mutex_unlock(&a_philo->info->m_over);
+	}
+	pthread_mutex_unlock(&a_philo->info->m_over);
+	return (NULL);
 }

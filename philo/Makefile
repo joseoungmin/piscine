@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/10 12:35:44 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/17 14:36:01 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIB_DIR 	=	libft/
 INC_DIR		=	include/
 SRC_DIR		=	src/
 
-SRCS		=	philo
+SRCS		=	main philo utils fork init monitor simul print time
 
 M_SRCS		=	$(addsuffix .c, $(addprefix $(SRC_DIR), $(SRCS)))
 
