@@ -6,7 +6,7 @@
 /*   By: seojo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:43:01 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/18 20:26:59 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/19 13:32:07 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_usage(int exit_code)
 	return (exit_code);
 }
 
-long long	ft_atoll(const char *str)
+long long	ft_atolld(const char *str)
 {
 	const long long max = LLONG_MAX;
 	long long		num;
@@ -30,6 +30,8 @@ long long	ft_atoll(const char *str)
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			return (ERROR);
+	if (!(*str && '0' <= *str && *str <= '9'))
+		return (ERROR);
 	while (*str && *str >= '0' && *str <= '9')
 	{
 		if (num > max / 10 || (num == max / 10 && *str - '0' > max % 10))
@@ -47,8 +49,8 @@ int init_av(t_info *info, char **av)
 	i = 0;
 	while (av[++i])
 	{
-		av_num = ft_atoll(av[i]);
-		if (ab_num == ERROR)
+		av_num[i] = ft_atolld(av[i]);
+		if (av_num[i] == ERROR)
 			return (1);
 	}
 	info->num_philo = av_num[1];
@@ -58,9 +60,41 @@ int init_av(t_info *info, char **av)
 	if (av[5])
 		info->must_eat = av_num[5];
 	else
-		into->must_eat = 0;
+		info->must_eat = 0;
 	return (0);
 }
+
+void	*ft_calloc(size_t cnt, size_t size)
+{
+	void	*buf;
+	void	*ptr;
+	int		i;
+
+	i = cnt * size;
+	buf = (void *)malloc(cnt * size);
+	if (!buf)
+		return (NULL);
+	ptr = buf;
+	while (i-- != 0)
+		*(char *)buf++ = 0;
+	return (ptr);
+}
+
+void	init_philo(t_info *info)
+{
+	int	i;
+	
+	i = 0
+	while (i < info->num_philo)
+	{
+		info->philo[i].id = i + 1;
+		info->philo[i].info = info;
+		pthread_mutex_init(&info->philo.m_eat, NULL);
+		pthread_mutex_init(&info->philo.fork, NULL);
+		set_fork(info->philo, i, info->philo_cnt);	
+		i++;
+	}
+}	
 
 int	init_info(t_info *info, char **av)
 {
@@ -69,7 +103,12 @@ int	init_info(t_info *info, char **av)
 	info->philo = ft_calloc(info->num_philo, sizeof(t_philo));
 	if (!info->philo)
 		return (1);
-
+	init->over = 0;
+	init->ready = 0;
+	pthread_mutex_init(&info->m_ready, NULL);
+	pthread_mutex_init(&info->m_over, NULL);
+	pthread_mutex_init(&info->m_print, NULL);
+	init_philo(info);
 	return (0);
 }
 
