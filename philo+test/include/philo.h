@@ -6,7 +6,7 @@
 /*   By: seojo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:35:44 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/22 12:02:14 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/22 15:58:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ struct s_philo
 {
 	t_info			*info;
 	pthread_t		tid;
-	long long		id;
+	int				id;
+	int				eat_ready;
 	long long		eat_cnt;
 	long long		last_eat;
-	long long		stat_fork;
-	long long		*stat_r_fork;
+	long long		stat_r_fork;
 	long long		*stat_l_fork;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	fork;
@@ -60,6 +60,10 @@ enum
 	ERROR = -1,
 	ON = 1,
 	OFF = 0,
+	FORK,
+	EAT,
+	SLEEP,
+	THINK
 };
 
 
