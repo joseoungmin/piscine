@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:24:13 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/17 15:18:48 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/23 21:22:07 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_put_down_fork(t_philo *a_philo)
 	*a_philo->stat_l_fork = OFF;
 	a_philo->has_l_fork = OFF;
 	pthread_mutex_unlock(a_philo->l_fork);
-	pthread_mutex_lock(&a_philo->info->m_over);
+	//pthread_mutex_lock(&a_philo->info->m_over);
 }
 
 static int	ft_is_valid_to_eat(t_philo *a_philo)
@@ -57,6 +57,7 @@ static int	ft_eat(t_philo *a_philo)
 
 static void	ft_sleep_and_think(t_philo *a_philo)
 {
+	pthread_mutex_lock(&a_philo->info->m_over);
 	if (a_philo->info->is_over)
 	{
 		pthread_mutex_unlock(&a_philo->info->m_over);

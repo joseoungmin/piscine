@@ -6,7 +6,7 @@
 /*   By: seojo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:49:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/22 15:09:07 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/23 21:27:06 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static void	init_philo(t_info *info)
 	i = 0;
 	init_fork(info, i);
 	info->philo[i].l_fork = &info->philo[info->num_philo - 1].fork;
-	info->philo[i].stat_l_fork = &info->philo[info->num_philo - 1].stat_fork;
+	info->philo[i].stat_l_fork = &info->philo[info->num_philo - 1].stat_r_fork;
 	while (++i < info->num_philo)
 	{
 		init_fork(info, i);
 		info->philo[i].l_fork = &info->philo[i - 1].fork;
-		info->philo[i].stat_l_fork = &info->philo[i - 1].stat_fork;
+		info->philo[i].stat_l_fork = &info->philo[i - 1].stat_r_fork;
 	}
 }
 

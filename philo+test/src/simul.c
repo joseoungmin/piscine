@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 11:58:54 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/22 12:04:06 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/25 11:52:01 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	simulate(t_info *info)
 	while (i < info->num_philo)
 	{
 		if (pthread_create(&info->philo[i].tid, NULL, \
-			philo_outine, (void *)&info->philo[i]))
+			philo_routine, (void *)&info->philo[i]))
 		{
 			info->is_ready = ERROR;
 			pthread_mutex_unlock(&info->m_ready);
@@ -56,7 +56,7 @@ int	simulate(t_info *info)
 		}
 		i++;
 	}
-	info->start_time = ft_get_time_in_ms();
+	info->start_time = get_time_in_ms();
 	pthread_mutex_unlock(&info->m_ready);
 	monitoring(info);
 	stop_simulating(info, i);

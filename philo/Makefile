@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/17 14:36:01 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/23 21:13:07 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ M_SRCS		=	$(addsuffix .c, $(addprefix $(SRC_DIR), $(SRCS)))
 
 OBJS		= 	$(M_SRCS:.c=.o)
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 CPPFLAGS	=	-I./include
 LDFLAGS 	=	-L$(LIB_DIR)
 LDLIBS		=	-lft

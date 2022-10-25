@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 12:02:55 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/22 15:37:05 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/23 21:35:32 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	take_left_fork(t_philo *philo)
 	if (*philo->stat_l_fork == OFF)
 	{
 		*philo->stat_l_fork = ON;
-		philo->eat_ready++;
-		ft_print_state(philo, FORK);
+		philo->has_fork += 1;
+		print_state(philo, FORK);
 	}
 	pthread_mutex_unlock(philo->l_fork);
 }
@@ -34,7 +34,7 @@ static void	take_left_fork(t_philo *philo)
 static void	take_right_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->m_over);
-	if (a_philo->info->is_over)
+	if (philo->info->is_over)
 	{
 		pthread_mutex_unlock(&philo->info->m_over);
 		return ;
@@ -42,19 +42,19 @@ static void	take_right_fork(t_philo *philo)
 	pthread_mutex_unlock(&philo->info->m_over);
 	if (philo->info->num_philo == 1 && philo->id == 1)
 	{
-		pthread_mutex_unlock(a_philo->r_fork);
-		ft_usleep(a_philo->info->time->die);
+		pthread_mutex_unlock(philo->r_fork);
+		ft_usleep(philo->info->time_die);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->r_fork);
+		pthread_mutex_lock(philo->r_fork);
 		if (philo->stat_r_fork == OFF)
 		{
 			philo->stat_r_fork = ON;
-			philo->eat_ready++;
-			ft_print_state(philo, FORK);
+			philo->has_fork += 1;
+			print_state(philo, FORK);
 		}
-		pthread_mutex_unlock(&philo->r_fork);
+		pthread_mutex_unlock(philo->r_fork);
 	}
 }
 
@@ -80,18 +80,19 @@ static void	put_down_fork(t_philo *philo)
 	pthread_mutex_lock(philo->l_fork);
 	*philo->stat_l_fork = OFF;
 	pthread_mutex_unlock(philo->l_fork);
-	philo->eat_ready = 0;
+	philo->has_fork = 0;
 }
 
 static int	ft_eat(t_philo *philo)
 {
-	if (philo->eat_ready == 2)
+	if (philo->has_fork == 2)
 	{
 		pthread_mutex_lock(&philo->m_eat);
-		ft_print_state(philo, EAT);
+		print_state(philo, EAT);
+		philo->last_eat = get_time_in_ms();
 		philo->eat_cnt++;
 		pthread_mutex_unlock(&philo->m_eat);
-		ft_usleep(philo->info->eat_time);
+		ft_usleep(philo->info->time_eat);
 		put_down_fork(philo);
 		return (1);
 	}
@@ -100,19 +101,25 @@ static int	ft_eat(t_philo *philo)
 
 static void	sleep_and_think(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->info->m_over);
 	if (philo->info->is_over)
 	{
-		pthread_mutex_unlock(&philo->info);
+		pthread_mutex_unlock(&philo->info->m_over);
 		return ;
 	}
-	pthread_mutex_unlock(&philo->info);
+	pthread_mutex_unlock(&philo->info->m_over);
 	print_state(philo, SLEEP);
 	ft_usleep(philo->info->time_sleep);
 	pthread_mutex_lock(&philo->info->m_over);
 	if (philo->info->is_over)
 	{
-		pthread_mutex_unlock(
-
+		pthread_mutex_unlock(&philo->info->m_over);
+		return ;
+	}
+	pthread_mutex_unlock(&philo->info->m_over);
+	print_state(philo, THINK);
+	if (philo->info->num_philo & 0x1)
+		usleep(100);
 }
 
 void	*philo_routine(void *arg)
@@ -130,7 +137,7 @@ void	*philo_routine(void *arg)
 	{
 		take_forks(philo);
 		if (ft_eat(philo))
-			ft_sleep_and_think(philo);
+			sleep_and_think(philo);
 		pthread_mutex_lock(&philo->info->m_over);
 		if (philo->info->is_over)
 			break ;

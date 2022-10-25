@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 23:35:54 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/15 10:13:25 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/23 21:19:12 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ static void	set_fork_position(t_philo *philo, int i, int all)
 static void	init_philo(t_info *info, t_philo *philo)
 {
 	int	i;
-	int	philo_cnt;
 
 	i = 0;
-	philo_cnt = info->num_philo;
-	while (i < philo_cnt)
+	while (i < info->num_philo)
 	{
 		philo[i].id = i + 1;
 		philo[i].info = info;
@@ -45,7 +43,7 @@ static void	init_philo(t_info *info, t_philo *philo)
 		philo[i].has_l_fork = OFF;
 		pthread_mutex_init(&philo[i].m_eat, NULL);
 		pthread_mutex_init(&philo[i].fork, NULL);
-		set_fork_position(philo, i, philo_cnt);
+		set_fork_position(philo, i, info->num_philo);
 		i++;
 	}
 }
@@ -79,7 +77,7 @@ int	init_info(t_info *info, char **av)
 
 	if (init_info_av(info, av) == ERROR)
 		return (ERROR);
-	philo = malloc(sizeof(t_philo *) * (info->num_philo));
+	philo = malloc(sizeof(t_philo) * (info->num_philo));
 	if(!philo)
 		return (ERROR);
 	info->philo = philo;

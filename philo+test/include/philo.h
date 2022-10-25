@@ -6,7 +6,7 @@
 /*   By: seojo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:35:44 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/22 15:58:30 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/25 15:25:01 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <sys/time.h>
+
+# define COL_RED "\x1b[31m" 
+# define COL_GREEN "\x1b[32m"
+# define COL_ORIGIN "\x1b[0m"
 
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
@@ -26,7 +31,7 @@ struct s_philo
 	t_info			*info;
 	pthread_t		tid;
 	int				id;
-	int				eat_ready;
+	int				has_fork;
 	long long		eat_cnt;
 	long long		last_eat;
 	long long		stat_r_fork;
@@ -60,6 +65,8 @@ enum
 	ERROR = -1,
 	ON = 1,
 	OFF = 0,
+	TRUE = 1,
+	FALSE = 0,
 	FORK,
 	EAT,
 	SLEEP,
@@ -75,5 +82,14 @@ int			print_usage(int exit_code);
 long long	ft_atolld(const char *str);
 void		*ft_calloc(size_t cnt, size_t size);
 void		ft_free(void **ptr);
+
+void		*philo_routine(void *arg);
+
+long long	get_time_in_ms(void);
+long long	get_time_stamp(long long start_time);
+void		ft_usleep(long long time);
+void		print_done(t_philo *philo);
+void		print_die(t_philo *philo);
+void		print_state(t_philo *philo, int state);
 
 #endif
