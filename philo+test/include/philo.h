@@ -6,7 +6,7 @@
 /*   By: seojo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:35:44 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/25 15:25:01 by seojo            ###   ########.fr       */
+/*   Updated: 2022/10/26 12:08:34 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ struct s_info
 	pthread_mutex_t	m_over;
 	pthread_mutex_t	m_ready;
 	pthread_mutex_t	m_print;
-	pthread_mutex_t	m_main_mutex;
-	pthread_mutex_t	*fors_mutex;
 };
 
 enum
@@ -91,5 +89,7 @@ void		ft_usleep(long long time);
 void		print_done(t_philo *philo);
 void		print_die(t_philo *philo);
 void		print_state(t_philo *philo, int state);
+void		monitoring(t_info *info);
+void		take_forks(t_philo *philo);
 
 #endif
