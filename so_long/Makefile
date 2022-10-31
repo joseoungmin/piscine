@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:58:47 by seojo             #+#    #+#              #
-#    Updated: 2022/10/07 17:18:37 by seojo            ###   ########.fr        #
+#    Updated: 2022/10/30 01:01:10 by seojo            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LDLIBS		=	-lft -lmlx -framework OpenGL -framework AppKit
 all			:	$(NAME)
 
 $(NAME)		: 	$(OBJS) $(LIB_A) $(MLX_A)
-				@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) 
+				$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) 
 				@echo "so_long OK!"
 
 %.o			:	%.c $(INC_DIR)
