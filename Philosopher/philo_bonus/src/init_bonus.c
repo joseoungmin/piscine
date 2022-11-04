@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:49:03 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/30 13:56:26 by seojo            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:30:13 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	init_sem(t_info *info)
 	info->sm_print = sem_open("sm_print", O_CREAT, 0644, 1);
 	sem_unlink("sm_fork");
 	info->sm_fork = sem_open("sm_fork", O_CREAT, 0644, info->num_philo);
-	sem_unlink("sm_set_eat");
-	info->sm_set_eat = sem_open("sm_set_eat", O_CREAT, 0644, info->num_philo / 2);
 	sem_unlink("sm_dead");
 	info->sm_dead = sem_open("sm_dead", O_CREAT, 0644, 0);
 	sem_unlink("sm_done");
@@ -56,10 +54,10 @@ int	init_info(t_info *info, char **av)
 	int	i;
 
 	if (init_av(info, av))
-		return (printf("Wrong argument value\n"));
+		return (print_error("Wrong argument value"));
 	info->philo = ft_calloc(info->num_philo, sizeof(t_philo));
 	if (!info->philo)
-		return (printf("malloc error\n"));
+		return (print_error("malloc error"));
 	info->is_dead = FALSE;
 	init_sem(info);
 	i = -1;
@@ -70,7 +68,5 @@ int	init_info(t_info *info, char **av)
 		sem_unlink("sm_eat");
 		info->philo[i].sm_eat = sem_open("sm_eat", O_CREAT, 0644, 1);
 	}
-	if (info->num_philo == 1)
-		sem_post(info->sm_set_eat);
 	return (0);
 }

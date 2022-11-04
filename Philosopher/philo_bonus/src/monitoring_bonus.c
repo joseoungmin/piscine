@@ -39,7 +39,7 @@ static void	*over_if_dead(void *arg)
 		sem_wait(philo->sm_eat);
 		philo->info->is_dead = check_dead(philo);
 		sem_post(philo->sm_eat);
-		usleep(500);
+		usleep(300);
 	}
 	return (NULL);
 }

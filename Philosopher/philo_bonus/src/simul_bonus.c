@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 11:58:54 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/30 13:45:04 by seojo            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:31:51 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,10 @@ void	term_all_process(t_info *info)
 
 void	ft_free_info_sem(t_info *info)
 {
-	sem_unlink("sm_start");
-	sem_close(info->sm_start);
 	sem_unlink("sm_fork");
 	sem_close(info->sm_fork);
 	sem_unlink("sm_print");
 	sem_close(info->sm_print);
-	sem_unlink("sm_set_eat");
-	sem_close(info->sm_set_eat);
 	sem_unlink("sm_dead");
 	sem_close(info->sm_dead);
 	sem_unlink("sm_done");

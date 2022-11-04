@@ -12,6 +12,21 @@
 
 #include "philo_bonus.h"
 
+int	print_usage(int exit_code)
+{
+	printf("Wrong argument!\nusage: ./philo number_of_philos time_to_die"\
+			" time_to_eat time_to_sleep [philo_must_eat]\n");
+	return (exit_code);
+}
+
+int	print_error(char *msg)
+{
+	while (msg && *msg)
+		write(1, msg++, 1);
+	write(1, "\n", 1);
+	return (1);
+}
+
 void	print_done(t_philo *philo)
 {
 	sem_wait(philo->info->sm_print);

@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 12:02:55 by seojo             #+#    #+#             */
-/*   Updated: 2022/10/30 13:23:58 by seojo            ###   ########.fr       */
+/*   Updated: 2022/11/04 15:28:48 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	ft_eat(t_philo *philo)
 {
-	sem_wait(philo->info->sm_set_eat);
 	sem_wait(philo->info->sm_fork);
 	print_state(philo, FORK);
 	sem_wait(philo->info->sm_fork);
@@ -29,7 +28,6 @@ static void	ft_eat(t_philo *philo)
 	ft_usleep(philo->info->time_eat);
 	sem_post(philo->info->sm_fork);
 	sem_post(philo->info->sm_fork);
-	sem_post(philo->info->sm_set_eat);
 }
 
 static void	sleep_and_think(t_philo *philo)
@@ -48,6 +46,5 @@ void	philo_routine(t_philo *philo)
 	{
 		ft_eat(philo);
 		sleep_and_think(philo);
-		usleep(500);
 	}
 }
