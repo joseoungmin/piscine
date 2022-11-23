@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 00:06:03 by seojo             #+#    #+#              #
-#    Updated: 2022/10/29 22:44:44 by seojo            ###   ########.fr        #
+#    Updated: 2022/11/23 18:32:50 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ M_SRCS	=	$(addsuffix .c, $(addprefix $(SRC_DIR), $(SRCS)))
 
 OBJS	=	$(M_SRCS:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror #-O3
 
 all		:	$(NAME)
 
