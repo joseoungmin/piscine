@@ -1,0 +1,14 @@
+[31m##############################################################
+#                                                            #
+#  [36m GGGGGGGG  DDDDDDDDD  [33m         hhh               lll lll  [31m#
+#  [36mGGGG  GGGG DDD  DDDDD [33m         hhh               lll lll  [31m#
+#  [36mGGG    GGG DDD    DDD [33m         hhh               lll lll  [31m#
+#  [36mGGG        DDD    DDD [33msssssss  hhhhhhh   eeeeee  lll lll  [31m#
+#  [36mGGG  GGGGG DDD    DDD [33msss      hhh hhhh eee  eee lll lll  [31m#
+#  [36mGGG    GGG DDD    DDD [33mssssssss hhh  hhh eeeeeeee lll lll  [31m#
+#  [36mGGGG  GGGG DDD  DDDDD [33m     sss hhh  hhh eeee     lll lll  [31m#
+#  [36m GGGGGGGGG DDDDDDDDD  [33m sssssss hhh  hhh  eeeeee  lll lll  [31m#
+#                              [32m< made by seojo & jiyonpar >[31m  #
+#                                                            #
+##############################################################[0m
+
