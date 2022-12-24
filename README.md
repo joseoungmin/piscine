@@ -1,1 +1,1 @@
-# Hello seojo42!
+# Hello I'm seojo!
