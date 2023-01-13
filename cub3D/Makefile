@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/13 14:47:50 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/13 20:16:31 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
 PROG			=	"cub3D"
-SRC_FILE		=	main.c
+SRC_FILE		=	main.c					\
+					check_argument.c		\
+					check_map.c				\
+					error.c					\
 
 OBJ_FILE		=	$(SRC_FILE:.c=.o)
 

@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   check_argument.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyonpar <jiyonpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:01:24 by jiyonpar          #+#    #+#             */
-/*   Updated: 2023/01/13 18:39:01 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/13 15:28:56 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/13 20:14:19 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
+#ifndef CHECK_ARGUMENT_H
+# define CHECK_ARGUMENT_H
+
+# include "libft.h"
+# include "error.h"
+
+void	check_map_extension(char *map_str);
+void	check_argument(int ac, char **av);
+
+#endif

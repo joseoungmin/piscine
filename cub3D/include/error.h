@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyonpar <jiyonpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:01:24 by jiyonpar          #+#    #+#             */
-/*   Updated: 2023/01/13 18:39:01 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/13 20:12:51 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/13 20:16:52 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
+#ifndef ERROR_H
+# define ERROR_H
+
+# include <unistd.h>
+
+void	err_exit(char *err_msg);
+
+#endif

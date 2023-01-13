@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_err.c                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/13 14:54:22 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/13 20:10:21 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/13 20:29:16 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-// 세분화 시켜서 에러 메세지 뽑기 
-typedef enum e_map_err t_map_err
+#include "error.h"
 
-enum	e_map_err
+#include <stdio.h>
+int	string_len(char *str)
 {
-
+	const char	*tmp = str;
+	while (str && *str)
+		str++;
+	return (str - tmp);
 }
 
-void	print_map_argument_err(t_map_err err_num[5]) //enum 배열 사용가능?
+void	err_exit(char *err_msg)
 {
-	const char	map_err[10][20] = {
-	};
-
 	write(2, "Error\n", 6);
-	write(2, map_err[err_num], ft_strlen(map_err[err_num]));
+	write(2, err_msg, string_len(err_msg));
+	write(2, "\n", 1);
+//	exit(1);
 }
