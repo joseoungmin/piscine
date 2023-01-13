@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/13 13:27:01 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/13 14:47:50 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			=	cub3D
 CC				=	gcc
 CXXFLAGS		=	-Wall -Wextra -Werror
 DEPFLAGS		=	-MMD -MP -MF $(@:$(OBJ_DIR)%.o=$(DEP_DIR)%.d)
-CPPFLAGS		=	-I$(INC_DIR) -I$(LIBFT_DIR)$(INC_DIR)
+CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR) -I$(MLX_DIR) -I$(INC_DIR) 
 RM				=	rm -rf
 Q				=	@
 
@@ -37,7 +37,7 @@ SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJS			=	$(SRC_FILE:%.c=$(OBJ_DIR)%.o)
 DEPS			=	$(SRC_FILE:%.c=$(DEP_DIR)%.d)
 
-LDLIBS			=	mlx/libmlx.a -framework OpenGL -framework AppKit
+LDLIBS			=	$(LIBFT) $(MLX) -framework OpenGL -framework AppKit
 
 ifdef DEBUG
 	CXXFLAGS	+=	-pedantic -g -fsanitize=address,undefined

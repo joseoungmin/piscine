@@ -6,12 +6,12 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/13 13:58:37 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:54:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
-
+// 세분화 시켜서 에러 메세지 뽑기 
 typedef enum e_map_err t_map_err
 
 enum	e_map_err
@@ -19,7 +19,7 @@ enum	e_map_err
 
 }
 
-void	map_err(t_map_err err_num)
+void	print_map_argument_err(t_map_err err_num[5]) //enum 배열 사용가능?
 {
 	const char	map_err[10][20] = {
 	};

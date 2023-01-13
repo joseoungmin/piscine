@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:01:48 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/13 14:42:02 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/13 13:59:49 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/13 14:54:09 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef MAP_H
+# define MAP_H
 
-# include <stdio.h>
-# include <sys/errno.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <math.h>
-# include "mlx.h"
-# include "libft.h"
+typedef enum e_map_err	t_map_err;
 
+enum e_map_err
+{
+	NO = 0,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+};
+// 각 방향당 파일 하나씩 있는지,  파일명.확장자, 존재유무, 권한
+// 색상 초과-미만, 어떤 색상이 없는지 있는지.
+// error 출력 이후에 다른 없는 부분들까지 출력
+
+void	print_map_argument_err(t_map_err err_num);
 #endif
