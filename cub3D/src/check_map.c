@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/13 20:48:27 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/13 20:52:04 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	check_colar(char *read_line)
 	read_line = split_colar(read_line, &colar[GREEN]);
 	read_line = split_colar(read_line, &colar[BLUE]);
 	if (colar[RED] < 0 || colar[GREEN] < 0 || colar[BLUE] < 0)
-		;
-
-
+		err_exit("colar is under 0");
+	if (colar[RED] > 255 || colar[GREEN] > 255 || colar[BLUE] > 255)
+		err_exit("colar is over 255");
 	return (colar[RED] << 16 | colar[GREEN] << 8 | colar[BLUE]);
 }
 
