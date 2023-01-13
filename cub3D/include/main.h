@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/10 19:27:34 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/13 12:01:48 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/13 12:05:28 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MAIN_H
+# define MAIN_H
 
-typedef enum e_error t_err;
+#include <stdio.h>
+#include <sys/errno.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <math.h>
 
-enum e_error
-{
-	ARGU,
-};
-
-void	error_exit(t_err err_no)
-{
-	const char	e_arr[][] = {
-		"Error
-}
-
-void	check_argument(int ac, char **av)
-{
-	if (ac != 2)
-		error_exit(
-}
-
-int	main(int ac, char **av)
-{
-	check_argument(ac, av);
-	return (0);
-}
+#endif
