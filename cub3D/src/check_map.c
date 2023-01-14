@@ -6,13 +6,15 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 21:24:10 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/14 21:53:24 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_map.h"
 
 #include <stdio.h>
+
+8way parse think
 
 void	map_obj_check(char c, t_map *map)
 {
