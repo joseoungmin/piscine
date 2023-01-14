@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 20:06:27 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/14 21:24:10 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	reopen_fd(char *filename, int file_height)
 void	map_alloc(t_map *map)
 {
 	int	y;
-	int x;
+	int	x;
 
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (map->map == NULL)
@@ -112,7 +112,7 @@ void	read_map(t_map *map, int fd, int y, int x)
 			if (read(fd, &map->map[y][x], 1) < 0)
 				return ;
 			if (c == '\n' && c == map->map[y][x])
-				err_exit("Invalid map object : newline");
+				err_exit("Invalid map object : emptyline");
 			c = map->map[y][x];
 			if (map->map[y][x] == '\n')
 			{

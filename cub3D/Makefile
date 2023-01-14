@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/14 17:12:37 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/14 21:48:15 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_FILE		=	main.c					\
 					check_argument.c		\
 					check_map.c				\
 					check_map_object.c		\
+					check_map_file_color.c	\
 					error.c					\
 					ft_open.c				\
 
