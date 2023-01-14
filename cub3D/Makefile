@@ -6,14 +6,14 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/14 12:57:59 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/14 17:12:37 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
 
 CC				=	gcc
-CXXFLAGS		=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror
 DEPFLAGS		=	-MMD -MP -MF $(@:$(OBJ_DIR)%.o=$(DEP_DIR)%.d)
 CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR) -I$(MLX_DIR) -I$(INC_DIR) 
 RM				=	rm -rf
@@ -30,7 +30,9 @@ PROG			=	"cub3D"
 SRC_FILE		=	main.c					\
 					check_argument.c		\
 					check_map.c				\
+					check_map_object.c		\
 					error.c					\
+					ft_open.c				\
 
 OBJ_FILE		=	$(SRC_FILE:.c=.o)
 
@@ -43,7 +45,7 @@ DEPS			=	$(SRC_FILE:%.c=$(DEP_DIR)%.d)
 LDLIBS			=	$(LIBFT) $(MLX) -framework OpenGL -framework AppKit
 
 ifdef DEBUG
-	CXXFLAGS	+= -g -fsanitize=address,undefined	#-pedantic 
+	CFLAGS	+= -g -fsanitize=address,undefined	#-pedantic 
 endif
 ifdef PRINT
 	Q			=
@@ -55,13 +57,13 @@ endif
 all				:	$(NAME)
 
 $(NAME)			:	$(LIBFT) $(MLX) $(OBJS)
-					$Q$(CC) $(CXXFLAGS) -o $@ $(OBJS) $(LDLIBS)
+					$Q$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDLIBS)
 					@echo "\033[K\033[32m   $(PROG) is Ready ✅\033[0m"
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
 					@mkdir -p $(OBJ_DIR) $(DEP_DIR)
 					@echo "\033[K\033[32m   $(PROG) is Ready : $<\033[A"
-					$Q$(CC) $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) -o $@ -c $<
+					$Q$(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 $(LIBFT)		:	$(LIBFT_DIR)$(SRC_DIR) $(LIBFT_DIR)$(INC_DIR)
 					@make -C $(LIBFT_DIR) all

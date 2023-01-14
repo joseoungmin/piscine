@@ -6,7 +6,7 @@
 /*   By: jiyonpar <jiyonpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:13:39 by jiyonpar          #+#    #+#             */
-/*   Updated: 2022/09/06 13:14:54 by jiyonpar         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:00:28 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list

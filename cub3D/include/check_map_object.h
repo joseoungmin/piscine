@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check_map_object.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 20:10:21 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 16:59:04 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/14 16:43:05 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/14 19:49:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#ifndef CHECK_MAP_OBJECT_H
+# define CHECK_MAP_OBJECT_H
+# include "libft.h"
+# include "map.h"
+# include "ft_open.h"
 
-int	string_len(char *str)
-{
-	const char	*tmp = str;
+char	*split_filename(char *line);
+char	*check_path(char *read_line);
+char	*split_color(char *read_line, int *color);
+int		check_color(char *read_line);
+int		check_component(int fd, t_map *map);
 
-	while (str && *str)
-		str++;
-	return (str - tmp);
-}
-
-void	err_exit(char *err_msg)
-{
-	write(2, "Error\n", 6);
-	write(2, err_msg, string_len(err_msg));
-	write(2, "\n", 1);
-//	exit(1);
-}
+#endif
