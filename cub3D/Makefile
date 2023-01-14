@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/13 20:16:31 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/14 12:57:59 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ DEPS			=	$(SRC_FILE:%.c=$(DEP_DIR)%.d)
 LDLIBS			=	$(LIBFT) $(MLX) -framework OpenGL -framework AppKit
 
 ifdef DEBUG
-	CXXFLAGS	+=	-pedantic -g -fsanitize=address,undefined
+	CXXFLAGS	+= -g -fsanitize=address,undefined	#-pedantic 
 endif
 ifdef PRINT
 	Q			=
