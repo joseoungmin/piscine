@@ -6,15 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:43:05 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 21:49:44 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/15 14:49:07 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECK_MAP_OBJECT_H
 # define CHECK_MAP_OBJECT_H
 # include "libft.h"
-# include "map.h"
-# include "ft_open.h"
 # include "check_map_file_color.h"
 
 char	*split_filename(char *line);

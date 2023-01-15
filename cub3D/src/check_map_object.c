@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:40:52 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 21:46:28 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/15 15:07:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ int	check_component(int fd, t_map *map)
 	read_line = pass_newline(fd, read_line, &file_height);
 	read_line = compare_color(map, fd, read_line, &file_height);
 	read_line = pass_newline(fd, read_line, &file_height);
+	if (read_line != NULL)
+		free(read_line);
 	return (file_height);
 }

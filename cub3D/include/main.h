@@ -6,13 +6,12 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:01:48 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/13 15:47:10 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/15 15:01:40 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
-
 # include <stdio.h>
 # include <sys/errno.h>
 # include <unistd.h>
