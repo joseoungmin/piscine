@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:26:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 16:31:18 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/16 15:07:41 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	check_eight_directions(char **map, int height, int width)
 		x = 0;
 		while (x < width)
 		{
-			if (map[y][x] == '0')
+			if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'E' || \
+				map[y][x] == 'S' || map[y][x] == 'W')
 			{
-				if (x < 1 || y < 1 || x >= width || y >= height)
+				if (x < 1 || y < 1 || x >= width - 1 || y >= height - 1)
 					err_exit("Invaild map");
 				eight_direction_validation(map, y, x);
 			}

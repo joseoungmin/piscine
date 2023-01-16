@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:45:43 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 21:47:47 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/16 14:51:20 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*check_path(char *read_line)
 	if (*read_line == '\n' || *read_line == '\0')
 		err_exit("Invalid path object");
 	filename = split_filename(read_line);
-	fd = ft_open(read_line);
+	fd = ft_open(filename);
 	close(fd);
 	return (filename);
 }
