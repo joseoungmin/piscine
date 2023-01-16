@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/15 16:28:22 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/16 14:17:19 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,11 @@ NAME			=	cub3D
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 DEPFLAGS		=	-MMD -MP -MF $(@:$(OBJ_DIR)%.o=$(DEP_DIR)%.d)
-CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR) -I$(MLX_DIR) -I$(INC_DIR) 
+CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR)	\
+					-I$(MLX_DIR) 				\
+					-I$(INC_DIR)				\
+					-I$(INC_DIR)$(PARSE_DIR)
+
 RM				=	rm -rf
 Q				=	@
 
@@ -25,17 +29,22 @@ INC_DIR			=	include/
 SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
+PARSE_DIR		=	map_parse/
 
 PROG			=	"cub3D"
-SRC_FILE		=	main.c					\
-					check_argument.c		\
+SRC_FILE		=	main.c								\
+					safe_func.c							\
+					free_map.c							\
+					error.c								\
+					ft_open.c							\
+					$(addprefix $(PARSE_DIR), $(PARSE_FILE))
+
+PARSE_FILE		=	check_argument.c		\
 					check_map.c				\
 					check_map_object.c		\
 					check_map_file_color.c	\
 					check_map_count_alloc.c	\
 					check_eight_direction.c	\
-					error.c					\
-					ft_open.c				\
 
 OBJ_FILE		=	$(SRC_FILE:.c=.o)
 
@@ -64,7 +73,7 @@ $(NAME)			:	$(LIBFT) $(MLX) $(OBJS)
 					@echo "\033[K\033[32m   $(PROG) is Ready ✅\033[0m"
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
-					@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+					@mkdir -p $(OBJ_DIR)$(PARSE_DIR) $(DEP_DIR)$(PARSE_DIR)
 					@echo "\033[K\033[32m   $(PROG) is Ready : $<\033[A"
 					$Q$(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 

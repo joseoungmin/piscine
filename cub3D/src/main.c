@@ -6,11 +6,16 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 15:08:13 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/16 14:19:11 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void	bye(void)
+{
+	system("Leaks cub3D");
+}
 
 int	main(int ac, char **av)
 {
@@ -18,6 +23,7 @@ int	main(int ac, char **av)
 
 	check_argument(ac, av);
 	map = check_and_return_map(av[1]);
+//	add_image();
 
 	/// map print ///
 	printf("\n========== PRINT OBJ ==========\n\n");
@@ -37,6 +43,7 @@ int	main(int ac, char **av)
 	}
 	printf("\n ========== END MAP ========== \n\n");
 /// map pirnt ///
-//	system("Leaks cub3D");
+	free_map(map);
+//	atexit(bye);
 	return (0);
 }

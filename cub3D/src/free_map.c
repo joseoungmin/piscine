@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:01:48 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 14:17:59 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/16 14:05:10 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/16 14:18:53 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-# include <stdio.h>
-# include <math.h>
-# include "free_map.h"
-# include "mlx.h"
-# include "check_argument.h"
-# include "check_map.h"
+#include "free_map.h"
 
-#endif
+void	free_map(t_map *map)
+{
+	int	y;
+
+	safe_free(map->no_path);
+	safe_free(map->so_path);
+	safe_free(map->we_path);
+	safe_free(map->ea_path);
+	y = 0;
+	while (y < map->height)
+		safe_free(map->map[y++]);
+	safe_free(map->map);
+	safe_free(map);
+}
