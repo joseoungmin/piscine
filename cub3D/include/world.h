@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:21:34 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 14:21:48 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/16 15:23:51 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#ifndef WORLD_H
+# define WORLD_H
 
+typedef struct s_world	t_world;
+
+struct s_world
+{
+
+}
 
 
 #endif

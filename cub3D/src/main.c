@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 14:19:11 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/16 15:22:13 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 
 	check_argument(ac, av);
 	map = check_and_return_map(av[1]);
-//	add_image();
+	set_world(map);
 
 	/// map print ///
 	printf("\n========== PRINT OBJ ==========\n\n");

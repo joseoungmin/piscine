@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_image.c                                        :+:      :+:    :+:   */
+/*   set_world.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 14:02:43 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/16 15:52:31 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/16 15:56:58 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "add_image.h"
+#ifndef SET_WORLD_H
+# define SET_WORLD_H
+# include <mlx.h>
+# include "map.h"
 
+void	set_world(t_map *map);
 
+#endif
