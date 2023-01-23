@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 15:08:01 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/24 00:00:26 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,25 @@ void	check_and_add_map(int fd, t_map *map, char *filename, int file_height)
 	map_alloc(map);
 	close(fd);
 	fd = reopen_fd(filename, file_height);
-	map->direction = 0;
 	read_map(map, fd, 0, 0);
 	close(fd);
+}
+
+t_map	*init_map(void)
+{
+	t_map	*map;
+
+	map = malloc(sizeof(t_map));
+	if (map == NULL)
+		err_exit("init_map : malloc fail");
+	map->map = NULL;
+	map->floor = 0;
+	map->width = 0;
+	map->direction = 0;
+	map->player = malloc(sizeof(t_player));
+	if (map->player == NULL)
+		err_exit("init_map : malloc fail");
+	return (map);
 }
 
 t_map	*check_and_return_map(char *map_file)
@@ -74,11 +90,9 @@ t_map	*check_and_return_map(char *map_file)
 	t_map		*map;
 	const int	fd = ft_open(map_file);
 
-	map = malloc(sizeof(t_map));
-	if (map == NULL)
-		err_exit("check_and_return_map : malloc fail");
+	map = init_map();
 	file_height = check_component(fd, map);
 	check_and_add_map(fd, map, map_file, file_height);
-	check_eight_directions(map->map, map->height, map->width);
+	check_eight_directions(map, map->map, map->height, map->width);
 	return (map);
 }

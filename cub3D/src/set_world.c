@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/17 14:57:49 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/24 00:03:43 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	set_image(t_map *map)
 	// mlx hook and open window
 //	mlx_hook(world->win, X_KEY_PRESS, 0, move_check, //structere);
 //	mlx_hook(world->win, X_KEY_EXIT, 0, endgame, //structere);
-	mlx_loop(world->mlx);
+//	mlx_loop(world->mlx);
 }
 
 void	set_world(t_map *map)
 {
 //	t_world	*world;
-
+	set_player(map);
 	set_image(map);
 	//mlx_key_hook();
 }

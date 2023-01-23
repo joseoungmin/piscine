@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:47:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/14 17:52:26 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/23 23:57:51 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef enum e_map_err	t_map_err;
 typedef struct s_map	t_map;
+typedef struct s_player	t_player;
 
 enum e_map_err
 {
@@ -27,16 +28,29 @@ enum e_map_err
 
 struct s_map
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		floor;
-	int		ceiling;
-	char	**map;
-	int		width;
-	int		height;
-	char	direction;
+	t_player	*player;
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
+	char		**map;
+	int			floor;
+	int			ceiling;
+	int			width;
+	int			height;
+	char		direction;
+};
+
+struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 };
 
 #endif

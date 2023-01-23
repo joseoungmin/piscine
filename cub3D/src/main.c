@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 15:22:13 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/24 00:06:32 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int ac, char **av)
 	printf("F = [%x]\n", map->floor);
 	printf("C = [%x]\n", map->ceiling);
 	printf("player direction = %c\n", map->direction);
+	printf("player x = %f\n", map->player->x);
+	printf("player y = %f\n", map->player->y);
 	printf("\n========== PRINT MAP ==========\n\n");
 	for (int y=0; y < map->height; y++)
 	{
