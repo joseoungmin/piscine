@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/24 00:03:43 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/26 12:15:31 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	set_world(t_map *map)
 {
 //	t_world	*world;
 	set_player(map);
-	set_image(map);
+//	set_image(map);
 	//mlx_key_hook();
 }

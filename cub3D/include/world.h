@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:21:34 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 17:29:08 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/26 10:54:57 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ struct s_world
 	int		line_len;
 	int		endian;
 };
-
 
 #endif
