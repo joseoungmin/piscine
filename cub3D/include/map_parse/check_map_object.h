@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:43:05 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 14:49:07 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/26 22:10:27 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHECK_MAP_OBJECT_H
 # include "libft.h"
 # include "check_map_file_color.h"
+# include "safe_func.h"
 
 char	*split_filename(char *line);
 char	*check_path(char *read_line);

@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:40:52 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 15:07:30 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/26 22:07:39 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*compare_way(t_map *map, char *read_line, int *file_height, int fd)
 			map->ea_path = check_path(read_line + 2);
 		else
 			err_exit("Insufficient image contents");
-		free(read_line);
+		safe_free(read_line);
 		read_line = get_next_line(fd);
 		(*file_height)++;
 	}
@@ -43,7 +43,7 @@ char	*compare_color(t_map *map, int fd, char *read_line, int *file_height)
 			map->ceiling = check_color(read_line + 1);
 		else
 			err_exit("Insufficient color contents");
-		free(read_line);
+		safe_free(read_line);
 		read_line = get_next_line(fd);
 		(*file_height)++;
 	}
@@ -54,7 +54,7 @@ char	*pass_newline(int fd, char *read_line, int *file_height)
 {
 	while (read_line != NULL && *read_line == '\n')
 	{
-		free(read_line);
+		safe_free(read_line);
 		read_line = get_next_line(fd);
 		(*file_height)++;
 	}
@@ -74,6 +74,6 @@ int	check_component(int fd, t_map *map)
 	read_line = compare_color(map, fd, read_line, &file_height);
 	read_line = pass_newline(fd, read_line, &file_height);
 	if (read_line != NULL)
-		free(read_line);
+		safe_free(read_line);
 	return (file_height);
 }

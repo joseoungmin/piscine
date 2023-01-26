@@ -6,16 +6,16 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:47:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/26 11:45:39 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/26 23:26:24 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 # include "world.h"
+# include "player.h"
 typedef enum e_map_err	t_map_err;
 typedef struct s_map	t_map;
-typedef struct s_player	t_player;
 
 enum e_map_err
 {
@@ -40,18 +40,6 @@ struct s_map
 	int			width;
 	int			height;
 	char		direction;
-};
-
-struct s_player
-{
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	move_speed;
-	double	rot_speed;
 };
 
 #endif

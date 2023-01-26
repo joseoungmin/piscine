@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:45:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 14:47:43 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/26 22:07:18 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	count_map(int fd, t_map *map)
 		if (x_cnt > x_max)
 			x_max = x_cnt;
 		y_cnt++;
-		free(count_line);
+		safe_free(count_line);
 		count_line = get_next_line(fd);
 	}
 	map->height = ++y_cnt;
@@ -47,7 +47,7 @@ int	reopen_fd(char *filename, int file_height)
 	while (idx < file_height)
 	{
 		count_line = get_next_line(fd);
-		free(count_line);
+		safe_free(count_line);
 		idx++;
 	}
 	return (fd);

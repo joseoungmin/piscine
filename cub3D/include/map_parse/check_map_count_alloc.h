@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:46:29 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/15 14:57:33 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/26 22:10:17 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "map.h"
 # include "ft_open.h"
 # include "libft.h"
+# include "safe_func.h"
 
 void	count_map(int fd, t_map *map);
 int		reopen_fd(char *filename, int file_height);
