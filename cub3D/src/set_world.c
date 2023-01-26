@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/26 23:12:36 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/27 01:34:56 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	set_world(t_map *map)
 {
 	world_malloc(map);
 	render_map(map);
-	map->player->img = mlx_new_image(map->world->mlx, (int)(MINI_SCALE * map->width * TILE_SIZE), (int)(MINI_SCALE * map->height * TILE_SIZE));
+	map->player->img = mlx_new_image(map->world->mlx, \
+			(int)(MINI_SCALE * map->width * TILE_SIZE), \
+			(int)(MINI_SCALE * map->height * TILE_SIZE));
 	set_player(map);
 	draw_player(map);
-	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, (int)(map->width * TILE_SIZE * (1 -  MINI_SCALE)), (int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
+	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, \
+			(int)(map->width * TILE_SIZE * (1 - MINI_SCALE)), \
+			(int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
 	//mlx_key_hook();
 }
