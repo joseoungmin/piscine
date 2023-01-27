@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:05:10 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/26 22:18:36 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/27 19:27:31 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_map(t_map *map)
 {
 	int	y;
 
+    safe_free(map->key);
 	safe_free(map->player);
 	safe_free(map->world);
 	safe_free(map->no_path);

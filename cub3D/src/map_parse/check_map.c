@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/24 00:00:26 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/27 20:22:52 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,13 @@ t_map	*init_map(void)
 
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
-		err_exit("init_map : malloc fail");
+		err_exit("init_map : malloc failed");
 	map->map = NULL;
 	map->floor = 0;
 	map->width = 0;
 	map->direction = 0;
-	map->player = malloc(sizeof(t_player));
-	if (map->player == NULL)
-		err_exit("init_map : malloc fail");
+	map->player = init_player();
+    map->key = init_key();
 	return (map);
 }
 

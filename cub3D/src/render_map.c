@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 21:57:29 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 00:21:25 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/27 18:48:03 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ void	render_map(t_map *map)
 		{
 			if (map->map[row][col] == '1')
 				fill_rectangle(map, (int)(col * TILE_SIZE * MINI_SCALE), \
-						(int)(row * TILE_SIZE * MINI_SCALE), 0x000000);
+						(int)(row * TILE_SIZE * MINI_SCALE), 0x282828);
 			else if (map->map[row][col] == '0')
 				fill_rectangle(map, (int)(col * TILE_SIZE * MINI_SCALE), \
+						(int)(row * TILE_SIZE * MINI_SCALE), 0xFFFFFF);
+            else if (map->map[row][col] == ' ')
+                fill_rectangle(map, (int)(col * TILE_SIZE * MINI_SCALE), \
+						(int)(row * TILE_SIZE * MINI_SCALE), 0x000000);
+            else
+                fill_rectangle(map, (int)(col * TILE_SIZE * MINI_SCALE), \
 						(int)(row * TILE_SIZE * MINI_SCALE), 0xFFFFFF);
 			col++;
 		}

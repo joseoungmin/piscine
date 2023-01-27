@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/26 23:26:41 by seojo            ###   ########seoul.kr   #
+#    Updated: 2023/01/27 19:28:00 by seojo            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ PROG			=	"cub3D"
 SRC_FILE		=	main.c								\
 					set_world.c							\
 					set_player.c						\
-					key.c								\
+					key_toggle.c						\
 					render_map.c						\
 					safe_func.c							\
 					free_map.c							\

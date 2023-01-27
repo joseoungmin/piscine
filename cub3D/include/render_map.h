@@ -6,14 +6,12 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 21:57:53 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/26 22:04:59 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/27 19:32:04 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_MAP_H
 # define RENDER_MAP_H
-# define TILE_SIZE 20
-# define MINI_SCALE 1
 # include "map.h"
 # include "mlx.h"
 # include "error.h"

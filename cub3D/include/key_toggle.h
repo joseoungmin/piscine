@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   key_toggle.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 23:16:55 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 00:56:38 by seojo            ###   ########.fr       */
+/*   Created: 2023/01/27 19:25:00 by seojo             #+#    #+#             */
+/*   Updated: 2023/01/27 20:19:53 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "key.h"
-# include <stdio.h>
+#ifndef KEY_TOGGLE_H
+# define KEY_TOGGLE_H
+# include "map.h"
+# include <stdlib.h>
 
-int	key_press(int keycode, t_player *player)
-{
-	if (keycode == KEY_A)
-		player->x--;
-	if (keycode == KEY_D)
-		player->x++;
-	if (keycode == KEY_W)
-		player->y--;
-	if (keycode == KEY_S)
-		player->y++;
-	printf("[key.c] x:y = %f:%f\n", player->x, player->y);
-	// printf delete;
-	if (keycode == KEY_ESC)
-		exit(0);
-	return (0);
-}
+t_key	*init_key(void);
+void	move_check(t_map *map);
+int		key_press(int keycode, t_map *map);
+int		key_release(int keycode, t_map *map);
+
+#endif

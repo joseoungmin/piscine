@@ -6,13 +6,11 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:29:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 00:57:23 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/27 20:20:45 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "set_player.h"
-#include "set_world.h"
-#define PLAYER_THICKNESS 5
 
 void	set_player_dir_sub(t_map *map)
 {
@@ -62,8 +60,9 @@ int	draw_player(t_map *map)
 		col = -map->player->thickness / 2;
 		while (col <= (map->player->thickness / 2))
 		{
-			map->world->data[(int)(MINI_SCALE * (map->width * TILE_SIZE) \
-			*(map->player->y + row) + (map->player->x + col))] = 0x0000FF;
+			map->world->data[(int)(MINI_SCALE * (map->width * TILE_SIZE) * \
+			((int)map->player->y + row) + \
+			((int)map->player->x + col))] = 0x0000FF;
 			col++;
 		}
 		row++;
@@ -71,13 +70,26 @@ int	draw_player(t_map *map)
 	return (0);
 }
 
+t_player    *init_player(void)
+{
+	t_player    *player;
+
+	player = malloc(sizeof(t_player));
+	if (!player)
+		err_exit("init_player : malloc failed");
+	player->x = 0;
+	player->y = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0;
+	player->move_speed = 0.1;
+	player->rot_speed = 0.1;
+	player->thickness = PLAYER_THICKNESS;
+	return (player);
+}
 void	set_player(t_map *map)
 {
-	map->player->x = (map->width * TILE_SIZE) / 2;
-	map->player->y = (map->height * TILE_SIZE) / 2;
-	map->player->thickness = PLAYER_THICKNESS;
-	mlx_hook(map->world->win, X_KEY_PRESS, 1L << 0, &key_press, &map->player);
-//     map->player->move_speed = 0.1;
-//     map->player->rot_speed = 0.1;
+	(void)map;
 //     set_player_dir(map);
 }

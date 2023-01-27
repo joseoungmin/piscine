@@ -6,11 +6,27 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 01:34:56 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/27 20:20:05 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "set_world.h"
+
+void	draw_ray(t_map *map)
+{	
+	draw_player(map);
+}
+
+int	ft_loop(t_map *map)
+{
+	render_map(map);
+	draw_ray(map);
+	move_check(map);// will make key_check.c
+	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, \
+			(int)(map->width * TILE_SIZE * (1 - MINI_SCALE)), \
+			(int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
+	return (0);
+}
 
 void	set_world(t_map *map)
 {
