@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/27 19:28:00 by seojo            ###   ########seoul.kr   #
+#    Updated: 2023/01/28 15:56:41 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ PARSE_DIR		=	map_parse/
 
 PROG			=	"cub3D"
 SRC_FILE		=	main.c								\
+					init.c								\
 					set_world.c							\
 					set_player.c						\
 					key_toggle.c						\

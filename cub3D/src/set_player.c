@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:29:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 20:20:45 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/28 15:49:15 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,6 @@ int	draw_player(t_map *map)
 	return (0);
 }
 
-t_player    *init_player(void)
-{
-	t_player    *player;
-
-	player = malloc(sizeof(t_player));
-	if (!player)
-		err_exit("init_player : malloc failed");
-	player->x = 0;
-	player->y = 0;
-	player->dir_x = 0;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0;
-	player->move_speed = 0.1;
-	player->rot_speed = 0.1;
-	player->thickness = PLAYER_THICKNESS;
-	return (player);
-}
 void	set_player(t_map *map)
 {
 	(void)map;

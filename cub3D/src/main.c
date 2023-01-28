@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 19:14:07 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/28 16:31:26 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av)
 	mlx_loop_hook(map->world->mlx, &ft_loop, map);
 	mlx_loop(map->world->mlx);
 	free_map(map);
+//	system("Leaks cub3D");
 //	atexit(bye);
 	return (0);
 }

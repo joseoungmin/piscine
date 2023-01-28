@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 20:20:05 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/28 16:20:31 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_loop(t_map *map)
 
 void	set_world(t_map *map)
 {
-	world_malloc(map);
+	init_world(map);
 	render_map(map);
 	map->player->img = mlx_new_image(map->world->mlx, \
 			(int)(MINI_SCALE * map->width * TILE_SIZE), \

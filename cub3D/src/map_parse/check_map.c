@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:47:46 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 20:22:52 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/28 15:41:18 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,6 @@ void	check_and_add_map(int fd, t_map *map, char *filename, int file_height)
 	fd = reopen_fd(filename, file_height);
 	read_map(map, fd, 0, 0);
 	close(fd);
-}
-
-t_map	*init_map(void)
-{
-	t_map	*map;
-
-	map = malloc(sizeof(t_map));
-	if (map == NULL)
-		err_exit("init_map : malloc failed");
-	map->map = NULL;
-	map->floor = 0;
-	map->width = 0;
-	map->direction = 0;
-	map->player = init_player();
-    map->key = init_key();
-	return (map);
 }
 
 t_map	*check_and_return_map(char *map_file)

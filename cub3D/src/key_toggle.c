@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 23:16:55 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 20:25:25 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/28 15:57:53 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,4 @@ void    move_check(t_map *map)
 	// if (map->key->right)
 	// 	map->player->rot_speed = 0.05;
 	check_wall(map, old_x, old_y);
-}
-
-t_key	*init_key(void)
-{
-	t_key *key;
-
-	if (!(key = (t_key *)malloc(sizeof(t_key))))
-		return (NULL);
-	key->a = 0;
-	key->d = 0;
-	key->w = 0;
-	key->s = 0;
-	key->left = 0;
-	key->right = 0;
-	return (key);
 }
