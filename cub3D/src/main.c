@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/28 16:31:26 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/29 19:23:38 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ int	main(int ac, char **av)
 	set_world(map);
 //	print_map(map); //print map;
 
+	// key hook
 	mlx_hook(map->world->win, X_KEY_PRESS, 1L << 0, &key_press, map);
 	mlx_hook(map->world->win, X_KEY_RELEASE, 1L << 0, &key_release, map);
-
 	mlx_loop_hook(map->world->mlx, &ft_loop, map);
+	// loop
 	mlx_loop(map->world->mlx);
 	free_map(map);
+
+	// Leak check
 //	system("Leaks cub3D");
 //	atexit(bye);
 	return (0);

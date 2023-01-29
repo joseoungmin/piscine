@@ -6,11 +6,15 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:41:37 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/28 16:20:17 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/29 20:45:59 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
+
+#include <math.h>
+#define _USE_MATH_DEFINES
+#define PI M_PI
 
 static t_key	*init_key(void)
 {
@@ -41,8 +45,8 @@ static t_player    *init_player(void)
 	player->dir_y = 0;
 	player->plane_x = 0;
 	player->plane_y = 0;
-	player->move_speed = 0.1;
-	player->rot_speed = 0.1;
+	player->move_speed = 1;
+	player->rot_speed = 4 * (PI / 180);
 	player->thickness = PLAYER_THICKNESS;
 	return (player);
 }

@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:29:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/28 15:49:15 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/29 20:45:20 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ int	draw_player(t_map *map)
 
 void	set_player(t_map *map)
 {
-	(void)map;
-//     set_player_dir(map);
+	set_player_dir(map);
 }
