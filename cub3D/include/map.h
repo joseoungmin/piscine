@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:47:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 19:32:50 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/31 18:17:02 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,25 @@ enum e_map_err
 	BLUE = 2,
 };
 
+typedef struct	s_ray
+{
+	double	ray_angle;
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	distance;
+	int		hit_vert;
+	int		facing_down;
+	int		facing_up;
+	int		facing_right;
+	int		facing_left;
+}				t_ray;
+
 struct s_map
 {
 	t_player	*player;
 	t_world		*world;
     t_key       *key;
+	t_ray		*ray;
 	char		*no_path;
 	char		*so_path;
 	char		*we_path;
