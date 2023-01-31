@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   set_world.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: sielee <sielee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/31 19:48:32 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/01 01:17:08 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "set_world.h"
+int g_color = 0xFF0000;
 
 #define RAY_RANGE (M_PI / 3.0)
 #define RAY_COUTNT 121
@@ -70,8 +71,7 @@ int	is_wall(t_map *map, double x, double y)
 		return (1);
 	xX = (int)floor(x / TILE_SIZE);
 	yY = (int)floor(y / TILE_SIZE);
-	printf("%d %d = %d\n", xX, yY, map->map[yY][xX]);
-	return (map->map[yY][xX] != 0);
+	return (map->map[yY][xX] == '1');
 }
 
 double	d_b_points(double x1, double y1, double x2, double y2)
@@ -162,7 +162,10 @@ void	draw_line(t_map *map)
 	while (1)
 	{
 		if (!is_wall(map, ray_x, ray_y))
-			map->world->data[(map->width * TILE_SIZE) * (int)floor(ray_y) + (int)floor(ray_x)] = 0xFF0000;
+		{
+			map->world->data[(map->width * TILE_SIZE) * \
+				(int)floor(ray_y) + (int)floor(ray_x)] = g_color;
+		}
 		else
 			break ;
 		ray_x += dx;
@@ -190,7 +193,6 @@ void	draw_one_ray(t_map *map, double angle)
 		map->ray->wall_hit_x = horz.x_hit;
 		map->ray->wall_hit_y = horz.y_hit;
 		map->ray->distance = horz.distance;
-		map->ray->hit_vert = 0;
 	}
 	draw_line(map);
 }
@@ -200,6 +202,7 @@ void	draw_ray(t_map *map)
 	double	angle;
 	double	max_angle;
 
+	map->player->rot_angle = atan2(map->player->dir_y, map->player->dir_x);
 	angle = map->player->rot_angle;
 	max_angle = map->player->rot_angle + (RAY_RANGE / 2.0);
 	while (angle <= max_angle)

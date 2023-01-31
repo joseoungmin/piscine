@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 15:41:37 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/31 16:43:30 by seojo            ###   ########.fr       */
+/*   Created: 2023/02/01 01:12:30 by seojo             #+#    #+#             */
+/*   Updated: 2023/02/01 01:12:36 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_player	*init_player(void)
 		err_exit("init_player : malloc failed");
 	player->x = 0;
 	player->y = -1.0;
-	player->dir_x = 0;
+	player->dir_x = -1.0;
 	player->dir_y = 0;
 	player->plane_x = 0.5;
 	player->plane_y = 0.0;
