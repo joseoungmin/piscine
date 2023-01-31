@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/01/28 15:56:41 by seojo            ###   ########.fr        #
+#    Updated: 2023/01/31 16:29:19 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_FILE		=	main.c								\
 					set_world.c							\
 					set_player.c						\
 					key_toggle.c						\
+					move.c								\
 					render_map.c						\
 					safe_func.c							\
 					free_map.c							\

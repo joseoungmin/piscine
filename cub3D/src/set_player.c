@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:29:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/29 20:45:20 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/31 16:15:51 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,19 @@ void	set_player_dir(t_map *map)
 
 int	draw_player(t_map *map)
 {
-	int	row;
-	int	col;
-	
-	row = -map->player->thickness / 2;
-	while (row <= (map->player->thickness / 2))
+	const int	p_x = (map->player->x + 0.5) * TILE_SIZE;
+	const int	p_y = (map->player->y + 0.5) * TILE_SIZE;
+	int			row;
+	int			col;
+
+	row = -TILE_SIZE * 3 / 4;
+	while (row <= -(TILE_SIZE / 4))
 	{
-		col = -map->player->thickness / 2;
-		while (col <= (map->player->thickness / 2))
+		col = -TILE_SIZE * 3 / 4;
+		while (col <= -(TILE_SIZE / 4))
 		{
 			map->world->data[(int)(MINI_SCALE * (map->width * TILE_SIZE) * \
-			((int)map->player->y + row) + \
-			((int)map->player->x + col))] = 0x0000FF;
+			(p_y + row) + (p_x + col))] = 0x0000FF;
 			col++;
 		}
 		row++;

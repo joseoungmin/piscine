@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/29 19:38:41 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/31 16:43:44 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,4 @@ void	set_world(t_map *map)
 	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, \
 		(int)(map->width * TILE_SIZE * (1 - MINI_SCALE)), \
 		(int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
-	//mlx_key_hook();
 }

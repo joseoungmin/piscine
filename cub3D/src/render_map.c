@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 21:57:29 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/28 16:35:46 by seojo            ###   ########.fr       */
+/*   Updated: 2023/01/31 15:24:28 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	render_map(t_map *map)
 	map->world->data = (int *)mlx_get_data_addr(map->world->img, \
 			&map->world->bpp, &map->world->line_len, &map->world->endian);
 	row = -1;
-	while (++row < map->height - 1)
+	while (++row < map->height)
 	{
 		col = -1;
-		while (++col < map->width - 1)
+		while (++col < map->width)
 		{
 			if (map->map[row][col] == '1')
 				fill_rectangle(map, (int)(col * TILE_SIZE * MINI_SCALE), \

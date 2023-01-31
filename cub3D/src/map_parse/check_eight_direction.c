@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:26:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/27 19:32:46 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/01/31 16:42:41 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	check_eight_directions(t_map *tmap, char **map, int height, int width)
 				eight_direction_validation(map, y, x);
 				if (map[y][x] != '0')
 				{
-					tmap->player->x = (x + 0.5) * TILE_SIZE;
-					tmap->player->y = (y + 0.5) * TILE_SIZE; 
+					tmap->player->x = x;
+					tmap->player->y = y;
 				}
 			}
 			x++;
