@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:47:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/31 18:17:02 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/06 00:51:43 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # include "world.h"
 # include "player.h"
 # include "key.h"
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 # define TILE_SIZE 20
-# define MINI_SCALE 1
+# define MINI_SCALE 0.8
 # define PLAYER_THICKNESS 5
 typedef enum e_map_err	t_map_err;
 typedef struct s_map	t_map;

@@ -6,13 +6,12 @@
 /*   By: sielee <sielee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/01 01:17:08 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/05 23:38:54 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "set_world.h"
-int g_color = 0xFF0000;
-
+#define COLOR_RED 0xFF0000
 #define RAY_RANGE (M_PI / 3.0)
 #define RAY_COUTNT 121
 #include <limits.h>
@@ -152,10 +151,10 @@ void	draw_line(t_map *map)
 	double	dy;
 	double	max_value;
 
-	ray_x = map->player->x * TILE_SIZE;
-	ray_y = map->player->y * TILE_SIZE;
-	dx = map->ray->wall_hit_x - (map->player->x * TILE_SIZE);
-	dy = map->ray->wall_hit_y - (map->player->y * TILE_SIZE);
+	ray_x = map->player->x * TILE_SIZE * MINI_SCALE;
+	ray_y = map->player->y * TILE_SIZE * MINI_SCALE;
+	dx = map->ray->wall_hit_x - (map->player->x * TILE_SIZE * MINI_SCALE);
+	dy = map->ray->wall_hit_y - (map->player->y * TILE_SIZE * MINI_SCALE);
 	max_value = fmax(fabs(dx), fabs(dy));
 	dx /= max_value;
 	dy /= max_value;
@@ -163,8 +162,9 @@ void	draw_line(t_map *map)
 	{
 		if (!is_wall(map, ray_x, ray_y))
 		{
-			map->world->data[(map->width * TILE_SIZE) * \
-				(int)floor(ray_y) + (int)floor(ray_x)] = g_color;
+			int	x = (int)(MINI_SCALE * ray_x);
+			int	y = (int)(MINI_SCALE * ray_y);
+			map->world->data[WINDOW_WIDTH * y + x] = COLOR_RED;
 		}
 		else
 			break ;
@@ -219,9 +219,7 @@ int	ft_loop(t_map *map)
 	draw_player(map);
 	draw_ray(map);
 	move_check(map);
-	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, \
-			(int)(map->width * TILE_SIZE * (1 - MINI_SCALE)), \
-			(int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
+	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, 0, 0);
 	return (0);
 }
 
@@ -234,7 +232,5 @@ void	set_world(t_map *map)
 		(int)(MINI_SCALE * map->height * TILE_SIZE));
 	set_player(map);
 	draw_player(map);
-	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, \
-		(int)(map->width * TILE_SIZE * (1 - MINI_SCALE)), \
-		(int)(map->height * TILE_SIZE * (1 - MINI_SCALE)));
+	mlx_put_image_to_window(map->world->mlx, map->world->win, map->world->img, 0, 0);
 }

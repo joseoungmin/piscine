@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 01:12:30 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/01 01:12:36 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/05 23:58:28 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_player	*init_player(void)
 	player->plane_x = 0.5;
 	player->plane_y = 0.0;
 	player->move_speed = 0.04;
-	player->rot_speed = 0.05;
+	player->rot_speed = 0.04;
 	player->thickness = PLAYER_THICKNESS;
 	return (player);
 }
@@ -53,11 +53,10 @@ void	init_world(t_map *map)
 	if (map->world == NULL)
 		err_exit("init_world : malloc failed");
 	map->world->mlx = mlx_init();
-	map->world->win = mlx_new_window(map->world->mlx, map->width * \
-			TILE_SIZE, map->height * TILE_SIZE, "cub3D");
+	map->world->win = mlx_new_window(map->world->mlx, \
+						WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	map->world->img = mlx_new_image(map->world->mlx, \
-			(int)(MINI_SCALE * map->width * TILE_SIZE), \
-			(int)(MINI_SCALE * map->height * TILE_SIZE));
+						WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 t_map	*init_map(void)
