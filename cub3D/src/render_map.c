@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 21:57:29 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/06 00:00:51 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/06 18:59:26 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	fill_rectangle(t_map *map, int x, int y, int color)
 	int		j;
 
 	j = 0;
-	x = (int)(MINI_SCALE * x);
-	y = (int)(MINI_SCALE * y);
 	while (j < (int)(MINI_SCALE * TILE_SIZE))
 	{
 		i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_world.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sielee <sielee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:50:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/05 23:38:54 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/06 20:30:03 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	is_wall(t_map *map, double x, double y)
 	int	xX;
 	int	yY;
 
-	if (x <= 0 || y <= 0 || x >= map->width * TILE_SIZE || y >= map->height * TILE_SIZE)
+	if (x <= 0 || y <= 0 || x >= map->width * TILE_SIZE * MINI_SCALE || y >= map->height * TILE_SIZE * MINI_SCALE)
 		return (1);
-	xX = (int)floor(x / TILE_SIZE);
-	yY = (int)floor(y / TILE_SIZE);
+	xX = (int)floor(x / TILE_SIZE * MINI_SCALE);
+	yY = (int)floor(y / TILE_SIZE * MINI_SCALE);
 	return (map->map[yY][xX] == '1');
 }
 
@@ -81,7 +81,7 @@ double	d_b_points(double x1, double y1, double x2, double y2)
 void	cal_distance(t_map *map, t_rtmp *hv)
 {
 	if (hv->wall_hit == 1)
-		hv->distance = d_b_points((map->player->x * TILE_SIZE), (map->player->y * TILE_SIZE), hv->x_hit, hv->y_hit);
+		hv->distance = d_b_points((map->player->x * TILE_SIZE * MINI_SCALE), (map->player->y * TILE_SIZE * MINI_SCALE), hv->x_hit, hv->y_hit);
 	else
 		hv->distance = DBL_MAX;
 }
@@ -93,7 +93,7 @@ void	cal_ray(t_map *map, t_rtmp *hv)
 
 	n_touch_x = hv->xinter;
 	n_touch_y = hv->yinter;
-	while (n_touch_x >= 0 && n_touch_x <= (map->width * TILE_SIZE) && n_touch_y >= 0 && n_touch_y <= (map->height * TILE_SIZE))
+	while (n_touch_x >= 0 && n_touch_x <= (map->width * TILE_SIZE * MINI_SCALE) && n_touch_y >= 0 && n_touch_y <= (map->height * TILE_SIZE * MINI_SCALE))
 	{
 		if (is_wall(map, n_touch_x, n_touch_y - (map->ray->facing_up ? 1 : 0)))
 		{
@@ -116,12 +116,12 @@ void	horz_ray(t_map *map, t_rtmp *horz)
 	horz->wall_hit = 0;
 	horz->x_hit = 0;
 	horz->y_hit = 0;
-	horz->yinter = floor(map->player->y) * TILE_SIZE;
-	horz->yinter += map->ray->facing_down ? TILE_SIZE : 0;
-	horz->xinter = (map->player->x * TILE_SIZE) + (horz->yinter - (map->player->y * TILE_SIZE)) / tan(map->ray->ray_angle);
-	horz->ystep = TILE_SIZE;
+	horz->yinter = floor(map->player->y * TILE_SIZE * MINI_SCALE / (TILE_SIZE * MINI_SCALE)) * TILE_SIZE * MINI_SCALE;
+	horz->yinter += map->ray->facing_down ? TILE_SIZE * MINI_SCALE : 0;
+	horz->xinter = (map->player->x * TILE_SIZE * MINI_SCALE) + (horz->yinter - (map->player->y * TILE_SIZE * MINI_SCALE)) / tan(map->ray->ray_angle);
+	horz->ystep = TILE_SIZE * MINI_SCALE;
 	horz->ystep *= map->ray->facing_up ? -1 : 1;
-	horz->xstep = TILE_SIZE / tan(map->ray->ray_angle);
+	horz->xstep = TILE_SIZE * MINI_SCALE / tan(map->ray->ray_angle);
 	horz->xstep *= (map->ray->facing_left && horz->xstep > 0) ? -1 : 1;
 	horz->xstep *= (map->ray->facing_right && horz->xstep < 0) ? -1 : 1;
 	cal_ray(map, horz);
@@ -132,12 +132,12 @@ void	vert_ray(t_map *map, t_rtmp * vert)
 	vert->wall_hit = 0;
 	vert->x_hit = 0;
 	vert->y_hit = 0;
-	vert->xinter = floor(map->player->x) * TILE_SIZE;
-	vert->xinter += map->ray->facing_right ? TILE_SIZE : 0;
-	vert->yinter = (map->player->y * TILE_SIZE) + (vert->xinter - (map->player->x * TILE_SIZE)) * tan(map->ray->ray_angle);
-	vert->xstep = TILE_SIZE;
+	vert->xinter = floor(map->player->x * TILE_SIZE * MINI_SCALE / (TILE_SIZE * MINI_SCALE)) * TILE_SIZE * MINI_SCALE;
+	vert->xinter += map->ray->facing_right ? TILE_SIZE * MINI_SCALE : 0;
+	vert->yinter = (map->player->y * TILE_SIZE * MINI_SCALE) + (vert->xinter - (map->player->x * TILE_SIZE * MINI_SCALE)) * tan(map->ray->ray_angle);
+	vert->xstep = TILE_SIZE * MINI_SCALE;
 	vert->xstep *= map->ray->facing_left ? -1 : 1; 
-	vert->ystep = TILE_SIZE * tan(map->ray->ray_angle);
+	vert->ystep = TILE_SIZE * MINI_SCALE * tan(map->ray->ray_angle);
 	vert->ystep *= (map->ray->facing_up && vert->ystep > 0) ? -1 : 1;
 	vert->ystep *= (map->ray->facing_down && vert->ystep < 0) ? -1 : 1;
 	cal_ray(map, vert);
@@ -160,10 +160,10 @@ void	draw_line(t_map *map)
 	dy /= max_value;
 	while (1)
 	{
-		if (!is_wall(map, ray_x, ray_y))
+		if (!is_wall(map, ray_x , ray_y))
 		{
-			int	x = (int)(MINI_SCALE * ray_x);
-			int	y = (int)(MINI_SCALE * ray_y);
+			int	x = (int)(ray_x);
+			int	y = (int)(ray_y);
 			map->world->data[WINDOW_WIDTH * y + x] = COLOR_RED;
 		}
 		else
