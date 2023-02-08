@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 23:29:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/06 20:12:35 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/08 13:22:15 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,47 +48,27 @@ void	set_player_dir(t_map *map)
 	}
 	set_player_dir_sub(map);
 }
+
 int	draw_player(t_map *map)
 {
-	const int	p_x = (int)(MINI_SCALE * TILE_SIZE * map->player->x);
-	const int	p_y = (int)(MINI_SCALE * TILE_SIZE * map->player->y);
-	int			row;
-	int			col;
+	const int	p_x = (int)(MINI_SCALE * map->player->x);
+ 	const int	p_y = (int)(MINI_SCALE * map->player->y);
+ 	int			row;
+ 	int			col;
 
-	row = -map->player->thickness;
-	while (row <= map->player->thickness)
-	{
-		col = -map->player->thickness;
-		while (col <= map->player->thickness)
-		{
-			map->world->data[(WINDOW_WIDTH * (p_y + row) + (p_x + col))] = 0x0000FF;
-			col++;
-		}
-		row++;
-	}
-	return (0);
+ 	row = -MINI_SCALE / 4;
+ 	while (row <= (MINI_SCALE / 4))
+ 	{
+ 		col = -MINI_SCALE / 4;
+ 		while (col <= (MINI_SCALE / 4))
+ 		{
+ 			map->world->data[WINDOW_WIDTH * (p_y + row) + (p_x + col)] = 0x0000FF;
+ 			col++;
+ 		}
+ 		row++;
+ 	}
+ 	return (0);
 }
-
-// int	draw_player(t_map *map)
-// {
-// 	const int	p_x = (int)(MINI_SCALE * TILE_SIZE * map->player->x);
-// 	const int	p_y = (int)(MINI_SCALE * TILE_SIZE * map->player->y);
-// 	int			row;
-// 	int			col;
-
-// 	row = -TILE_SIZE * MINI_SCALE * 3 / 4;
-// 	while (row <= -(TILE_SIZE * MINI_SCALE / 4))
-// 	{
-// 		col = -TILE_SIZE * MINI_SCALE * 3 / 4;
-// 		while (col <= -(TILE_SIZE * MINI_SCALE / 4))
-// 		{
-// 			map->world->data[WINDOW_WIDTH * (p_y + row) + (p_x + col)] = 0x0000FF;
-// 			col++;
-// 		}
-// 		row++;
-// 	}
-// 	return (0);
-// }
 
 void	set_player(t_map *map)
 {
