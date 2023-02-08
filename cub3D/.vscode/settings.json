@@ -20,6 +20,8 @@
         "unordered_map": "c",
         "utility": "c",
         "vector": "c",
-        "__node_handle": "c"
+        "__node_handle": "c",
+        "move.h": "c",
+        "set_player.h": "c"
     }
 }

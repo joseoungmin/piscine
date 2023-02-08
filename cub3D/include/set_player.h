@@ -16,6 +16,8 @@
 # include "error.h"
 # include <stdlib.h>
 
+# define COL_BLU 0x0000FF
+
 int         draw_player(t_map *map);
 void        set_player(t_map *map);
 

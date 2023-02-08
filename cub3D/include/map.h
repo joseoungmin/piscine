@@ -6,26 +6,34 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:47:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/08 13:22:01 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/08 14:33:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
+
 # include "world.h"
 # include "player.h"
 # include "key.h"
+
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
-# define MINI_SCALE 10
+# define MINI_SCALE 8
 # define PLAYER_THICKNESS 5
-typedef enum e_map_err	t_map_err;
+
+typedef enum e_bool	t_bool;
+typedef enum e_color	t_color;
 typedef struct s_map	t_map;
 
-enum e_map_err
+enum e_bool
 {
 	FALSE = 0,
 	TRUE = 1,
+};
+
+enum e_color
+{
 	RED = 0,
 	GREEN = 1,
 	BLUE = 2,
@@ -42,7 +50,7 @@ typedef struct	s_ray
 	int		facing_up;
 	int		facing_right;
 	int		facing_left;
-}				t_ray;
+}	t_ray;
 
 struct s_map
 {

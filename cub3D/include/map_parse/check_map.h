@@ -17,7 +17,6 @@
 # include "check_eight_direction.h"
 # include "init.h"
 
-void	print_map_argument_err(t_map_err err_num);
 t_map	*check_and_return_map(char *map_file);
 
 #endif

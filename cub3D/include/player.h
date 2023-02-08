@@ -12,6 +12,7 @@
 
 #ifndef PLAYER_H
 # define PLAYER_H
+
 typedef struct s_player t_player;
 
 struct s_player
