@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_file_color.h                             :+:      :+:    :+:   */
+/*   check_map_color_line.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 21:47:07 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/09 20:50:44 by seojo            ###   ########.fr       */
+/*   Created: 2023/02/09 20:45:48 by seojo             #+#    #+#             */
+/*   Updated: 2023/02/09 20:50:02 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_MAP_FILE_COLOR_H
-# define CHECK_MAP_FILE_COLOR_H
+#ifndef CHECK_MAP_COLOR_LINE_H
+# define  CHECK_MAP_COLOR_LINE_H
 
-# include "map.h"
-# include "ft_open.h"
-# include "check_map_color_line.h"
+# include "libft.h"
+# include "error.h"
 
-char	*split_filename(char *line);
-char	*check_path(char *read_line);
-char	*split_color(char *read_line, int *color);
-int		check_color(char *read_line);
+void	check_line(char *read_line);
+char	*pass_space(char *read_line);
 
 #endif

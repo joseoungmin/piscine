@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:45:43 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/16 14:51:20 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/09 20:48:59 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ char	*check_path(char *read_line)
 	int		fd;
 	char	*filename;
 
-	while (ft_isspace(*read_line) == TRUE)
-		read_line++;
+	read_line = pass_space(read_line);
 	if (*read_line == '\n' || *read_line == '\0')
 		err_exit("Invalid path object");
 	filename = split_filename(read_line);
@@ -45,8 +44,7 @@ char	*split_color(char *read_line, int *color)
 {
 	int	i;
 
-	while (ft_isspace(*read_line) == TRUE)
-		read_line++;
+	read_line = pass_space(read_line);
 	*color = ft_atoi(read_line);
 	i = 1;
 	while (i < *color)
@@ -67,8 +65,8 @@ int	check_color(char *read_line)
 	color[RED] = 0;
 	color[GREEN] = 0;
 	color[BLUE] = 0;
-	while (ft_isspace(*read_line) == TRUE)
-		read_line++;
+	read_line = pass_space(read_line);
+	check_line(read_line);
 	read_line = split_color(read_line, &color[RED]);
 	read_line = split_color(read_line, &color[GREEN]);
 	read_line = split_color(read_line, &color[BLUE]);

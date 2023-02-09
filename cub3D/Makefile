@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/02/08 18:36:22 by seojo            ###   ########.fr        #
+#    Updated: 2023/02/09 20:48:34 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ PARSE_FILE		=	check_argument.c		\
 					check_map.c				\
 					check_map_object.c		\
 					check_map_file_color.c	\
+					check_map_color_line.c	\
 					check_map_count_alloc.c	\
 					check_eight_direction.c	\
 
