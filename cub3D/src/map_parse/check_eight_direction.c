@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:26:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/31 16:42:41 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/11 18:22:14 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	eight_direction_validation(char **map, int y, int x)
 		map[y][x + 1] == ' ' || map[y + 1][x + 1] == ' ' || \
 		map[y + 1][x] == ' ' || map[y + 1][x - 1] == ' ' || \
 		map[y][x - 1] == ' ' || map[y - 1][x - 1] == ' ')
-		err_exit("Invalid map");
+		err_exit("Invalid map object : wall");
 }
 
 void	check_eight_directions(t_map *tmap, char **map, int height, int width)
@@ -36,7 +36,7 @@ void	check_eight_directions(t_map *tmap, char **map, int height, int width)
 				map[y][x] == 'S' || map[y][x] == 'W')
 			{
 				if (x < 1 || y < 1 || x >= width - 1 || y >= height - 1)
-					err_exit("Invaild map");
+					err_exit("Invaild map object : wall");
 				eight_direction_validation(map, y, x);
 				if (map[y][x] != '0')
 				{
