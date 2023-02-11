@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:43:33 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/09 20:52:27 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/11 19:36:02 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,10 @@ static void	check_alpha(char *read_line)
 
 static void	check_blank(char *read_line)
 {
-	char	c;
-
 	read_line = pass_space(read_line);
 	while (*read_line != '\0')
-	{
-		if (*read_line == ' ')
-		{
-			read_line = pass_space(read_line);
-			if (!(*read_line == ',') && \
-					(ft_isdigit(c) && ft_isdigit(*read_line)) && \
-					!(*read_line == '\0'))
-				err_exit("invalid color argument");
-		}
-		else
-		{
-			c = *read_line;
-			read_line++;
-		}
-	}
+		if (*read_line++ == ' ')
+			err_exit("invalid color argument");
 }
 
 void	check_line(char *read_line)
