@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/02/09 20:48:34 by seojo            ###   ########.fr        #
+#    Updated: 2023/02/14 19:52:17 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,15 @@ NAME			=	cub3D
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 DEPFLAGS		=	-MMD -MP -MF $(@:$(OBJ_DIR)%.o=$(DEP_DIR)%.d)
-CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR)	\
-					-I$(MLX_DIR) 				\
-					-I$(INC_DIR)				\
-					-I$(INC_DIR)$(PARSE_DIR)
+CPPFLAGS		=	-I$(LIBFT_DIR)$(INC_DIR)		\
+					-I$(MLX_DIR) 					\
+					-I$(INC_DIR)					\
+					-I$(INC_DIR)$(PARSE_DIR)		\
+					-I$(INC_DIR)$(RENDER_DIR)		\
+					-I$(INC_DIR)$(RAY_DIR)			\
+					-I$(INC_DIR)$(ACTION_DIR)		\
+					-I$(INC_DIR)$(W_HEADERS_DIR)	\
+					-I$(INC_DIR)$(ETC_DIR)			\
 
 RM				=	rm -rf
 Q				=	@
@@ -30,30 +35,49 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 PARSE_DIR		=	map_parse/
+RENDER_DIR		=	render/
+RAY_DIR			=	raycasting/
+ETC_DIR			=	etc/
+ACTION_DIR		=	action/
+W_HEADERS_DIR	=	world_headers/
 
 PROG			=	"cub3D"
-SRC_FILE		=	main.c								\
-					init.c								\
-					draw_mini_ray.c						\
-					mini_ray.c							\
-					set_world.c							\
-					set_player.c						\
-					key_toggle.c						\
-					move.c								\
-					render_map.c						\
-					safe_func.c							\
-					free_map.c							\
-					error.c								\
-					ft_open.c							\
-					$(addprefix $(PARSE_DIR), $(PARSE_FILE))
+SRC_FILE		=	main.c										\
+					$(addprefix $(PARSE_DIR), $(PARSE_FILE))	\
+					$(addprefix $(RENDER_DIR), $(RENDER_FILE))	\
+					$(addprefix $(RAY_DIR), $(RAY_FILE))		\
+					$(addprefix $(ETC_DIR), $(ETC_FILE))		\
+					$(addprefix $(ACTION_DIR), $(ACTION_FILE))
 
-PARSE_FILE		=	check_argument.c		\
-					check_map.c				\
-					check_map_object.c		\
-					check_map_file_color.c	\
-					check_map_color_line.c	\
-					check_map_count_alloc.c	\
-					check_eight_direction.c	\
+ETC_FILE		=	safe_func.c									\
+					error.c										\
+					ft_open.c									\
+					clear_world.c								\
+
+ACTION_FILE		=	action.c									\
+					event_close.c								\
+					event_red_cross.c							\
+					key_toggle.c								\
+					find_key.c									\
+					move.c										\
+
+RAY_FILE		=	init_rc.c									\
+					check_hit.c									\
+					fill_buf.c									\
+
+RENDER_FILE		=	init_render.c								\
+					init_screen_buf.c							\
+					init_mlx.c									\
+					render.c									\
+					set_world.c									\
+
+PARSE_FILE		=	check_argument.c							\
+					check_map.c									\
+					check_map_object.c							\
+					check_map_file_color.c						\
+					check_map_color_line.c						\
+					check_map_count_alloc.c						\
+					check_eight_direction.c						\
 
 OBJ_FILE		=	$(SRC_FILE:.c=.o)
 
@@ -83,6 +107,10 @@ $(NAME)			:	$(LIBFT) $(MLX) $(OBJS)
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
 					@mkdir -p $(OBJ_DIR)$(PARSE_DIR) $(DEP_DIR)$(PARSE_DIR)
+					@mkdir -p $(OBJ_DIR)$(RENDER_DIR) $(DEP_DIR)$(RENDER_DIR)
+					@mkdir -p $(OBJ_DIR)$(RAY_DIR) $(DEP_DIR)$(RAY_DIR)
+					@mkdir -p $(OBJ_DIR)$(ACTION_DIR) $(DEP_DIR)$(ACTION_DIR)
+					@mkdir -p $(OBJ_DIR)$(ETC_DIR) $(DEP_DIR)$(ETC_DIR)
 					@echo "\033[K\033[32m   $(PROG) is Ready : $<\033[A"
 					$Q$(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 

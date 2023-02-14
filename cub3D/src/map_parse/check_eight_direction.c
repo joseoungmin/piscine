@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:26:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/11 18:22:14 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/13 03:39:34 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	eight_direction_validation(char **map, int y, int x)
 		err_exit("Invalid map object : wall");
 }
 
-void	check_eight_directions(t_map *tmap, char **map, int height, int width)
+void	check_eight_directions(t_world *world, \
+char **map, int height, int width)
 {
 	int	x;
 	int	y;
@@ -40,8 +41,8 @@ void	check_eight_directions(t_map *tmap, char **map, int height, int width)
 				eight_direction_validation(map, y, x);
 				if (map[y][x] != '0')
 				{
-					tmap->player->x = x;
-					tmap->player->y = y;
+					world->player.pos.x = x;
+					world->player.pos.y = y;
 				}
 			}
 			x++;

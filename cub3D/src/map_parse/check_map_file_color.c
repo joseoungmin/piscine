@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 21:45:43 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/11 17:46:48 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/12 04:12:38 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,16 @@ char	*split_filename(char *line)
 		idx++;
 	filename = ft_substr(line, 0, idx);
 	if (filename == NULL)
-		err_exit("split_filename : malloc fail");
+		err_exit("split_filename : malloc failed");
 	return (filename);
+}
+
+static void	check_blank(char *read_line)
+{
+	read_line = pass_space(read_line);
+	while (*read_line != '\0')
+		if (*read_line++ == ' ')
+			err_exit("invalid path object : blank");
 }
 
 char	*check_path(char *read_line)
@@ -32,6 +40,7 @@ char	*check_path(char *read_line)
 	char	*filename;
 
 	read_line = pass_space(read_line);
+	check_blank(read_line);
 	if (*read_line == '\n' || *read_line == '\0')
 		err_exit("Invalid path object");
 	filename = split_filename(read_line);

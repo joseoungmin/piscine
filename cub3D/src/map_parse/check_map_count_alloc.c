@@ -6,13 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:45:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/01/26 22:07:18 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 04:11:45 by seojo            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_map_count_alloc.h"
 
-void	count_map(int fd, t_map *map)
+void	count_map(t_world *world, int fd)
 {
 	int		y_cnt;
 	int		x_cnt;
@@ -33,8 +33,8 @@ void	count_map(int fd, t_map *map)
 		safe_free(count_line);
 		count_line = get_next_line(fd);
 	}
-	map->height = ++y_cnt;
-	map->width = x_max;
+	world->map_h = ++y_cnt;
+	world->map_w = x_max;
 }
 
 int	reopen_fd(char *filename, int file_height)
@@ -53,29 +53,29 @@ int	reopen_fd(char *filename, int file_height)
 	return (fd);
 }
 
-void	map_alloc(t_map *map)
+void	map_alloc(t_world *world)
 {
 	int	y;
 	int	x;
 
-	map->map = malloc(sizeof(char *) * (map->height + 1));
-	if (map->map == NULL)
-		err_exit("map_alloc : malloc fail");
+	world->map = malloc(sizeof(char *) * (world->map_h + 1));
+	if (world->map == NULL)
+		err_exit("map_alloc : malloc failed");
 	y = 0;
-	while (y < map->height)
+	while (y < world->map_h)
 	{
-		map->map[y] = malloc(sizeof(char) * map->width + 1);
-		if (map->map[y] == NULL)
-			err_exit("map_alloc : malloc fail");
+		world->map[y] = malloc(sizeof(char) * world->map_w + 1);
+		if (world->map[y] == NULL)
+			err_exit("map_alloc : malloc failed");
 		y++;
 	}
 	y = 0;
-	while (y < map->height)
+	while (y < world->map_h)
 	{
 		x = 0;
-		while (x < map->width)
-			map->map[y][x++] = ' ';
+		while (x < world->map_w)
+			world->map[y][x++] = ' ';
 		y++;
 	}
-	map->map[y] = NULL;
+	world->map[y] = NULL;
 }
