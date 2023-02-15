@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:40:52 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/13 03:41:32 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/15 21:18:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char *read_line, int *file_height)
 		else if (ft_strncmp("C ", read_line, 2) == 0)
 			world->ceiling = check_color(read_line + 1);
 		else
-			err_exit("Insufficient contents");
+			err_exit("Unknown elements");
 		safe_free(read_line);
 		read_line = get_next_line(fd);
 		(*file_height)++;
