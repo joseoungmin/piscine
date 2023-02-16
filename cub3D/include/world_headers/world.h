@@ -47,7 +47,6 @@ struct s_world
 	int			floor;
 	int			ceiling;
 	int			keycode;
-	double		z_buf[WIN_W];
 };
 
 #endif

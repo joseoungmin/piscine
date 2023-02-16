@@ -89,7 +89,6 @@ int	set_world(t_world *world)
 		step_dir(&world->player, &rc);
 		check_hit(world, &world->player, &rc, &tex);
 		fill_buf(world, &rc, &tex, x);
-		world->z_buf[x] = rc.d;
 		x++;
 	}
 	return (0);
