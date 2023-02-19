@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:32:41 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/19 12:55:48 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 19:30:22 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*split_color(char *read_line, int *color)
 		read_line++;
 		i *= 10;
 	}
+	if (*color == 0)
+		read_line++;
 	while (*read_line && ft_isdigit(*read_line) == 0 && \
 			*read_line != '-' && *read_line != '+')
 		read_line++;
