@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 02:21:33 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/13 03:39:58 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/19 20:04:39 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_draw *dr)
 		= (dr->start - world->screen_h / 2.0 + dr->line_h / 2.0) * tex->step;
 }
 
-int	get_color(t_world *world, t_raycast *rc, t_texture *tex, t_draw *dr)
+int	get_color(t_world *world, t_texture *tex, t_draw *dr)
 {
 	int	color;
 
@@ -38,8 +38,6 @@ int	get_color(t_world *world, t_raycast *rc, t_texture *tex, t_draw *dr)
 	color = world->wall_tex[tex->type] \
 			[(int)(world->tmlx->timg_wall_tex[tex->type].h
 			* dr->tex.y + dr->tex.x)];
-	if (rc->is_side == 1)
-		color = (color >> 1) & DARKER;
 	return (color);
 }
 
@@ -60,7 +58,7 @@ void	fill_buf(t_world *world, t_raycast *rc, t_texture *tex, int x)
 	y = dr.start;
 	while ((int)y < dr.end)
 	{
-		world->screen_buf[y][x] = get_color(world, rc, tex, &dr);
+		world->screen_buf[y][x] = get_color(world, tex, &dr);
 		y++;
 	}
 }

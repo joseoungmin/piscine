@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:10:14 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/14 17:08:45 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 20:06:31 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # define WIN_W 1680
 # define WIN_H 1050
-# define DARKER 8355711
 # define BASIC_CONFIG 6
 
 typedef struct s_world		t_world;

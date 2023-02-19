@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 02:22:23 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/13 02:31:09 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/19 20:05:24 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	wear_texture(t_world *world, t_raycast *rc, t_texture *tex, \
 t_draw *dr);
-int		get_color(t_world *world, t_raycast *rc, t_texture *tex, t_draw *dr);
+int		get_color(t_world *world, t_texture *tex, t_draw *dr);
 void	fill_buf(t_world *world, t_raycast *rc, t_texture *tex, int x);
 
 #endif
