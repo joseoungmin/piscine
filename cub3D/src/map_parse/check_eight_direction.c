@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:26:31 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/13 03:39:34 by seojo            ###   ########seoul.kr  */
+/*   Updated: 2023/02/19 12:16:50 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char **map, int height, int width)
 				eight_direction_validation(map, y, x);
 				if (map[y][x] != '0')
 				{
-					world->player.pos.x = x;
-					world->player.pos.y = y;
+					world->player.pos.x = x + 0.5;
+					world->player.pos.y = y + 0.5;
 				}
 			}
 			x++;

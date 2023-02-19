@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:40:52 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/15 21:18:22 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 12:47:32 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ char *read_line, int *file_height)
 	{
 		read_line = pass_newline(fd, read_line, file_height);
 		if (ft_strncmp("NO ", read_line, 3) == 0)
-			world->tex_path[NO] = check_path(read_line + 2);
+			world->tex_path[NO] = check_texture_file(world, read_line + 2, NO);
 		else if (ft_strncmp("SO ", read_line, 3) == 0)
-			world->tex_path[SO] = check_path(read_line + 2);
+			world->tex_path[SO] = check_texture_file(world, read_line + 2, SO);
 		else if (ft_strncmp("WE ", read_line, 3) == 0)
-			world->tex_path[WE] = check_path(read_line + 2);
+			world->tex_path[WE] = check_texture_file(world, read_line + 2, WE);
 		else if (ft_strncmp("EA ", read_line, 3) == 0)
-			world->tex_path[EA] = check_path(read_line + 2);
+			world->tex_path[EA] = check_texture_file(world, read_line + 2, EA);
 		else if (ft_strncmp("F ", read_line, 2) == 0)
-			world->floor = check_color(read_line + 1);
+			world->floor = check_color_argu(world, read_line + 1, F);
 		else if (ft_strncmp("C ", read_line, 2) == 0)
-			world->ceiling = check_color(read_line + 1);
+			world->ceiling = check_color_argu(world, read_line + 1, C);
 		else
 			err_exit("Unknown elements");
 		safe_free(read_line);

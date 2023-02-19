@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:09:01 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/14 19:56:40 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 13:43:00 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,4 @@ void	clear_world(t_world *world)
 	free(world->tmlx->timg_main.img);
 	free(world->tmlx->timg_main.data);
 	mlx_destroy_window(world->tmlx->mlx, world->tmlx->win);
-	//system("Leaks cub3D");
-	//free(world->tmlx->mlx); // mlx 를 free 하면 Leak 이 발생한다.
-	//system("Leaks cub3D");
-	//free(world->tmlx);
-	//free(world);
 }

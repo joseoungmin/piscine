@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_object.h                                 :+:      :+:    :+:   */
+/*   check_map_color.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 16:43:05 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/19 12:41:28 by seojo            ###   ########.fr       */
+/*   Created: 2023/02/19 12:33:53 by seojo             #+#    #+#             */
+/*   Updated: 2023/02/19 13:03:34 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_MAP_OBJECT_H
-# define CHECK_MAP_OBJECT_H
+#ifndef CHECK_MAP_COLOR_H
+# define CHECK_MAP_COLOR_H
 
 # include "libft.h"
-# include "check_map_file.h"
-# include "check_map_color.h"
-# include "safe_func.h"
 # include "world.h"
+# include "check_map_color_line.h"
 
-char	*split_filename(char *line);
-char	*check_path(char *read_line);
+enum
+{
+	F = 1,
+	C = 2,
+};
+
 char	*split_color(char *read_line, int *color);
 int		check_color(char *read_line);
-int		check_component(t_world *world, int fd);
+int		check_color_argu(t_world *world, char *read_line, int fc);
 
 #endif
