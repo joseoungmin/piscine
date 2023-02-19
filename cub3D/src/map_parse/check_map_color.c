@@ -6,7 +6,7 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:32:41 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/19 19:30:22 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 19:48:59 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*split_color(char *read_line, int *color)
 {
 	int	i;
 
+	if (!ft_isdigit(*read_line))
+		err_exit("invalid color object");
 	read_line = pass_space(read_line);
 	*color = ft_atoi(read_line);
 	i = 1;
