@@ -6,13 +6,13 @@
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:12:22 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/19 19:55:53 by seojo            ###   ########.fr       */
+/*   Updated: 2023/02/19 20:50:30 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
 #include <stdio.h>
+
 void	print_map(t_world *world)
 {
 	int	y;
@@ -80,7 +80,6 @@ int	main(int ac, char **av)
 	world = init_world();
 	init_player(&world->player);
 	check_map(world, av[1]);
-	print_map(world);
 	init_render(world);
 	render(world);
 	clear_world(world);
