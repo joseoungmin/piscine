@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   init_world.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:01:48 by seojo             #+#    #+#             */
-/*   Updated: 2023/02/20 16:03:27 by seojo            ###   ########.fr       */
+/*   Created: 2023/02/20 15:57:34 by seojo             #+#    #+#             */
+/*   Updated: 2023/02/20 16:05:08 by seojo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef INIT_WORLD_H
+# define INIT_WORLD_H
 
-# include "render.h"
-# include "init_render.h"
-# include "clear_world.h"
-# include "check_argument.h"
-# include "check_map.h"
-# include "init_world.h"
+# include <stdlib.h>
+# include "error.h"
+# include "world.h"
+
+t_world	*init_world(void);
 
 #endif

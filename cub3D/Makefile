@@ -6,7 +6,7 @@
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 11:55:56 by seojo             #+#    #+#              #
-#    Updated: 2023/02/19 12:41:23 by seojo            ###   ########.fr        #
+#    Updated: 2023/02/20 16:03:00 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_FILE		=	main.c										\
 					$(addprefix $(ACTION_DIR), $(ACTION_FILE))
 
 ETC_FILE		=	safe_func.c									\
+					init_world.c								\
 					error.c										\
 					ft_open.c									\
 					clear_world.c								\
