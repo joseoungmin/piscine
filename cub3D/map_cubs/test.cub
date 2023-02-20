@@ -1,7 +1,7 @@
-NO ./assets/texture/NO.xpm
-SO ./assets/texture/SO.xpm
-WE ./assets/texture/WE.xpm
-EA ./assets/texture/EA.xpm
+NO ./assets/set1/NO.xpm
+SO ./assets/set1/SO.xpm
+WE ./assets/set1/WE.xpm
+EA ./assets/set1/EA.xpm
 
 C 19,50,48
 F 72,36,19
