@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Form_Makefile                                      :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 19:06:53 by seojo             #+#    #+#              #
-#    Updated: 2023/03/03 19:11:35 by seojo            ###   ########.fr        #
+#    Updated: 2023/03/03 19:59:55 by seojo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	PROGRAM_NAME
+NAME			=	megaphone
 
 CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -28,7 +28,7 @@ PROG			=	"PROGRAM_NAME_DISPLAYED"
 
 INC_FILE		=	
 
-SRC_FILE		=	
+SRC_FILE		=	megaphone.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 
