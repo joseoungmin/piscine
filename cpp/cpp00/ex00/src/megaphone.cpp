@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 19:16:55 by seojo             #+#    #+#             */
-/*   Updated: 2023/03/03 19:59:12 by seojo            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <iostream>
 
 int	ft_islower(char c)
@@ -17,7 +5,7 @@ int	ft_islower(char c)
 	return ('a' <= c && c <= 'z');
 }
 
-void	print_str_toupper(char *str)
+void	print_str_toupper(std::string str)
 {
 	int	i = 0;
 

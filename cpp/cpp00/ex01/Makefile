@@ -1,4 +1,16 @@
-NAME			=	megaphone
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seojo <seojo@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/03 19:06:53 by seojo             #+#    #+#              #
+#    Updated: 2023/03/04 16:55:24 by seojo            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME			=	Phonebook
 
 CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -12,11 +24,14 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
-PROG			=	"megaphone"
+PROG			=	"My Awesome PhoneBook"
 
-INC_FILE		=	
+INC_FILE		=	phonebook.hpp	\
+					contact.hpp
 
-SRC_FILE		=	megaphone.cpp
+SRC_FILE		=	main.cpp		\
+					phonebook.cpp	\
+					contact.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 
