@@ -1,7 +1,7 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <iostream>
+#include "etc.hpp"
 
 class Contact
 {
