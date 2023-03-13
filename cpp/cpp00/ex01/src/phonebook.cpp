@@ -23,7 +23,6 @@ void	PhoneBook::add(){
 	}
 	if (std::cin.eof() == false)
 		contact[idx].addContact(info);
-	std::cout << count << "\n";
 	count++;
 }
 
