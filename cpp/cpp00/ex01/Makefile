@@ -27,11 +27,13 @@ DEP_DIR			=	.dep/
 PROG			=	"My Awesome PhoneBook"
 
 INC_FILE		=	phonebook.hpp	\
-					contact.hpp
+					contact.hpp		\
+					etc.hpp			\
 
 SRC_FILE		=	main.cpp		\
 					phonebook.cpp	\
-					contact.cpp
+					contact.cpp		\
+					etc.cpp			\
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 

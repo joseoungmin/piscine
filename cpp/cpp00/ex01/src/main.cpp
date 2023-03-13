@@ -4,32 +4,18 @@ int main(void)
 {
 	PhoneBook	newBook;
 	std::string	cmd;
-
-	std::cout << "\nWelcome to seojo's PhoneBook\n";
-	while (TRUE)
+	
+	while (cmd != "EXIT")
 	{
-		std::cout << "\nCOMMAND: ADD | SEARCH | EXIT\n";
-		std::cout << "> ";
-		cmd = get_input();
-		if (std::cin.eof())
-			break ;
+		cmd = get_input("> ");
 		if (cmd.compare("ADD") == SAME){
-			std::cout << "add\n";
-			//newBook.add();
+			newBook.add();
 		}
 		else if (cmd.compare("SEARCH") == SAME){
-			std::cout << "search\n";
-			//newBook.search();
+			newBook.search();
 		}
-		else if(cmd.compare("EXIT") == SAME){
-			std::cout << "exit\n";
-			//break ;
-		}
-		else{
-			std::cout << "else\n";
-			//continue ;
-		}
+		if (std::cin.eof())
+			break ;
 	}
-//	newBook.exit();
 	return (0);
 }

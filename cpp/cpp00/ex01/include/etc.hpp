@@ -4,6 +4,6 @@
 #include <iostream>
 #include <string>
 
-std::string get_input(void);
+std::string get_input(std::string msg);
 
 #endif

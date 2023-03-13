@@ -2,23 +2,21 @@
 #define CONTACT_HPP
 
 #include "etc.hpp"
+# include <iomanip>
 
 class Contact
 {
 	private:
 		std::string	firstName;
 		std::string lastName;
-		std::string nickName;
+		std::string nickname;
 		std::string phoneNumber;
 		std::string darkestSecret;
-		int			index;
 
 	public:
 		void		showall();
-		void		display();
-		void		addContact(int i);
-		void		fillContact(std::string &str);
-		std::string informDisplay(std::string inform);
+		void		display(int i);
+		void		addContact(std::string info[5]);
 };
 
 #endif
