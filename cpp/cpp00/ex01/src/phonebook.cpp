@@ -37,7 +37,7 @@ void	PhoneBook::search(){
 	PhoneBook::display();
 	while ((input == "" || !("1" <= input && input <= "8")))
 	{
-		input = get_input("index :");
+		input = get_input("index: ");
 		if ("1" <= input && input <= "8"){
 			idx = input[0] - '0';
 			if (idx > count && idx < 9)
@@ -62,17 +62,18 @@ void	PhoneBook::search(){
 }
 
 void	PhoneBook::display(){
-	std::cout << "┌──────────┬──────────┬──────────┬──────────┐" << std::endl;
-	std::cout << "|     Index|First Name| Last name|  Nickname|" << std::endl;
+	std::cout << "┌──────────┬──────────┬──────────┬──────────┐\n";
+	std::cout << "|     Index|First Name| Last name|  Nickname|\n";
 	for (int i = 0; i < count && i < 8; i++) {
-		std::cout << "├──────────┼──────────┼──────────┼──────────┤" << std::endl;
+		std::cout << "├──────────┼──────────┼──────────┼──────────┤\n";
 		contact[i].display(i);
 	}
-	std::cout << "└──────────┴──────────┴──────────┴──────────┘" << std::endl;
+	std::cout << "└──────────┴──────────┴──────────┴──────────┘\n";
 }
 
 PhoneBook::PhoneBook() : count(0) {
-	std::cout << "\nWelcome to seojo's PhoneBook\n";
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	std::cout << "\nWelcome to seojo's PhoneBook\n\n";
 	std::cout << "COMMAND: ADD | SEARCH | EXIT\n";
 }
 
