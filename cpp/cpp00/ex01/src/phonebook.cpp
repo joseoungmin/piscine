@@ -48,6 +48,8 @@ void	PhoneBook::search(){
 		}
 		else if (std::cin.eof() == true)
 			break ;
+		else if (input == "")
+			;
 		else
 			std::cout << "Wrong index\n";
 	}
