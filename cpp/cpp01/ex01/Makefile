@@ -1,4 +1,4 @@
-NAME			=	PROGRAM_NAME
+NAME			=	MoarBrainz
 
 CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -12,11 +12,13 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
-PROG			=	"PROGRAM_NAME_DISPLAYED"
+PROG			=	"Moar brainz!"
 
-INC_FILE		=	
+INC_FILE		=	Zombie.hpp
 
-SRC_FILE		=	
+SRC_FILE		=	Zombie.cpp			\
+					zombieHorde.cpp		\
+					main.cpp			
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 

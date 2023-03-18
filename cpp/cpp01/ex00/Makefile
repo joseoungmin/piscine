@@ -18,7 +18,8 @@ INC_FILE		=	Zombie.hpp
 
 SRC_FILE		=	Zombie.cpp			\
 					newZombie.cpp		\
-					randomChump.cpp	
+					randomChump.cpp		\
+					main.cpp			
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 

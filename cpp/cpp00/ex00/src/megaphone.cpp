@@ -11,7 +11,7 @@ void	print_str_toupper(std::string str)
 
 	while (str[i])
 	{
-		if (ft_islower(str[i]))
+		if (ft_islower(str[i]) == true)
 			str[i] = toupper(str[i]);
 		i++;
 	}
@@ -26,10 +26,7 @@ int main(int ac, char **av)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else{
 		while (av[i])
-		{
-			print_str_toupper(av[i]);
-			i++;
-		}
+			print_str_toupper(av[i++]);
 	}
 	std::cout << std::endl;
 	return (0);
