@@ -74,7 +74,8 @@ void	PhoneBook::display(){
 }
 
 PhoneBook::PhoneBook() : count(0) {
-	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	for (int i = 0; i < 5 ; i++)
+		std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	std::cout << "\nWelcome to seojo's PhoneBook\n\n";
 	std::cout << "COMMAND: ADD | SEARCH | EXIT\n";
 }
