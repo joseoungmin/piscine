@@ -9,34 +9,35 @@ class Fixed
 	private:
 		int					mNum;
 		static const int	mBit = 8;
+
 	public:
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		int		toInt(void) const;
 		float	toFloat(void) const;
 
-		bool	operator>(const Fixed& obj);
-		bool	operator<(const Fixed& obj);
-		bool	operator>=(const Fixed& obj);
-		bool	operator<=(const Fixed& obj);
-		bool	operator==(const Fixed& obj);
-		bool	operator!=(const Fixed& obj);
+		bool	operator > (const Fixed& obj) const;
+		bool	operator < (const Fixed& obj) const;
+		bool	operator >= (const Fixed& obj) const;
+		bool	operator <= (const Fixed& obj) const;
+		bool	operator == (const Fixed& obj) const;
+		bool	operator != (const Fixed& obj) const;
 
-		Fixed	operator+(const Fixed&obf);
-		Fixed	operator-(const Fixed&obf);
-		Fixed	operator/(const Fixed&obf);
-		Fixed	operator*(const Fixed&obf);
+		Fixed	operator + (const Fixed& obj);
+		Fixed	operator - (const Fixed& obj);
+		Fixed	operator / (const Fixed& obj);
+		Fixed	operator * (const Fixed& obj);
 
-		Fixed&	operator++();
-		Fixed&	operator--();
-		const Fixed	operator++(int num);
-		const Fixed operator--(int num);
+		Fixed&	operator ++ (void); // Prefix increment operator
+		Fixed&	operator -- (void);
+		Fixed	operator ++ (int);	// Postfix increment operator.
+		Fixed	operator -- (int);
 
-		Fixed& operator=(const Fixed& obj);
+		Fixed& operator = (const Fixed& obj);
 
-		static Fixed&		min(Fixed& a, Fixed& b);
+		static Fixed&	min(Fixed& a, Fixed& b);
 		static const Fixed&	min(const Fixed& a, const Fixed& b);
-		static Fixed&		max(Fixed& a, Fixed& b);
+		static Fixed&	max(Fixed& a, Fixed& b);
 		static const Fixed&	max(const Fixed& a, const Fixed& b);
 
 		Fixed();
@@ -46,7 +47,7 @@ class Fixed
 		~Fixed();
 };
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj);
+std::ostream& operator << (std::ostream& out, const Fixed& obj);
 
 
 #endif

@@ -2,37 +2,126 @@
 
 Fixed::Fixed() 
 : mNum(0) {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int num) {
-	std::cout << "Int constructor called" << std::endl;
 	mNum = num << mBit;
 }
 
 Fixed::Fixed(const float num) {
-	std::cout << "Float constructor called" << std::endl;
 	mNum = roundf(num * (1 << mBit));
 }
 
 Fixed::Fixed(const Fixed& obj) {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 Fixed& Fixed::operator=(const Fixed& obj) {
-	std::cout << "Assignation operator called" << std::endl;
 	mNum = obj.getRawBits();
 	return (*this);
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed& obj) {
+bool	Fixed::operator > (const Fixed& obj) const {
+	return (this->getRawBits() > obj.getRawBits());
+}
+
+bool	Fixed::operator < (const Fixed& obj) const {
+	return (this->getRawBits() < obj.getRawBits());
+}
+
+bool	Fixed::operator >= (const Fixed& obj) const {
+	return (this->getRawBits() >= obj.getRawBits());
+}
+
+bool	Fixed::operator <= (const Fixed& obj) const {
+	return (this->getRawBits() <= obj.getRawBits());
+}
+
+bool	Fixed::operator == (const Fixed& obj) const {
+	return (this->getRawBits() == obj.getRawBits());
+}
+
+bool	Fixed::operator != (const Fixed& obj) const {
+	return (this->getRawBits() != obj.getRawBits());
+}
+
+Fixed	Fixed::operator + (const Fixed& obj) {
+	Fixed rt(this->toFloat() + obj.toFloat());
+	return (rt);
+}
+
+Fixed	Fixed::operator - (const Fixed& obj) {
+	Fixed rt(this->toFloat() - obj.toFloat());
+	return (rt);
+}
+
+Fixed	Fixed::operator / (const Fixed& obj) {
+	Fixed rt(this->toFloat() / obj.toFloat());
+	return (rt);
+}
+
+Fixed	Fixed::operator * (const Fixed& obj) {
+	Fixed rt(this->toFloat() * obj.toFloat());
+	return (rt);
+}
+
+Fixed&	Fixed::operator ++ (void) {
+	this->mNum++;
+	return (*this);
+} 		// Prefix increment operator
+
+Fixed&	Fixed::operator -- (void) {
+	this->mNum--;
+	return (*this);
+}
+
+Fixed	Fixed::operator ++ (int) {
+	Fixed	rt(*this);
+
+	this->mNum++;
+	return (rt);
+}	// Postfix increment operator.
+Fixed	Fixed::operator -- (int) {
+	Fixed	rt(*this);
+
+	this->mNum--;
+	return (rt);
+}
+
+Fixed&	Fixed::min(Fixed& a, Fixed& b) {
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed&	Fixed::min(const Fixed& a, const Fixed& b) {
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed&	Fixed::max(Fixed& a, Fixed& b) {
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b) {
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+std::ostream& operator << (std::ostream &out, const Fixed& obj) {
 	out << obj.toFloat();
 	return (out);
 }
 
 Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
 }
 
 int		Fixed::getRawBits(void) const {
