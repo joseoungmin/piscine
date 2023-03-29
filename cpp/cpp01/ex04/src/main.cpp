@@ -18,6 +18,10 @@ int main(int ac, char **av){
 		return (0);
 	}
 	s1 = av[2];
+	if (s1 == ""){
+		std::cout << "Error: empty target" << std::endl;
+		return (0);
+	}
 	s2 = av[3];
 	ofs.open(av[1] + std::string(".replace"));
 	if (!ofs.is_open()){
@@ -28,8 +32,8 @@ int main(int ac, char **av){
 		while (line.find(s1) != std::string::npos){
 			newLine = line.substr(0, line.find(s1));
 			newLine += s2;
-			newLine += line.substr(line.find(s1) + s1.length());
-			line = newLine;
+			ofs << newLine;
+			line = line.substr(line.find(s1) + s1.length());
 		}
 		ofs << line << std::endl;
 	}
