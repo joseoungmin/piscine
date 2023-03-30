@@ -22,7 +22,7 @@ class Harl
 };
 
 enum{
-	DEBUG,
+	DEBUG = 0,
 	INFO,
 	WARNING,
 	ERROR

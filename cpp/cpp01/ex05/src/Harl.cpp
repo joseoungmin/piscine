@@ -25,13 +25,12 @@ void	Harl::error(void){
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void    Harl::complain(std::string level) {
-	if (level == "DEBUG")
-		(this->*f_complain[0])();
-	else if (level == "INFO")
-		(this->*f_complain[1])();
-	else if (level == "WARNING")
-		(this->*f_complain[2])();
-	else if (level == "ERROR")
-		(this->*f_complain[3])();
+void	Harl::complain(std::string level) {
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	bool		found = false;
+	int			i = 0;
+
+	while (i < 4 & found == false)
+		found = (level == levels[i++]);
+	(this->*f_complain[i - 1])();
 }

@@ -30,25 +30,18 @@ void	Harl::nothing(void){
 }
 
 static int	getLevel(std::string level){
-	if (level == "DEBUG")
-		return DEBUG;
-	else if (level == "INFO")
-		return INFO;
-	else if (level == "WARNING")
-		return WARNING;
-	else if (level == "ERROR")
-		return ERROR;
-	return (42);
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	bool		found = false;
+	int			i = 0;
+
+	while (i < 5 & found == false)
+		found = (level == levels[i++]);
+	return (i - 1);
 }
 
 void    Harl::complain(std::string level) {
 	int		complain = getLevel(level);
 	
-	if (complain == 42)
-	{
-		std::cout << "Invalid complain level\n";
-		return ;
-	}
 	switch (complain){
 	 	case DEBUG:
 	 		debug();
@@ -58,5 +51,8 @@ void    Harl::complain(std::string level) {
 	 		warning();
 	 	case ERROR:
 	 		error();
+			break ;
+		default:
+			std::cout << "Invalid complain\n";
 	 }
 }
