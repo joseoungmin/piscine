@@ -21,7 +21,9 @@ INC_FILE		=	Animal.hpp		\
 SRC_FILE		=	main.cpp		\
 					Animal.cpp		\
 					Dog.cpp			\
-					Cat.cpp
+					Cat.cpp			\
+					WrongAnimal.cpp	\
+					WrongCat.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 
