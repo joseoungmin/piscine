@@ -77,10 +77,11 @@ Fixed&	Fixed::operator -- (void) {
 
 Fixed	Fixed::operator ++ (int) {
 	Fixed	rt(*this);
-
+	
 	this->mNum++;
 	return (rt);
 }	// Postfix increment operator.
+
 Fixed	Fixed::operator -- (int) {
 	Fixed	rt(*this);
 
