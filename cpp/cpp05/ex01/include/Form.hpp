@@ -15,9 +15,14 @@ class Form {
 		Form(const Form &other);
 		Form(std::string name, const int gradeForSign, const int GradeForExecute);
 		~Form();
-
 		Form& operator=(const Form& other);
 
+		const std::string	getName() const;
+		bool				getSign() const;
+		const int			getGradeForSign() const;
+		const int			getGradeForExecute() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Form &obj);
 
 #endif

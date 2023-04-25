@@ -17,11 +17,13 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat Bureaucrat::operator=(const Bureaucrat &other) {
-	Bureaucrat cp = Bureaucrat(other.name, other.grade);
-
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
 	if (this != &other)
-		return cp;
+	{
+		const std::string	&N = name;
+		const_cast<std::string&>(N) = other.name;
+		this->grade = other.grade;
+	}
 	return *this;
 }
 
