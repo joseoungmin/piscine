@@ -21,6 +21,16 @@ class Form {
 		bool				getSign() const;
 		const int			getGradeForSign() const;
 		const int			getGradeForExecute() const;
+		void				beSigned();
+
+		class GradeTooHighException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 std::ostream& operator<<(std::ostream& os, const Form &obj);

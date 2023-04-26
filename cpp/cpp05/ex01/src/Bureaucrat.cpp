@@ -18,8 +18,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {
-	if (this != &other)
-	{
+	if (this != &other){
 		const std::string	&N = name;
 		const_cast<std::string&>(N) = other.name;
 		this->grade = other.grade;
