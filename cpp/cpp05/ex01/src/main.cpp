@@ -1,21 +1,29 @@
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(){	
-	try{
-		Bureaucrat seojo_one("seojo1", 1);
-		Bureaucrat seojo_two("seojo2", 150);
-		
-		// seojo_one.incrementGrade();
-		seojo_two.incrementGrade();
+	Bureaucrat	tmp("seojo", 5);
+	Form sign("dinner choice", 4, 3);
 
-		std::cout << seojo_one << "\n";
-		std::cout << seojo_two << "\n";
-
-		seojo_one.decrementGrade();
-		seojo_two.decrementGrade();
+	std::cout << std::endl << tmp << std::endl;
+	try
+	{
+		tmp.signForm(sign);
 	}
-	catch (std::exception &err){
-		std::cerr << err.what() << std::endl;
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
+	std::cout << sign << std::endl;
+	
+	try
+	{
+		tmp.incrementGrade();
+		tmp.signForm(sign);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << sign << std::endl;
 	return 0;
 }

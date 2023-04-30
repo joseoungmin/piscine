@@ -29,26 +29,28 @@ const char * Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade too low...";
 }
 
-void Bureaucrat::incrementGrade()
-{
+void Bureaucrat::incrementGrade() {
 	if (grade <= 1)
 		throw GradeTooHighException();
 	grade--;
 	std::cout << name << "'s grade is " << grade << std::endl;
 }
 
-void Bureaucrat::decrementGrade()
-{
+void Bureaucrat::decrementGrade() {
 	if (grade >= 150)
 		throw GradeTooLowException();
 	grade++;
 	std::cout << name << "'s grade is " << grade << std::endl;
 }
 
-void	Bureaucrat::signForm(Form &form)
-{
+void	Bureaucrat::signForm(Form &form) {
 		form.beSigned(*this);
 		std::cout << name << " signed " << form.getName() << std::endl;
+}
+
+void Bureaucrat::executeForm(Form const& form) {
+	form.execute(*this);
+	std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
