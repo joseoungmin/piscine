@@ -15,30 +15,24 @@ Form* Intern::makeForm(std::string formName, std::string target)
 
 	while (form[i] != formName && i < 3)
 		i++;
-
+	if (i == 3)
+	{
+		std::cout << "Intren fails create form" << std::endl;
+		return (NULL);
+	}
 	switch (i)
 	{
 		case SHRUBBERY :
-		{
 			tmp = new ShrubberyCreationForm(target);
-			std::cout << "Intern creates " << tmp->getName() << std::endl;
-			return (tmp);
-		}
+			break;
 		case ROBOTOMY :
-		{
 			tmp = new RobotomyRequestForm(target);
-			std::cout << "Intern creates " << tmp->getName() << std::endl;
-			return (tmp);
-		}
+			break;
 		case PARDON :
-		{
 			tmp = new PresidentialPardonForm(target);
-			std::cout << "Intern creates " << tmp->getName() << std::endl;
-			return (tmp);
-		}
 	}
-	std::cout << "Intren fails create form" << std::endl;
-	return (NULL);
+	std::cout << "Intern creates " << tmp->getName() << std::endl;
+	return (tmp);
 }
 
 const char * Intern::WrongFormException::what() const throw() {

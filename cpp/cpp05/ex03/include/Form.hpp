@@ -11,6 +11,7 @@ class Form {
 		const int			gradeForSign;
 		const int			gradeForExecute;
 		std::string			target;
+		
 		Form(const Form &other);
 		Form& operator=(const Form& other);
 
