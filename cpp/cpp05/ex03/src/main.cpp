@@ -23,8 +23,8 @@ int main(){
 		{
 			std::cerr << e.what() << std::endl;
 		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 	if (robotomy)
 	{
 		try
@@ -36,8 +36,8 @@ int main(){
 		{
 			std::cerr << e.what() << std::endl;
 		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 	if (pardon)
 	{
 		try

@@ -15,11 +15,6 @@ Form* Intern::makeForm(std::string formName, std::string target)
 
 	while (form[i] != formName && i < 3)
 		i++;
-	if (i == 3)
-	{
-		std::cout << "Intren fails create form" << std::endl;
-		return (NULL);
-	}
 	switch (i)
 	{
 		case SHRUBBERY :
@@ -30,6 +25,10 @@ Form* Intern::makeForm(std::string formName, std::string target)
 			break;
 		case PARDON :
 			tmp = new PresidentialPardonForm(target);
+			break;
+		default :
+			std::cout << "Intren fails create form\n";
+			return (NULL);
 	}
 	std::cout << "Intern creates " << tmp->getName() << std::endl;
 	return (tmp);
