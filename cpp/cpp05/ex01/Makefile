@@ -12,7 +12,7 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
-PROG			=	"Mommy, when I grow up, I want to be a bureaucrat!"
+PROG			=	"Form up, maggots!"
 
 INC_FILE		=	Bureaucrat.hpp	\
 					Form.cpp
