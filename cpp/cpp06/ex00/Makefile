@@ -14,9 +14,10 @@ DEP_DIR			=	.dep/
 
 PROG			=	"Conversion of scalar types"
 
-INC_FILE		=	Bureaucrat.hpp
+INC_FILE		=	Convert.hpp
 
 SRC_FILE		=	main.cpp		\
+					Convert.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 

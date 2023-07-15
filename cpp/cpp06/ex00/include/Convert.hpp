@@ -3,47 +3,24 @@
 
 #include <iostream>
 #include <string>
-
-//// static class ?? ////
-
+#include <cstdlib>
+#include <limits>
 
 class Convert
 {
 	private:
 		Convert();
-		double	mData
-		char	*mEndptr;
-	public:
 		Convert(const Convert & obj);
 		Convert& operator = (Convert & obj);
 		~Convert();
-	
-		void	setData(char * input);
-
-		void	printChar();
-		void	printInt();
-		void	printFloat();
-		void	printDouble();
+		static double	numData;
+		static char*	strData;
+	public:
+		static void	setData(char * input);
+		static void	printChar();
+		static void	printInt();
+		static void	printFloat();
+		static void	printDouble();
 };
-
-Convert::Convert()
-: mData(0), mEndptr(NULL) {}
-
-Convert::Convert(const Convert & obj) {
-	*this = obj;
-}
-
-Convert& Convert::operator = (const Convert & obj) {
-	if (this != &obj)
-		mData = obj->mData;
-	return (*this);
-}
-
-Convert::~Convert() {}
-
-Convert::setData(char * input) {
-
-}
-
 
 #endif
