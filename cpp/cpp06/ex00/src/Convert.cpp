@@ -12,7 +12,8 @@ void	Convert::setData(char * input) {
 
 void	Convert::printChar() {
 	if ((strData[0] != '\0' && strData[0] != 'f')
-		|| numData < 0 || numData > 127 || isnan(numData))
+		|| numData < 0 || numData > 127 
+		|| isnan(numData) || strlen(strData) > 1)
 		std::cout << "char: impossible\n";
 	else if (numData < 32 || numData > 126)
 		std::cout << "char: Non displayable\n";
@@ -21,7 +22,8 @@ void	Convert::printChar() {
 }
 
 void	Convert::printInt() {
-	if ((strData[0] != '\0' && strData[0] != 'f') || isnan(numData))
+	if ((strData[0] != '\0' && strData[0] != 'f') 
+		|| isnan(numData) || strlen(strData) > 1)
 		std::cout << "int: impossible\n";
 	else if (numData > std::numeric_limits<int>::max())
 		std::cout << "int: obverflow\n";
@@ -32,7 +34,8 @@ void	Convert::printInt() {
 }
 
 void	Convert::printFloat() {
-	if (strData[0] != '\0' && strData[0] != 'f')
+	if ((strData[0] != '\0' && strData[0] != 'f')
+		|| strlen(strData) > 1)
 		std::cout << "float: nanf\n";
 	else if (numData > std::numeric_limits<float>::max())
 		std::cout << "float: +inff\n";
@@ -44,7 +47,8 @@ void	Convert::printFloat() {
 }
 
 void	Convert::printDouble() {
-	if (strData[0] != '\0' && strData[0] != 'f')
+	if ((strData[0] != '\0' && strData[0] != 'f')
+		|| strlen(strData) > 1)
 		std::cout << "double: nan\n";
 	else if (numData > std::numeric_limits<double>::max())
 		std::cout << "double: +inf\n";
