@@ -31,7 +31,7 @@ int			Form::getGradeForExecute() const {
 
 void	Form::beSigned(const Bureaucrat& obj)
 {
-	if (obj.getGrade() > this->getGradeForSign())
+	if (obj.getGrade() > getGradeForSign())
 	{
 		std::cout << obj.getName() << " couldn't sign " << name << " because ";
 		throw (GradeTooLowException());

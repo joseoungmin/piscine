@@ -1,10 +1,10 @@
 #include "Form.hpp"
 
-int main(){
+int main(){	
 	try
 	{
 		Bureaucrat	tmp("seojo", 5);
-		Form sign("dinner choice", 4, 3);	
+		Form sign("dinner choice", 4, 3);
 
 		std::cout << std::endl << tmp << std::endl;
 		try
@@ -16,7 +16,7 @@ int main(){
 			std::cerr << e.what() << std::endl;
 		}
 		std::cout << sign << std::endl;
-
+		
 		try
 		{
 			tmp.incrementGrade();
