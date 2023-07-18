@@ -8,7 +8,7 @@ int main(){
 	Form	*robotomy;
 	Form	*pardon;
 
-	shrubbery = intern.makeForm("shrubbery creation", "Home");
+	shrubbery = intern.makeForm("shrubbery creation", "shru");
 	robotomy = intern.makeForm("robotomy request", "robo");
 	pardon = intern.makeForm("presidential pardon", "pardon");
 	std::cout << std::endl;
