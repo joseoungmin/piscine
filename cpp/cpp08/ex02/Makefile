@@ -1,4 +1,4 @@
-NAME			=	a.out
+NAME			=	ex02
 
 CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -12,9 +12,9 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
-PROG			=	"Start with a few functions"
+PROG			=	"Mutated abomination"
 
-INC_FILE		=	whatever.hpp
+INC_FILE		=	MutantStack.hpp
 
 SRC_FILE		=	main.cpp
 
