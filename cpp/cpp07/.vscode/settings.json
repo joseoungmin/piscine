@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ctime": "cpp",
+        "cstdlib": "cpp",
+        "exception": "cpp"
+    }
+}
