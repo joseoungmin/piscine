@@ -1,4 +1,4 @@
-NAME			=	a.out
+NAME			=	ex01
 
 CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
@@ -12,11 +12,12 @@ SRC_DIR			=	src/
 OBJ_DIR			=	.obj/
 DEP_DIR			=	.dep/
 
-PROG			=	"Start with a few functions"
+PROG			=	"Span"
 
-INC_FILE		=	whatever.hpp
+INC_FILE		=	Span.hpp
 
-SRC_FILE		=	main.cpp
+SRC_FILE		=	main.cpp	\
+					Span.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 
