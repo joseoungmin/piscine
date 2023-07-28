@@ -35,7 +35,7 @@ unsigned int	Span::shortestSpan(void) {
 	std::sort(mNumbers.begin(), mNumbers.end());
 
 	std::vector<int>::iterator	it = mNumbers.begin();
-	unsigned int				rt_num = std::numeric_limits<unsigned int>::max();;
+	unsigned int				rt_num = std::numeric_limits<unsigned int>::max();
 	int							prev = mNumbers.front();
 
 	while (++it != mNumbers.end()) {
@@ -59,7 +59,7 @@ void	Span::add_tenThousand_rand_num(void) {
 	if (mMax - mAdd < 10000)
 		throw std::runtime_error("There is not enough space.");
 	srand(time(NULL));
-	for (int i = 0; 10000 > i; i++)
+	for (int i = 0; i < 10000; i++)
 		mNumbers.push_back(rand());
 	mAdd += 10000;
 }

@@ -24,6 +24,16 @@ class Span {
 		unsigned int		shortestSpan(void);
 		unsigned int		longestSpan(void);
 		void				add_tenThousand_rand_num(void);
+		template <typename InputIterator>
+		void				addManyNumbers(InputIterator begin, InputIterator end, int size);
 };
+
+template<typename InputIterator>
+void Span::addManyNumbers(InputIterator begin, InputIterator end, int size) {
+	if (mAdd + size > mMax)
+		throw std::runtime_error("There is not enough space.");
+	mAdd += size;
+	mNumbers.insert(mNumbers.end(), begin, end);
+}
 
 #endif
