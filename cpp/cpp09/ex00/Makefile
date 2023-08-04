@@ -17,7 +17,7 @@ PROG			=	"Bitcoin Exchange"
 INC_FILE		=	BitcoinExchange.hpp
 
 SRC_FILE		=	main.cpp				\
-					#BitcoinExchange.cpp
+					BitcoinExchange.cpp
 
 OBJ_FILE		=	$(SRC_FILE:.cpp=.o)
 
