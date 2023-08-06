@@ -1,28 +1,6 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-/*****   Standard Color   *****/
-#define C_RESET      "\033[0m"
-#define C_RED      "\033[31m"
-#define C_GREEN      "\033[32m"
-#define C_YELLOW   "\033[33m"
-#define C_BLUE      "\033[34m"
-#define C_MAGENTA   "\033[35m"
-#define C_CYAN      "\033[36m"
-#define C_WHITE      "\033[37m"
-
-/*****   Bright Color   *****/
-#define BC_RED      "\033[91m"
-#define BC_GREEN   "\033[92m"
-#define BC_YELLOW   "\033[93m"
-#define BC_BLUE      "\033[94m"
-#define BC_MAGENTA   "\033[95m"
-#define BC_CYAN      "\033[96m"
-#define BC_WHITE   "\033[97m"
-
-#define RED_ERR      C_RED "Error: " C_RESET
-#define INIT_ERR   C_RED "Error: " BC_MAGENTA "Init: " C_RESET
-
 #include <iostream>
 #include <deque>
 #include <vector>
@@ -100,30 +78,21 @@ void	PmergeMe::sortPair(T& c1, T& c2) {
 }
 
 template <typename T> void	PmergeMe::mergeInsertion(T& c1, T& c2) {
-	size_t	size = c2.size();
-	size_t	j_index(2);
-	size_t	prev(1);
-	size_t	next(0);
+	size_t	j_idx(1);
 	size_t	idx(0);
-	(void)c1;
 
-	c1.insert(std::lower_bound(c1.begin(), c1.end(), c2[idx]), c2[idx]);
-	idx = 1;
-	if (size > 2)
-		idx = 2;
-	for (size_t i = 1; i < size; i++) {
+	while (c2.size())
+	{
 		c1.insert(std::lower_bound(c1.begin(), c1.end(), c2[idx]), c2[idx]);
-		if (idx == prev) {
-			prev = jacobsthal(++j_index);
-			next = jacobsthal(j_index + 1);
-			if (next > size)
-				idx = size;
-			else
-				idx = next;
+		c2.erase(c2.begin() + idx);
+		if (idx == 0) {
+			idx = jacobsthal(j_idx++) * 2 - 1;
+			if (idx > c2.size() - 1)
+				idx = c2.size() - 1;
 		}
-		idx--;
+		else
+			idx--;
 	}
-	c2.erase(c2.begin(), c2.end());
 }
 
 template <typename T> 
