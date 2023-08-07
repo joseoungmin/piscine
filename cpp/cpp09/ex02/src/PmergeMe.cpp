@@ -106,8 +106,8 @@ void PmergeMe::createResult(void)
 
 size_t PmergeMe::jacobsthal(size_t n){
 	if(n < 2)
-		return n;
-	return jacobsthal(n-1) + 2 * jacobsthal(n-2);
+		return (n);
+	return (jacobsthal(n-1) + 2 * jacobsthal(n-2));
 }
 
 void PmergeMe::checkRunningTime(e_containerType type)
@@ -152,7 +152,7 @@ int PmergeMe::run(int argc, char** argv)
 		createResult();
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
